@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C31CB1521AAA48B700D229DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1511AAA48B700D229DC /* AppDelegate.swift */; };
+		C31CB1571AAA48B700D229DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31CB1551AAA48B700D229DC /* Main.storyboard */; };
+		C31CB1591AAA48B700D229DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31CB1581AAA48B700D229DC /* Images.xcassets */; };
+		C31CB15C1AAA48B700D229DC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31CB15A1AAA48B700D229DC /* LaunchScreen.xib */; };
+		C31CB1681AAA48B700D229DC /* CrowdSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1671AAA48B700D229DC /* CrowdSoundTests.swift */; };
+		C31CB1721AAA4FAC00D229DC /* Crowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1711AAA4FAC00D229DC /* Crowd.swift */; };
+		C31CB1741AAA4FE800D229DC /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1731AAA4FE800D229DC /* Playlist.swift */; };
+		C31CB1761AAA4FF600D229DC /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1751AAA4FF600D229DC /* Song.swift */; };
+		C31CB17A1AAA513B00D229DC /* PendingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1791AAA513B00D229DC /* PendingTableViewController.swift */; };
+		C31CB17C1AAA514B00D229DC /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */; };
+		C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */; };
+		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C31CB1621AAA48B700D229DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C31CB1441AAA48B700D229DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C31CB14B1AAA48B700D229DC;
+			remoteInfo = CrowdSound;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C31CB14C1AAA48B700D229DC /* CrowdSound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSound.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31CB1501AAA48B700D229DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C31CB1511AAA48B700D229DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C31CB1561AAA48B700D229DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C31CB1581AAA48B700D229DC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C31CB15B1AAA48B700D229DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C31CB1611AAA48B700D229DC /* CrowdSoundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdSoundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31CB1661AAA48B700D229DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C31CB1671AAA48B700D229DC /* CrowdSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdSoundTests.swift; sourceTree = "<group>"; };
+		C31CB1711AAA4FAC00D229DC /* Crowd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crowd.swift; sourceTree = "<group>"; };
+		C31CB1731AAA4FE800D229DC /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		C31CB1751AAA4FF600D229DC /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		C31CB1791AAA513B00D229DC /* PendingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingTableViewController.swift; sourceTree = "<group>"; };
+		C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
+		C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdsTableViewController.swift; sourceTree = "<group>"; };
+		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C31CB1491AAA48B700D229DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C31CB15E1AAA48B700D229DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C31CB1431AAA48B700D229DC = {
+			isa = PBXGroup;
+			children = (
+				C31CB14E1AAA48B700D229DC /* CrowdSound */,
+				C31CB1641AAA48B700D229DC /* CrowdSoundTests */,
+				C31CB14D1AAA48B700D229DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C31CB14D1AAA48B700D229DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C31CB14C1AAA48B700D229DC /* CrowdSound.app */,
+				C31CB1611AAA48B700D229DC /* CrowdSoundTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C31CB14E1AAA48B700D229DC /* CrowdSound */ = {
+			isa = PBXGroup;
+			children = (
+				C31CB1511AAA48B700D229DC /* AppDelegate.swift */,
+				C31CB1551AAA48B700D229DC /* Main.storyboard */,
+				C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */,
+				C31CB1791AAA513B00D229DC /* PendingTableViewController.swift */,
+				C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */,
+				C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */,
+				C31CB1581AAA48B700D229DC /* Images.xcassets */,
+				C31CB15A1AAA48B700D229DC /* LaunchScreen.xib */,
+				C31CB14F1AAA48B700D229DC /* Supporting Files */,
+				C31CB1711AAA4FAC00D229DC /* Crowd.swift */,
+				C31CB1731AAA4FE800D229DC /* Playlist.swift */,
+				C31CB1751AAA4FF600D229DC /* Song.swift */,
+			);
+			path = CrowdSound;
+			sourceTree = "<group>";
+		};
+		C31CB14F1AAA48B700D229DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C31CB1501AAA48B700D229DC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C31CB1641AAA48B700D229DC /* CrowdSoundTests */ = {
+			isa = PBXGroup;
+			children = (
+				C31CB1671AAA48B700D229DC /* CrowdSoundTests.swift */,
+				C31CB1651AAA48B700D229DC /* Supporting Files */,
+			);
+			path = CrowdSoundTests;
+			sourceTree = "<group>";
+		};
+		C31CB1651AAA48B700D229DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C31CB1661AAA48B700D229DC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C31CB14B1AAA48B700D229DC /* CrowdSound */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C31CB16B1AAA48B700D229DC /* Build configuration list for PBXNativeTarget "CrowdSound" */;
+			buildPhases = (
+				C31CB1481AAA48B700D229DC /* Sources */,
+				C31CB1491AAA48B700D229DC /* Frameworks */,
+				C31CB14A1AAA48B700D229DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrowdSound;
+			productName = CrowdSound;
+			productReference = C31CB14C1AAA48B700D229DC /* CrowdSound.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C31CB1601AAA48B700D229DC /* CrowdSoundTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C31CB16E1AAA48B700D229DC /* Build configuration list for PBXNativeTarget "CrowdSoundTests" */;
+			buildPhases = (
+				C31CB15D1AAA48B700D229DC /* Sources */,
+				C31CB15E1AAA48B700D229DC /* Frameworks */,
+				C31CB15F1AAA48B700D229DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C31CB1631AAA48B700D229DC /* PBXTargetDependency */,
+			);
+			name = CrowdSoundTests;
+			productName = CrowdSoundTests;
+			productReference = C31CB1611AAA48B700D229DC /* CrowdSoundTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C31CB1441AAA48B700D229DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = cs439;
+				TargetAttributes = {
+					C31CB14B1AAA48B700D229DC = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					C31CB1601AAA48B700D229DC = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = C31CB14B1AAA48B700D229DC;
+					};
+				};
+			};
+			buildConfigurationList = C31CB1471AAA48B700D229DC /* Build configuration list for PBXProject "CrowdSound" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C31CB1431AAA48B700D229DC;
+			productRefGroup = C31CB14D1AAA48B700D229DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C31CB14B1AAA48B700D229DC /* CrowdSound */,
+				C31CB1601AAA48B700D229DC /* CrowdSoundTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C31CB14A1AAA48B700D229DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C31CB1571AAA48B700D229DC /* Main.storyboard in Resources */,
+				C31CB15C1AAA48B700D229DC /* LaunchScreen.xib in Resources */,
+				C31CB1591AAA48B700D229DC /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C31CB15F1AAA48B700D229DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C31CB1481AAA48B700D229DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */,
+				C31CB17A1AAA513B00D229DC /* PendingTableViewController.swift in Sources */,
+				C31CB1761AAA4FF600D229DC /* Song.swift in Sources */,
+				C31CB17C1AAA514B00D229DC /* PlaylistTableViewController.swift in Sources */,
+				C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */,
+				C31CB1521AAA48B700D229DC /* AppDelegate.swift in Sources */,
+				C31CB1721AAA4FAC00D229DC /* Crowd.swift in Sources */,
+				C31CB1741AAA4FE800D229DC /* Playlist.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C31CB15D1AAA48B700D229DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C31CB1681AAA48B700D229DC /* CrowdSoundTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C31CB1631AAA48B700D229DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C31CB14B1AAA48B700D229DC /* CrowdSound */;
+			targetProxy = C31CB1621AAA48B700D229DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C31CB1551AAA48B700D229DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C31CB1561AAA48B700D229DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C31CB15A1AAA48B700D229DC /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C31CB15B1AAA48B700D229DC /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C31CB1691AAA48B700D229DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C31CB16A1AAA48B700D229DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C31CB16C1AAA48B700D229DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrowdSound/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C31CB16D1AAA48B700D229DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrowdSound/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C31CB16F1AAA48B700D229DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CrowdSoundTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSound.app/CrowdSound";
+			};
+			name = Debug;
+		};
+		C31CB1701AAA48B700D229DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CrowdSoundTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSound.app/CrowdSound";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C31CB1471AAA48B700D229DC /* Build configuration list for PBXProject "CrowdSound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31CB1691AAA48B700D229DC /* Debug */,
+				C31CB16A1AAA48B700D229DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C31CB16B1AAA48B700D229DC /* Build configuration list for PBXNativeTarget "CrowdSound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31CB16C1AAA48B700D229DC /* Debug */,
+				C31CB16D1AAA48B700D229DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C31CB16E1AAA48B700D229DC /* Build configuration list for PBXNativeTarget "CrowdSoundTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31CB16F1AAA48B700D229DC /* Debug */,
+				C31CB1701AAA48B700D229DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C31CB1441AAA48B700D229DC /* Project object */;
+}
