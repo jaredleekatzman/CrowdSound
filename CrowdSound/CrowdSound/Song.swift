@@ -27,4 +27,12 @@ class Song {
         song.upvotes = Int(arc4random_uniform(20))
         return song 
     }
+    
+    func upvote() {
+        self.upvotes++
+    }
+    
+    func downvote() {
+        self.upvotes--
+    }
 }

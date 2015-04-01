@@ -45,7 +45,7 @@ class PendingTableViewController: UITableViewController {
         // Return the number of rows in the section.
         return pending!.songs.count
     }
-
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pendingSongCell", forIndexPath: indexPath) as PendingSongCell
@@ -54,11 +54,29 @@ class PendingTableViewController: UITableViewController {
         var currentSong = pending!.songs[indexPath.row]
         cell.songLabel.text = currentSong.name
         cell.votesLabel.text = String(currentSong.upvotes)
+        cell.upvoteBttn.tag = indexPath.row
+        cell.downvoteBttn.tag = indexPath.row
+        
+        cell.upvoteBttn.addTarget(self, action: "upvote:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.downvoteBttn.addTarget(self, action: "downvote:", forControlEvents: UIControlEvents.TouchUpInside)
+//        button.addTarget(delegate, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         
         return cell
     }
-    
 
+    func upvote(sender:UIButton!) {
+        println("Upvoting!")
+        pending?.upvoteSong(sender.tag)
+        println("Upvoted \(pending?.songs[sender.tag].upvotes)!")
+        self.tableView.reloadData()
+    }
+    func downvote(sender:UIButton!) {
+        pending?.downvoteSong(sender.tag)
+        println("Downvoted \(pending?.songs[sender.tag].upvotes)!")
+        self.tableView.reloadData()
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

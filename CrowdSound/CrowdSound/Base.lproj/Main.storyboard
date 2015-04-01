@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pendingSongCell" id="6FG-3O-Zeg" customClass="PendingSongCell" customModule="CrowdSound" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="pendingSongCell" id="6FG-3O-Zeg" customClass="PendingSongCell" customModule="CrowdSound" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6FG-3O-Zeg" id="Ql0-tG-AOM">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -105,12 +105,15 @@
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eW2-5d-HRI">
                                             <rect key="frame" x="552" y="12" width="42" height="19"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES" updatesFrequently="YES"/>
+                                            </accessibility>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRO-fK-Abj">
-                                            <rect key="frame" x="519" y="7" width="31" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRO-fK-Abj">
+                                            <rect key="frame" x="498" y="-3" width="52" height="47.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="31" id="xPX-iN-1ah"/>
                                             </constraints>
@@ -118,8 +121,8 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-gK-yDH">
-                                            <rect key="frame" x="569" y="4" width="31" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-gK-yDH">
+                                            <rect key="frame" x="558" y="-3" width="42" height="48.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="31" id="YRI-sX-O6r"/>
                                             </constraints>
@@ -154,7 +157,9 @@
                                     <accessibilityTraits key="traits" none="YES" updatesFrequently="YES"/>
                                 </accessibility>
                                 <connections>
+                                    <outlet property="downvoteBttn" destination="rc8-gK-yDH" id="d7q-uM-faL"/>
                                     <outlet property="songLabel" destination="g98-MV-EZk" id="9Bp-m9-wwR"/>
+                                    <outlet property="upvoteBttn" destination="bRO-fK-Abj" id="AYU-eP-m0S"/>
                                     <outlet property="votesLabel" destination="eW2-5d-HRI" id="RDd-bf-9Ah"/>
                                 </connections>
                             </tableViewCell>
@@ -168,7 +173,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dx-fA-ecO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="968" y="1066"/>
+            <point key="canvasLocation" x="968" y="1064.5"/>
         </scene>
         <!--Playlist-->
         <scene sceneID="sWK-CB-xoj">

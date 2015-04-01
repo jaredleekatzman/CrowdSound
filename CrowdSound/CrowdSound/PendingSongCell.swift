@@ -12,6 +12,8 @@ class PendingSongCell: UITableViewCell {
 
     @IBOutlet weak var votesLabel: UILabel!
     @IBOutlet weak var songLabel: UILabel!
+    @IBOutlet weak var downvoteBttn: UIButton!
+    @IBOutlet weak var upvoteBttn: UIButton!
     
     
     override func awakeFromNib() {
