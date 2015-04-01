@@ -24,7 +24,7 @@ class Song {
         var song = Song()
         song.name = "name" + id
         song.spotifyID = "spotifyId" + id
-        song.upvotes = 0
+        song.upvotes = Int(arc4random_uniform(20))
         return song 
     }
 }

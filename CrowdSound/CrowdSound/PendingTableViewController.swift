@@ -48,12 +48,13 @@ class PendingTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("pendingSongCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("pendingSongCell", forIndexPath: indexPath) as PendingSongCell
 
         // Configure the cell...
         var currentSong = pending!.songs[indexPath.row]
-        cell.textLabel?.text = currentSong.name
-
+        cell.songLabel.text = currentSong.name
+        cell.votesLabel.text = String(currentSong.upvotes)
+        
         return cell
     }
     

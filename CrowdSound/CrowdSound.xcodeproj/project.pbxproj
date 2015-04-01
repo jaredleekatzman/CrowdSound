@@ -19,6 +19,7 @@
 		C31CB17C1AAA514B00D229DC /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */; };
 		C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */; };
 		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
+		EDF2377C1AC9FD67001B007C /* PendingSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdsTableViewController.swift; sourceTree = "<group>"; };
 		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
+		EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingSongCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				C31CB1511AAA48B700D229DC /* AppDelegate.swift */,
 				C31CB1551AAA48B700D229DC /* Main.storyboard */,
+				EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */,
 				C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */,
 				C31CB1791AAA513B00D229DC /* PendingTableViewController.swift */,
 				C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */,
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF2377C1AC9FD67001B007C /* PendingSongCell.swift in Sources */,
 				C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */,
 				C31CB17A1AAA513B00D229DC /* PendingTableViewController.swift in Sources */,
 				C31CB1761AAA4FF600D229DC /* Song.swift in Sources */,
@@ -429,6 +433,7 @@
 				C31CB16D1AAA48B700D229DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C31CB16E1AAA48B700D229DC /* Build configuration list for PBXNativeTarget "CrowdSoundTests" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +442,7 @@
 				C31CB1701AAA48B700D229DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
