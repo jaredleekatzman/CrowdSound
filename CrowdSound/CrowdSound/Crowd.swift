@@ -36,4 +36,14 @@ class Crowd {
         crowd.guests = ["Jack", "Jared", "Terin", "Eli", "TIM"]
         return crowd
     }
+    
+    func upvotePendingSong(songIndex:Int) {
+        pending.upvoteSong(songIndex)
+        if (pending.top().upvotes >= threshold) {
+            playlist.addSong(pending.pop())
+        }
+    }
+    func downvotePendingSong(songIndex:Int) {
+        pending.downvoteSong(songIndex)
+    }
 }

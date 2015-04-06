@@ -45,5 +45,22 @@ class Playlist {
         // @todo: Make more efficient by using a sorting algorithm better for presorted lists
         songs = sorted(songs) {$0.upvotes > $1.upvotes }
     }
+    func addSong(song:Song) {
+        songs.append(song)
+    }
+    func isEmpty() -> Bool {
+        if (songs.count > 0) {
+            return false
+        }
+        return true
+    }
+    // TOP() returns the first song in the playlist. If the playlist is empty return nothing
+    func top() -> Song {
+            return songs[0]
+    }
+    // POP() removes the first song in the playlist and returns it
+    func pop() -> Song {
+        return songs.removeAtIndex(0)
+    }
     
 }
