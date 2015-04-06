@@ -57,6 +57,7 @@ class PendingTableViewController: UITableViewController {
         cell.upvoteBttn.tag = indexPath.row
         cell.downvoteBttn.tag = indexPath.row
         
+        // Creates Button Action Listeners
         cell.upvoteBttn.addTarget(self, action: "upvote:", forControlEvents: UIControlEvents.TouchUpInside)
         cell.downvoteBttn.addTarget(self, action: "downvote:", forControlEvents: UIControlEvents.TouchUpInside)
 //        button.addTarget(delegate, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -67,12 +68,14 @@ class PendingTableViewController: UITableViewController {
 
     func upvote(sender:UIButton!) {
         println("Upvoting!")
-        pending?.upvoteSong(sender.tag)
-        println("Upvoted \(pending?.songs[sender.tag].upvotes)!")
+//        pending?.upvoteSong(sender.tag)
+        crowd?.upvotePendingSong(sender.tag)
+//        println("Upvoted \(pending?.songs[sender.tag].upvotes)!")
         self.tableView.reloadData()
     }
     func downvote(sender:UIButton!) {
-        pending?.downvoteSong(sender.tag)
+//        pending?.downvoteSong(sender.tag)
+        crowd?.downvotePendingSong(sender.tag)
         println("Downvoted \(pending?.songs[sender.tag].upvotes)!")
         self.tableView.reloadData()
     }
