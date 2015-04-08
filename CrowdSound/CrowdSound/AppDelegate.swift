@@ -18,7 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Set up shared authentication information
+        let auth = SPTAuth.defaultInstance()
+        auth.clientID = kClientId
         
+        auth.requestedScopes = [SPTAuthStreamingScope]
+        
+        auth.redirectURL = NSURL(string: kCallbackURL)
+        auth.tokenSwapURL = NSURL(string: kTokenSwapServiceURL)
+        auth.tokenRefreshURL = NSURL(string: kTokenRefreshServiceURL)
+        auth.sessionUserDefaultsKey = kSessionUserDefaultsKey
+        
+        return true
+        
+        // Objective-C code
 //        SPTAuth *auth = [SPTAuth defaultInstance];
 //        auth.clientID = @kClientId
 //        ;
@@ -33,7 +45,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
 //        return YES;
         
-        return true
+    }
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        let auth = SPTAuth.defaultInstance()
+        
+        let authCallback = { (error : NSError?, session : SPTSession?) -> () in
+            if (error != nil) {
+                NSLog("*** Auth Error \(error)")
+                return
+            }
+            auth.session = session
+            NSNotificationCenter.defaultCenter().postNotificationName("sessionUpdated", object: self)
+        }
+        
+        if auth.canHandleURL(url) {
+            auth.handleAuthCallbackWithTriggeredAuthURL(url, callback: authCallback)
+            return true
+        }
+        
+        return false
     }
 
     func applicationWillResignActive(application: UIApplication) {
