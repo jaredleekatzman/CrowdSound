@@ -29,6 +29,10 @@ class Playlist {
         playlist.songs = sorted([Song.defaultSong(id: "_Pending1"), Song.defaultSong(id: "_Pending2"), Song.defaultSong(id: "_Pending3")]) {$0.upvotes > $1.upvotes}
         return playlist
     }
+    // Return the number of songs in the playlist
+    func count() -> Int {
+        return self.songs.count
+    }
     
     func upvoteSong(songIndex:Int) {
         println("Upvoting: \(songs[songIndex])")

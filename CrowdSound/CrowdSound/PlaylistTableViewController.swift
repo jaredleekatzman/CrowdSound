@@ -22,6 +22,7 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
         playlist = crowd!.playlist
 
         
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,15 +49,74 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
         return playlist!.songs.count
     }
 
+    func playPause(sender : UIButton!) {
+//        ((self.player?.setIsPlaying(!self.player?.isPlaying, callback: nil) != nil) != nil)
+//        
+        NSLog("Pressed Play/Pause")
+    }
+    
+    func fastForward(sender : UIButton!) {
+        NSLog("Next song")
+        self.player?.skipNext(nil)
+    }
+    
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
+        
+        
+        if (indexPath.row == 0) {
+            // custom cell
+            let cell = tableView.dequeueReusableCellWithIdentifier("playerCell", forIndexPath: indexPath) as PlayerCell
+            
+            if playlist?.count() == 0 {
+                cell.songLabel.text = ""
+                cell.artistLabel.text = ""
+                cell.backButton.enabled = false
+                cell.playButton.enabled = false
+                cell.nextButton.enabled = false
+            }
+            else {
+                cell.backButton.enabled = true
+                cell.playButton.enabled = true
+                cell.nextButton.enabled = true
+                
+                cell.playButton.addTarget(self, action: "playPause:", forControlEvents: UIControlEvents.TouchUpInside)
+                cell.nextButton.addTarget(self, action: "fastForward:", forControlEvents: UIControlEvents.TouchUpInside)
+                
+                cell.songLabel.text = playlist?.songs[0].name
+                cell.songLabel.text = "Jared Katzman"
+                
+//                let auth = SPTAuth.defaultInstance()
+                
+//                var currentSong = playlist!.songs[indexPath.row]
+//                SPTTrack.trackWithURI(self.player?.currentTrackURI, session: auth.session, callback: { (error : NSError?, object : AnyObject?) -> Void in
+//                    
+//                    let track = object as SPTTrack
+//                    
+//                    cell.songLabel.text = track.name
+//                    cell.artistLabel.text = track.artists[0].name
+//                    
+//                    
+//                })
 
-        // Configure the cell...
-        var currentSong = playlist!.songs[indexPath.row]
-        cell.textLabel?.text = currentSong.name
+                
+            }
+            
+            return cell
+        }
+        else {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
 
-        return cell
+            // Configure the cell...
+            var currentSong = playlist!.songs[indexPath.row]
+            cell.textLabel?.text = currentSong.name
+            
+            return cell
+        }
+        
+        
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -88,16 +148,16 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
 //            self.player?.playURIs(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
 
             
-            SPTRequest.requestItemAtURI(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), withSession: auth.session, callback: { (error : NSError!, albumObject : AnyObject!) -> Void in
+            SPTRequest.requestItemAtURI(self.player?.currentTrackURI, withSession: auth.session, callback: { (error : NSError!, albumObject : AnyObject!) -> Void in
                 if (error != nil) {
                     NSLog("Album Lookup got error \(error)")
                     return
                 }
-                let album = albumObject as SPTAlbum
+                let track = albumObject as SPTTrack
                 
 //                self.player?.shitonmydick()
 //                self.player?.playURIs(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
-                self.player?.playTrackProvider(album, callback: nil)
+                self.player?.playTrackProvider(track, callback: nil)
                 
             })
         })
@@ -123,6 +183,23 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
         NSLog("Is playing = \(isPlaying)")
     }
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (indexPath.row == 0) {
+            return 100;
+        }
+        else {
+            return 44;
+        }
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (indexPath.row == 0) {
+            return 100;
+        }
+        else {
+            return 44;
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

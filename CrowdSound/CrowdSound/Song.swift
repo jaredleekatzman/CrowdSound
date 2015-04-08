@@ -11,15 +11,22 @@ import Foundation
 class Song {
     var name : String
     var spotifyID : String
+//    var spotifyTrack : SPTTrack
     var upvotes : Int
     
     init() {
-        name = ""
-        spotifyID = ""
-        upvotes = 0
+        self.name = ""
+        self.spotifyID = ""
+        self.upvotes = 0
+//        self.spotifyTrack = nil
     }
     
-    // for testing - create default song 
+//    init(track : SPPTrack) {
+//        self.spotifyTrack = track
+//        self.name =
+//    }
+//    
+    // for testing - create default song
     class func defaultSong(id : String = "") -> Song {
         var song = Song()
         song.name = "name" + id
