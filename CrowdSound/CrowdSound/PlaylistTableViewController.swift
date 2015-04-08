@@ -8,10 +8,12 @@
 
 import UIKit
 
-class PlaylistTableViewController: UITableViewController {
+class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate {
 
     var crowd : Crowd?
     var playlist : Playlist?
+    
+    var player : SPTAudioStreamingController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,7 @@ class PlaylistTableViewController: UITableViewController {
         crowd = tbvc.myCrowd
         playlist = crowd!.playlist
 
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,6 +59,64 @@ class PlaylistTableViewController: UITableViewController {
         return cell
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.handleNewSession()
+    }
+    
+    func updateUI() {
+        return
+    }
+    
+    func handleNewSession() {
+        let auth = SPTAuth.defaultInstance()
+        
+        if (self.player == nil) {
+            self.player = SPTAudioStreamingController(clientId: auth.clientID)
+            self.player!.playbackDelegate = self;
+            self.player!.diskCache = SPTDiskCache(capacity: 1024 * 1024 * 64)
+        }
+        
+        self.player?.loginWithSession(auth.session, callback: { (error : NSError?) -> () in
+            if (error != nil) {
+                NSLog("*** Enabaling playback got error: \(error)")
+                return
+            }
+            
+            self.updateUI()
+            
+            SPTRequest.requestItemAtURI(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), withSession: auth.session, callback: { (error : NSError!, albumObject : AnyObject!) -> Void in
+                if (error != nil) {
+                    NSLog("Album Lookup got error \(error)")
+                    return
+                }
+                let album = albumObject as SPTAlbum
+                
+                self.player?.playTrackProvider(album, callback: nil)
+                
+            })
+        })
+    }
+    
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didReceiveMessage message: String!) {
+        let alertView = UIAlertView(title: "Messsage from Spotify", message: message, delegate: nil, cancelButtonTitle: "OK")
+        
+        alertView.show()
+    }
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
+        NSLog("Failed to play track: \(trackUri)")
+    }
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
+        NSLog("track changed!")
+        self.updateUI()
+    }
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
+        NSLog("Is playing = \(isPlaying)")
+    }
 
     /*
     // Override to support conditional editing of the table view.
