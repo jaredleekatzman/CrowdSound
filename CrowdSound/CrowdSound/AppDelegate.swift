@@ -16,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Set up shared authentication information
+        
+//        SPTAuth *auth = [SPTAuth defaultInstance];
+//        auth.clientID = @kClientId
+//        ;
+//        auth.requestedScopes = @[SPTAuthStreamingScope];
+//        auth.redirectURL = [NSURL URLWithString:@kCallbackURL];
+//        #ifdef kTokenSwapServiceURL
+//        auth.tokenSwapURL = [NSURL URLWithString:@kTokenSwapServiceURL];
+//        #endif
+//        #ifdef kTokenRefreshServiceURL
+//        auth.tokenRefreshURL = [NSURL URLWithString:@kTokenRefreshServiceURL];
+//        #endif
+//        auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
+//        return YES;
+        
         return true
     }
 

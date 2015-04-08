@@ -1,10 +1,5 @@
-//
-//  SPTPage.h
-//  Spotify iOS SDK
-//
-//  Created by Daniel Kennett on 2014-06-10.
 /*
- Copyright 2013 Spotify AB
+ Copyright 2015 Spotify AB
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.

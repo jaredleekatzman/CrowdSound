@@ -8,12 +8,17 @@
 
 import UIKit
 
-class CrowdsTableViewController: UITableViewController {
+class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
 
+    @IBOutlet weak var barButton: UIBarButtonItem!
+    
+    var authViewController : SPTAuthViewController?
     var crowds = [Crowd]() 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sessionUpdateNotification:", name: "sessionUpdated", object: nil)
 
         var defaultCrowd = Crowd.defaultCrowd()
         var eliCrowd = Crowd.defaultCrowd()
@@ -27,6 +32,15 @@ class CrowdsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func sessionUpdatedNotification(notification : NSNotification) {
+        if self.navigationController?.topViewController == self {
+            let auth = SPTAuth.defaultInstance()
+            if (auth.session != nil && auth.session.isValid()) {
+                self.showConfigButton()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +73,72 @@ class CrowdsTableViewController: UITableViewController {
         return cell
     }
     
+    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didFailToLogin error: NSError!) {
+        NSLog("*** Failed to log in \(error)")
+    }
+    
+    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
+        self.showConfigButton()
+    }
+    
+    func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
+        // Login Cancelled
+    }
+    
+    func openLoginPage() {
+        self.authViewController = SPTAuthViewController.authenticationViewController()
+        self.authViewController?.delegate = self;
+        self.authViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        self.authViewController?.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        
+        self.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        self.definesPresentationContext = true;
+        
+        self.presentViewController(self.authViewController!, animated: false, completion: nil)
+    }
+    
+    
+    func showConfigButton() {
+        // Need to switch toolbar buttons 
+        return
+    }
+    
+    func renewTokenAndShowButton() {
+        let auth = SPTAuth.defaultInstance()
+        
+        auth.renewSession(auth.session, callback: { (error : NSError?, session : SPTSession?) -> () in
+            auth.session = session
+            
+            if (error != nil) {
+                NSLog("*** Error renewing session \(error)")
+                return
+            }
+            self.showConfigButton()
+        })
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        var auth = SPTAuth.defaultInstance()
+        
+        // Check if we have a token at all
+        if auth.session == nil {
+            return
+        }
+        
+        // Check if it's still valid
+        if auth.session.isValid() {
+            
+            // Change buttons
+            return
+        }
+        
+        if auth.hasTokenRefreshService {
+            self.renewTokenAndShowButton()
+            return
+        }
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.

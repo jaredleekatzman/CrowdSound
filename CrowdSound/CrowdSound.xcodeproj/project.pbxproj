@@ -25,7 +25,7 @@
 		EDBAB79F1ACC567100E7164C /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1731AAA4FE800D229DC /* Playlist.swift */; };
 		EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */; };
 		EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A21ACC585100E7164C /* SongTests.swift */; };
-		EDF0C2AE1AD49C9D00221DFD /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF0C2AD1AD49C9D00221DFD /* Spotify.framework */; };
+		EDCBFA6C1AD4A59D00C5CF96 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */; };
 		EDF0C2B01AD49CAD00221DFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */; };
 		EDF0C2B61AD49E5500221DFD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C2B51AD49E5500221DFD /* Config.swift */; };
 		EDF2377C1AC9FD67001B007C /* PendingSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */; };
@@ -61,7 +61,7 @@
 		EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdTests.swift; path = CrowdSoundTests/CrowdTests.swift; sourceTree = SOURCE_ROOT; };
 		EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTests.swift; sourceTree = "<group>"; };
 		EDBAB7A21ACC585100E7164C /* SongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTests.swift; sourceTree = "<group>"; };
-		EDF0C2AD1AD49C9D00221DFD /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EDF0C2B11AD49D4400221DFD /* CrowdSound-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrowdSound-Bridging-Header.h"; sourceTree = "<group>"; };
 		EDF0C2B51AD49E5500221DFD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDF0C2B01AD49CAD00221DFD /* AVFoundation.framework in Frameworks */,
-				EDF0C2AE1AD49C9D00221DFD /* Spotify.framework in Frameworks */,
+				EDCBFA6C1AD4A59D00C5CF96 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +91,8 @@
 		C31CB1431AAA48B700D229DC = {
 			isa = PBXGroup;
 			children = (
+				EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */,
 				EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */,
-				EDF0C2AD1AD49C9D00221DFD /* Spotify.framework */,
 				C31CB14E1AAA48B700D229DC /* CrowdSound */,
 				C31CB1641AAA48B700D229DC /* CrowdSoundTests */,
 				C31CB14D1AAA48B700D229DC /* Products */,
