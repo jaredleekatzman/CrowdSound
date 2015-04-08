@@ -30,21 +30,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Crowds" id="7hH-vy-iTd">
-                        <barButtonItem key="leftBarButtonItem" title="Log In" id="QHc-M2-THi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Da9-ZS-xwy">
                             <connections>
-                                <action selector="loginClicked:" destination="5uS-XK-Xde" id="9fT-zi-OEc"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="Da9-ZS-xwy">
-                            <connections>
-                                <segue destination="cWf-Ot-YVG" kind="show" id="Bdn-GM-z4C"/>
+                                <segue destination="cWf-Ot-YVG" kind="show" identifier="showConfig" id="Bdn-GM-z4C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="configButton" destination="Da9-ZS-xwy" id="AKt-8a-yo7"/>
-                        <outlet property="loginButton" destination="QHc-M2-THi" id="CYL-jW-rYT"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7PC-xz-PbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,7 +113,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRO-fK-Abj">
-                                            <rect key="frame" x="498" y="-3" width="52" height="47.5"/>
+                                            <rect key="frame" x="498" y="-3" width="52" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="31" id="xPX-iN-1ah"/>
                                             </constraints>
@@ -131,7 +122,7 @@
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-gK-yDH">
-                                            <rect key="frame" x="558" y="-3" width="42" height="48.5"/>
+                                            <rect key="frame" x="558" y="-3" width="42" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="31" id="YRI-sX-O6r"/>
                                             </constraints>

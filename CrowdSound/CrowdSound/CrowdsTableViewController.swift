@@ -10,7 +10,8 @@ import UIKit
 
 class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
 
-    @IBOutlet weak var barButton: UIBarButtonItem!
+    @IBOutlet var configButton: UIBarButtonItem!
+    @IBOutlet weak var loginButton: UIBarButtonItem!
     
     var authViewController : SPTAuthViewController?
     var crowds = [Crowd]() 
@@ -99,7 +100,10 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
     
     
     func showConfigButton() {
-        // Need to switch toolbar buttons 
+        self.loginButton.enabled = false
+        self.configButton.enabled = true
+        
+        // Need to switch toolbar buttons
         return
     }
     
@@ -140,6 +144,9 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
         
     }
 
+    @IBAction func loginClicked(sender: AnyObject) {
+        self.openLoginPage()
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
