@@ -85,6 +85,9 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
             
             self.updateUI()
             
+//            self.player?.playURIs(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
+
+            
             SPTRequest.requestItemAtURI(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), withSession: auth.session, callback: { (error : NSError!, albumObject : AnyObject!) -> Void in
                 if (error != nil) {
                     NSLog("Album Lookup got error \(error)")
@@ -92,6 +95,8 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
                 }
                 let album = albumObject as SPTAlbum
                 
+//                self.player?.shitonmydick()
+//                self.player?.playURIs(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
                 self.player?.playTrackProvider(album, callback: nil)
                 
             })

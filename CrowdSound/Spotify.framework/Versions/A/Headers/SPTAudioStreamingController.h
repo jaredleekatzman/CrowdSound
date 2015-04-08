@@ -257,7 +257,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)playTrackProvider:(id<SPTTrackProvider>)provider callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)playTrackProvider:(id<SPTTrackProvider>)provider callback:(SPTErrorableOperationCallback)block;
 
 /** Play a track provider.
  
@@ -272,7 +272,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)playTrackProvider:(id<SPTTrackProvider>)provider fromIndex:(int)index callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)playTrackProvider:(id<SPTTrackProvider>)provider fromIndex:(int)index callback:(SPTErrorableOperationCallback)block;
 
 /** Queue a Spotify URI.
  
