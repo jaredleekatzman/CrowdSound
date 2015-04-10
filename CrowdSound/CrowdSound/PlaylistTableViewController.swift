@@ -20,7 +20,8 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
         let tbvc = self.tabBarController as CrowdTabViewController
         crowd = tbvc.myCrowd
         playlist = crowd!.playlist
-
+        
+        self.handleNewSession()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -47,10 +48,12 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         
-        return playlist!.songs.count
-//        let currentTrackIndex = self.player?.currentTrackIndex ?? Int32(0)
-//        let queueSize = playlist!.songs.count - Int(currentTrackIndex)
-//        return queueSize
+//        return playlist!.songs.count
+        let currentTrackIndex = self.player?.queueSize ?? Int32(playlist!.songs.count)
+        let queueSize = playlist!.songs.count - crowd!.currentTrackIndex
+//        NSLog("table size: \(queueSize)")
+        NSLog("queue size: \(player?.queueSize)")
+        return Int(currentTrackIndex) + 1
     }
 
     func playPause(sender : UIButton!) {
@@ -62,6 +65,10 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
     func fastForward(sender : UIButton!) {
         NSLog("Next song")
         self.player?.skipNext(nil)
+        self.crowd?.currentTrackIndex++
+        NSLog("Crowd Index: \(self.crowd?.currentTrackIndex)")
+        NSLog("Now playing index: \(self.player?.currentTrackIndex)")
+        self.updatePlayer()
     }
     
     
@@ -73,7 +80,7 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
             // custom cell
             let cell = tableView.dequeueReusableCellWithIdentifier("playerCell", forIndexPath: indexPath) as PlayerCell
             
-            if playlist?.count() == 0 {
+            if self.player?.trackListSize == 0 {
                 cell.songLabel.text = ""
                 cell.artistLabel.text = ""
                 cell.backButton.enabled = false
@@ -116,7 +123,8 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
             let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
 
             // Configure the cell...
-            var currentSong = playlist!.songs[indexPath.row]
+            let currentSongIndex = self.player?.currentTrackIndex ?? -1
+            var currentSong = playlist!.songs[indexPath.row + Int(currentSongIndex)]
             cell.textLabel?.text = currentSong.name
             
             return cell
@@ -127,14 +135,13 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.handleNewSession()
+        self.updatePlayer()
     }
     
     func updatePlayer() {
         
-        if (self.player?.currentTrackURI == nil) {
-            
-        }
+//        self.player?.queueURIs(playlist?.getURIs(), clearQueue: true, callback: nil)
+        self.tableView.reloadData()
         
         return
     }
@@ -156,20 +163,9 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
             
             self.updatePlayer()
 
-            
-//            self.player?.playURIs(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
 
+            self.player?.queueURIs(self.playlist?.getURIs(), clearQueue: true, callback: nil)
             
-//            SPTRequest.requestItemAtURI(self.player?.currentTrackURI, withSession: auth.session, callback: { (error : NSError!, albumObject : AnyObject!) -> Void in
-//                if (error != nil) {
-//                    NSLog("Album Lookup got error \(error)")
-//                    return
-//                }
-//                let track = albumObject as SPTTrack
-            
-            self.player?.playURIs(self.playlist?.getURIs(), fromIndex: 0, callback: nil)
-//                self.player?.playURI(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
-//                self.player?.playTrackProvider(track, callback: nil)
                 
             })
     }
