@@ -46,12 +46,16 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
+        
         return playlist!.songs.count
+//        let currentTrackIndex = self.player?.currentTrackIndex ?? Int32(0)
+//        let queueSize = playlist!.songs.count - Int(currentTrackIndex)
+//        return queueSize
     }
 
     func playPause(sender : UIButton!) {
-//        ((self.player?.setIsPlaying(!self.player?.isPlaying, callback: nil) != nil) != nil)
-//        
+        let bool = self.player?.isPlaying ?? true
+        self.player?.setIsPlaying(!bool, callback: nil)
         NSLog("Pressed Play/Pause")
     }
     
@@ -84,8 +88,10 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
                 cell.playButton.addTarget(self, action: "playPause:", forControlEvents: UIControlEvents.TouchUpInside)
                 cell.nextButton.addTarget(self, action: "fastForward:", forControlEvents: UIControlEvents.TouchUpInside)
                 
-                cell.songLabel.text = playlist?.songs[0].name
-                cell.songLabel.text = "Jared Katzman"
+                let currentIndex = self.player?.currentTrackIndex ?? Int32(0)
+                let currentSong = playlist?.songs[Int(currentIndex)]
+                cell.songLabel.text = currentSong?.name
+                cell.artistLabel.text = currentSong?.artist
                 
 //                let auth = SPTAuth.defaultInstance()
                 
@@ -124,7 +130,12 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
         self.handleNewSession()
     }
     
-    func updateUI() {
+    func updatePlayer() {
+        
+        if (self.player?.currentTrackURI == nil) {
+            
+        }
+        
         return
     }
     
@@ -143,24 +154,24 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
                 return
             }
             
-            self.updateUI()
+            self.updatePlayer()
+
             
 //            self.player?.playURIs(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
 
             
-            SPTRequest.requestItemAtURI(self.player?.currentTrackURI, withSession: auth.session, callback: { (error : NSError!, albumObject : AnyObject!) -> Void in
-                if (error != nil) {
-                    NSLog("Album Lookup got error \(error)")
-                    return
-                }
-                let track = albumObject as SPTTrack
-                
-//                self.player?.shitonmydick()
-//                self.player?.playURIs(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
-                self.player?.playTrackProvider(track, callback: nil)
+//            SPTRequest.requestItemAtURI(self.player?.currentTrackURI, withSession: auth.session, callback: { (error : NSError!, albumObject : AnyObject!) -> Void in
+//                if (error != nil) {
+//                    NSLog("Album Lookup got error \(error)")
+//                    return
+//                }
+//                let track = albumObject as SPTTrack
+            
+            self.player?.playURIs(self.playlist?.getURIs(), fromIndex: 0, callback: nil)
+//                self.player?.playURI(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), fromIndex: 0, callback: nil)
+//                self.player?.playTrackProvider(track, callback: nil)
                 
             })
-        })
     }
     
     
@@ -175,14 +186,17 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
-        NSLog("track changed!")
-        self.updateUI()
+        NSLog("track changed to index: \(self.player?.currentTrackIndex)")
+        NSLog("Current track length: \(self.player?.trackListSize)")
+        NSLog("Current queue length: \(self.player?.queueSize)")
+        self.updatePlayer()
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
         NSLog("Is playing = \(isPlaying)")
     }
 
+    // Tableview Functions to support a custom height table cell (for the player)
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (indexPath.row == 0) {
             return 100;
@@ -200,6 +214,7 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
             return 44;
         }
     }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

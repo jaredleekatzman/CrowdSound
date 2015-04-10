@@ -167,7 +167,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)playURI:(NSURL *)uri callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)playURI:(NSURL *)uri callback:(SPTErrorableOperationCallback)block;
 
 /** Play a Spotify URI.
  
@@ -182,7 +182,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)playURI:(NSURL *)uri fromIndex:(int)index callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)playURI:(NSURL *)uri fromIndex:(int)index callback:(SPTErrorableOperationCallback)block;
 
 /** Play a list of Spotify URIs.
  
@@ -221,7 +221,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param uris The list of URI's to play.
  @param block The callback block to be executed when the tracks are set, or an `NSError` object if an error ocurred.
  */
--(void)setURIs:(NSArray *)uris callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)setURIs:(NSArray *)uris callback:(SPTErrorableOperationCallback)block;
 
 /** Replace the current list of tracks without stopping playback.
 
@@ -243,7 +243,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)playURIsFromIndex:(int)index callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)playURIsFromIndex:(int)index callback:(SPTErrorableOperationCallback)block;
 
 /** Play a track provider.
  
@@ -286,7 +286,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)queueURI:(NSURL *)uri callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)queueURI:(NSURL *)uri callback:(SPTErrorableOperationCallback)block;
 
 /** Queue a Spotify URI.
  
@@ -301,7 +301,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)queueURI:(NSURL *)uri clearQueue:(BOOL)clear callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)queueURI:(NSURL *)uri clearQueue:(BOOL)clear callback:(SPTErrorableOperationCallback)block;
 
 /** Queue a list of Spotify URIs.
  
@@ -332,7 +332,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback command has been
  received, which will pass back an `NSError` object if an error ocurred.
  */
--(void)queueTrackProvider:(id<SPTTrackProvider>)provider clearQueue:(BOOL)clear callback:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)queueTrackProvider:(id<SPTTrackProvider>)provider clearQueue:(BOOL)clear callback:(SPTErrorableOperationCallback)block;
 
 /** Start playing back queued items
 
@@ -343,7 +343,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
  @param block The callback block to be executed when the playback has been
  started, which will pass back an `NSError` object if an error ocurred.
  */
--(void)queuePlay:(SPTErrorableOperationCallback)block DEPRECATED_ATTRIBUTE;
+-(void)queuePlay:(SPTErrorableOperationCallback)block;
 
 /** Remove all queued items
 
@@ -460,7 +460,7 @@ FOUNDATION_EXPORT NSString * const SPTAudioStreamingMetadataTrackDuration DEPREC
 @property (nonatomic, readonly) int trackListSize;
 
 /** Number of queued items */
-@property (nonatomic, readonly) int queueSize DEPRECATED_ATTRIBUTE;
+@property (nonatomic, readonly) int queueSize;
 
 @end
 

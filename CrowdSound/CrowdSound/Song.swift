@@ -10,15 +10,17 @@ import Foundation
 
 class Song {
     var name : String
+    var artist : String
     var spotifyID : String
-//    var spotifyTrack : SPTTrack
+    var spotifyURI : NSURL
     var upvotes : Int
     
     init() {
         self.name = ""
+        self.artist = ""
         self.spotifyID = ""
         self.upvotes = 0
-//        self.spotifyTrack = nil
+        self.spotifyURI = NSURL(string: "nil")!
     }
     
 //    init(track : SPPTrack) {
@@ -30,8 +32,10 @@ class Song {
     class func defaultSong(id : String = "") -> Song {
         var song = Song()
         song.name = "name" + id
+        song.artist = "Jared Katzman"
         song.spotifyID = "spotifyId" + id
         song.upvotes = Int(arc4random_uniform(6))
+        song.spotifyURI = NSURL(string: "spotify:track:4iEOVEULZRvmzYSZY2ViKN")!
         return song 
     }
     

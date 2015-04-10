@@ -34,6 +34,11 @@ class Playlist {
         return self.songs.count
     }
     
+    func getURIs() -> [NSURL] {
+        return self.songs.map { a in a.spotifyURI }
+    }
+    
+    
     func upvoteSong(songIndex:Int) {
         println("Upvoting: \(songs[songIndex])")
         songs[songIndex].upvote()
