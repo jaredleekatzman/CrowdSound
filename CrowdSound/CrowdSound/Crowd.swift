@@ -15,6 +15,8 @@ class Crowd {
     var host : String       // host id
     var threshold : Int     // threshold to be upvoted
     var guests : [String]   // list of guests invited
+    var isPrivate: Bool     // if need password 
+    var password: String    // what the password is
     
     init() {
         name = ""
@@ -23,6 +25,8 @@ class Crowd {
         host = ""
         threshold = 0
         guests = []
+        isPrivate = false
+        password = ""
     }
     
     // for testing - create default crowd 

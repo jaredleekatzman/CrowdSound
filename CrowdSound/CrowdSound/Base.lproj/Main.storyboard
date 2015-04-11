@@ -50,7 +50,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fzW-XA-z8C">
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fzW-XA-z8C">
                             <rect key="frame" x="0.0" y="517.5" width="600" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Finalize Crowd">
@@ -58,6 +58,7 @@
                             </state>
                             <connections>
                                 <action selector="finalzeCrowdPushed:" destination="1qs-Dg-Q2g" eventType="touchUpInside" id="uPr-U3-tVP"/>
+                                <segue destination="2Vd-7u-S6Q" kind="show" identifier="finalizeCrowd" id="7vp-gq-6lL"/>
                             </connections>
                         </button>
                         <sections>
@@ -178,9 +179,6 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8lv-zZ-5B5">
                                                     <rect key="frame" x="284" y="4" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="privacySwitched:" destination="1qs-Dg-Q2g" eventType="valueChanged" id="ybx-41-iCd"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -285,14 +283,12 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="confimPasswordText" destination="GNo-pb-xyJ" id="kHq-jn-0Lw"/>
+                        <outlet property="confirmPasswordText" destination="GNo-pb-xyJ" id="xPr-7Q-BRk"/>
                         <outlet property="crowdNameText" destination="TaX-OI-IXl" id="icC-MD-bt3"/>
                         <outlet property="finalizeCrowdBtn" destination="fzW-XA-z8C" id="vUt-Y6-ZM8"/>
                         <outlet property="hostNameText" destination="AdN-JP-fy0" id="rhg-DI-6a4"/>
-                        <outlet property="passwordCell" destination="YAH-Hh-fb7" id="RdA-dH-C5M"/>
-                        <outlet property="passwordConfirmCell" destination="jz6-6m-LVm" id="GkJ-KK-pgc"/>
-                        <outlet property="passwordText" destination="8dO-eO-P11" id="POs-h4-i7O"/>
-                        <outlet property="privateCrowdSwitch" destination="8lv-zZ-5B5" id="cen-3a-iMY"/>
+                        <outlet property="passwordProtectedSwitch" destination="8lv-zZ-5B5" id="VNO-X1-0kN"/>
+                        <outlet property="passwordText" destination="8dO-eO-P11" id="sHg-3P-aVr"/>
                         <outlet property="upvotesLabel" destination="3RP-1D-nng" id="KTv-rQ-9ca"/>
                         <outlet property="upvotesSlider" destination="5Rp-nd-GaN" id="sAD-rO-FcN"/>
                     </connections>
@@ -474,4 +470,7 @@
             <point key="canvasLocation" x="-10" y="-651"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="7vp-gq-6lL"/>
+    </inferredMetricsTieBreakers>
 </document>
