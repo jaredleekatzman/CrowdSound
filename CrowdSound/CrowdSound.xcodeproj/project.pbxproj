@@ -19,13 +19,14 @@
 		C31CB17C1AAA514B00D229DC /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */; };
 		C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */; };
 		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
+		ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */; };
 		EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */; };
 		EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1711AAA4FAC00D229DC /* Crowd.swift */; };
 		EDBAB79E1ACC566D00E7164C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1751AAA4FF600D229DC /* Song.swift */; };
 		EDBAB79F1ACC567100E7164C /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1731AAA4FE800D229DC /* Playlist.swift */; };
 		EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */; };
 		EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A21ACC585100E7164C /* SongTests.swift */; };
-		EDF0C2AE1AD49C9D00221DFD /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF0C2AD1AD49C9D00221DFD /* Spotify.framework */; };
+		EDCBFA6C1AD4A59D00C5CF96 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */; };
 		EDF0C2B01AD49CAD00221DFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */; };
 		EDF0C2B61AD49E5500221DFD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C2B51AD49E5500221DFD /* Config.swift */; };
 		EDF2377C1AC9FD67001B007C /* PendingSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */; };
@@ -58,10 +59,11 @@
 		C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdsTableViewController.swift; sourceTree = "<group>"; };
 		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
+		ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdTests.swift; path = CrowdSoundTests/CrowdTests.swift; sourceTree = SOURCE_ROOT; };
 		EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTests.swift; sourceTree = "<group>"; };
 		EDBAB7A21ACC585100E7164C /* SongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTests.swift; sourceTree = "<group>"; };
-		EDF0C2AD1AD49C9D00221DFD /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EDF0C2B11AD49D4400221DFD /* CrowdSound-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrowdSound-Bridging-Header.h"; sourceTree = "<group>"; };
 		EDF0C2B51AD49E5500221DFD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDF0C2B01AD49CAD00221DFD /* AVFoundation.framework in Frameworks */,
-				EDF0C2AE1AD49C9D00221DFD /* Spotify.framework in Frameworks */,
+				EDCBFA6C1AD4A59D00C5CF96 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +93,8 @@
 		C31CB1431AAA48B700D229DC = {
 			isa = PBXGroup;
 			children = (
+				EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */,
 				EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */,
-				EDF0C2AD1AD49C9D00221DFD /* Spotify.framework */,
 				C31CB14E1AAA48B700D229DC /* CrowdSound */,
 				C31CB1641AAA48B700D229DC /* CrowdSoundTests */,
 				C31CB14D1AAA48B700D229DC /* Products */,
@@ -126,6 +128,7 @@
 				C31CB1751AAA4FF600D229DC /* Song.swift */,
 				EDF0C2B11AD49D4400221DFD /* CrowdSound-Bridging-Header.h */,
 				EDF0C2B51AD49E5500221DFD /* Config.swift */,
+				ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */,
 			);
 			path = CrowdSound;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				C31CB17A1AAA513B00D229DC /* PendingTableViewController.swift in Sources */,
 				C31CB1761AAA4FF600D229DC /* Song.swift in Sources */,
 				C31CB17C1AAA514B00D229DC /* PlaylistTableViewController.swift in Sources */,
+				ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */,
 				C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */,
 				C31CB1521AAA48B700D229DC /* AppDelegate.swift in Sources */,
 				EDF0C2B61AD49E5500221DFD /* Config.swift in Sources */,

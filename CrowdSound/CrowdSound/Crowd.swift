@@ -15,6 +15,8 @@ class Crowd {
     var host : String       // host id
     var threshold : Int     // threshold to be upvoted
     var guests : [String]   // list of guests invited
+//    var player : SPTAudioStreamingController
+    var currentTrackIndex : Int
     
     init() {
         name = ""
@@ -23,6 +25,7 @@ class Crowd {
         host = ""
         threshold = 0
         guests = []
+        currentTrackIndex = 0
     }
     
     // for testing - create default crowd 
@@ -34,6 +37,7 @@ class Crowd {
         crowd.host = "Default Host"
         crowd.threshold = 7
         crowd.guests = ["Jack", "Jared", "Terin", "Eli", "TIM"]
+        crowd.currentTrackIndex = 0
         return crowd
     }
     

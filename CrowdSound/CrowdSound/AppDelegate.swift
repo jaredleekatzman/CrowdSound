@@ -16,7 +16,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Set up shared authentication information
+        let auth = SPTAuth.defaultInstance()
+        auth.clientID = kClientId
+        
+        auth.requestedScopes = [SPTAuthStreamingScope]
+        
+        auth.redirectURL = NSURL(string: kCallbackURL)
+        auth.tokenSwapURL = NSURL(string: kTokenSwapServiceURL)
+        auth.tokenRefreshURL = NSURL(string: kTokenRefreshServiceURL)
+        auth.sessionUserDefaultsKey = kSessionUserDefaultsKey
+        
         return true
+        
+        // Objective-C code
+//        SPTAuth *auth = [SPTAuth defaultInstance];
+//        auth.clientID = @kClientId
+//        ;
+//        auth.requestedScopes = @[SPTAuthStreamingScope];
+//        auth.redirectURL = [NSURL URLWithString:@kCallbackURL];
+//        #ifdef kTokenSwapServiceURL
+//        auth.tokenSwapURL = [NSURL URLWithString:@kTokenSwapServiceURL];
+//        #endif
+//        #ifdef kTokenRefreshServiceURL
+//        auth.tokenRefreshURL = [NSURL URLWithString:@kTokenRefreshServiceURL];
+//        #endif
+//        auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
+//        return YES;
+        
+    }
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        let auth = SPTAuth.defaultInstance()
+        
+        let authCallback = { (error : NSError?, session : SPTSession?) -> () in
+            if (error != nil) {
+                NSLog("*** Auth Error \(error)")
+                return
+            }
+            auth.session = session
+            NSNotificationCenter.defaultCenter().postNotificationName("sessionUpdated", object: self)
+        }
+        
+        if auth.canHandleURL(url) {
+            auth.handleAuthCallbackWithTriggeredAuthURL(url, callback: authCallback)
+            return true
+        }
+        
+        return false
     }
 
     func applicationWillResignActive(application: UIApplication) {
