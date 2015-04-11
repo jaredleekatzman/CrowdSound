@@ -53,11 +53,14 @@ class ConfigTableViewController: UITableViewController {
         }
     }
     
-    // create crowd before leaving 
+    // create crowd before leaving
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier? == "finalizeCrowd" {
             var secondScene = segue.destinationViewController as CrowdTabViewController
             secondScene.myCrowd = createCrowd()
+            
+            // TODO: add crowd to database
+            // TODO: figure out how not to go all the way back to crowd preferences!! 
         }
     }
     
