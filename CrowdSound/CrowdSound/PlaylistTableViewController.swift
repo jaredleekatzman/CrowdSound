@@ -21,7 +21,7 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
         crowd = tbvc.myCrowd
         playlist = crowd!.playlist
         
-        self.handleNewSession()
+    //    self.handleNewSession()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -83,40 +83,40 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        // Makes the first player cell
-        if (indexPath.row == 0) {
-            // custom cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("playerCell", forIndexPath: indexPath) as PlayerCell
-            
-            // If there are no songs playing anymore, disenable play buttons
-            if self.player?.trackListSize == 0 {
-                cell.songLabel.text = ""
-                cell.artistLabel.text = ""
-                cell.backButton.enabled = false
-                cell.playButton.enabled = false
-                cell.nextButton.enabled = false
-            }
-            else {
-                cell.backButton.enabled = true
-                cell.playButton.enabled = true
-                cell.nextButton.enabled = true
-                
-                cell.playButton.addTarget(self, action: "playPause:", forControlEvents: UIControlEvents.TouchUpInside)
-                cell.nextButton.addTarget(self, action: "fastForward:", forControlEvents: UIControlEvents.TouchUpInside)
-                cell.backButton.addTarget(self, action: "rewind", forControlEvents: UIControlEvents.TouchUpInside)
-                
-                let currentIndex = self.player?.currentTrackIndex ?? Int32(0)
-                let currentSong = playlist?.songs[Int(currentIndex)]
-                cell.songLabel.text = currentSong?.name
-                cell.artistLabel.text = currentSong?.artist
-
-            }
-            
-            return cell
-        }
-        // Fills all the cells with the playlist
-        else {
+//
+//        // Makes the first player cell
+//        if (indexPath.row == 0) {
+//            // custom cell
+//            let cell = tableView.dequeueReusableCellWithIdentifier("playerCell", forIndexPath: indexPath) as PlayerCell
+//            
+//            // If there are no songs playing anymore, disenable play buttons
+//            if self.player?.trackListSize == 0 {
+//                cell.songLabel.text = ""
+//                cell.artistLabel.text = ""
+//                cell.backButton.enabled = false
+//                cell.playButton.enabled = false
+//                cell.nextButton.enabled = false
+//            }
+//            else {
+//                cell.backButton.enabled = true
+//                cell.playButton.enabled = true
+//                cell.nextButton.enabled = true
+//                
+//                cell.playButton.addTarget(self, action: "playPause:", forControlEvents: UIControlEvents.TouchUpInside)
+//                cell.nextButton.addTarget(self, action: "fastForward:", forControlEvents: UIControlEvents.TouchUpInside)
+//                cell.backButton.addTarget(self, action: "rewind", forControlEvents: UIControlEvents.TouchUpInside)
+//                
+//                let currentIndex = self.player?.currentTrackIndex ?? Int32(0)
+//                let currentSong = playlist?.songs[Int(currentIndex)]
+//                cell.songLabel.text = currentSong?.name
+//                cell.artistLabel.text = currentSong?.artist
+//
+//            }
+//            
+//            return cell
+//        }
+//        // Fills all the cells with the playlist
+//        else {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
 
@@ -129,7 +129,7 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
             cell.textLabel?.text = currentSong.name
             
             return cell
-        }
+   //     }
         
         
     }
