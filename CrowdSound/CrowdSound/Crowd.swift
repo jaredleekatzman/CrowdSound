@@ -15,6 +15,7 @@ class Crowd {
     var host : String       // host id
     var threshold : Int     // threshold to be upvoted
     var guests : [String]   // list of guests invited
+//    var player : SPTAudioStreamingController
     var currentTrackIndex : Int
     
     init() {
