@@ -17,6 +17,8 @@ class Crowd {
     var guests : [String]   // list of guests invited
 //    var player : SPTAudioStreamingController
     var currentTrackIndex : Int
+    var isPrivate: Bool     // if need password
+    var password: String    // what the password is
     
     init() {
         name = ""
@@ -26,6 +28,8 @@ class Crowd {
         threshold = 0
         guests = []
         currentTrackIndex = 0
+        isPrivate = false
+        password = ""
     }
     
     // for testing - create default crowd 

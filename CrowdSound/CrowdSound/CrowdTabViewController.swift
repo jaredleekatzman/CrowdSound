@@ -16,6 +16,7 @@ class CrowdTabViewController: UITabBarController {
         super.viewDidLoad()
 
         // TODO: change default screen if host
+        self.navigationItem.title = myCrowd?.name
         self.selectedIndex = 1
     }
 
