@@ -19,9 +19,10 @@
 		C31CB17C1AAA514B00D229DC /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */; };
 		C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */; };
 		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
-		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
-		ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */; };
 		C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */; };
+		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
+		C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */; };
+		ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */; };
 		EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */; };
 		EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1711AAA4FAC00D229DC /* Crowd.swift */; };
 		EDBAB79E1ACC566D00E7164C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1751AAA4FF600D229DC /* Song.swift */; };
@@ -61,9 +62,10 @@
 		C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdsTableViewController.swift; sourceTree = "<group>"; };
 		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
-		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
-		ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigTableViewController.swift; path = ../ConfigTableViewController.swift; sourceTree = "<group>"; };
+		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
+		C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdTests.swift; path = CrowdSoundTests/CrowdTests.swift; sourceTree = SOURCE_ROOT; };
 		EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTests.swift; sourceTree = "<group>"; };
 		EDBAB7A21ACC585100E7164C /* SongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTests.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				C31CB1511AAA48B700D229DC /* AppDelegate.swift */,
 				C31CB1551AAA48B700D229DC /* Main.storyboard */,
+				C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */,
 				EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */,
 				C31CB17B1AAA514B00D229DC /* PlaylistTableViewController.swift */,
 				C31CB1791AAA513B00D229DC /* PendingTableViewController.swift */,
@@ -276,6 +279,7 @@
 				ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */,
 				C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */,
 				C31CB1521AAA48B700D229DC /* AppDelegate.swift in Sources */,
+				C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */,
 				EDF0C2B61AD49E5500221DFD /* Config.swift in Sources */,
 				C31CB1721AAA4FAC00D229DC /* Crowd.swift in Sources */,
 				C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */,
