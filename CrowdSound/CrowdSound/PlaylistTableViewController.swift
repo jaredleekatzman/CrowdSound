@@ -2,152 +2,111 @@
 //  PlaylistTableViewController.swift
 //  CrowdSound
 //
-//  Created by Terin Patel-Wilson on 3/6/15.
+//  Created by Jared Katzman on 4/16/15.
 //  Copyright (c) 2015 cs439. All rights reserved.
 //
 
 import UIKit
 
-class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate {
-
+class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate {
+    
+    
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var playerView: UIView!
+    
+    @IBOutlet var songLabel: UILabel!
+    @IBOutlet var artistLabel: UILabel!
+    @IBOutlet var playButton: UIButton!
+    @IBOutlet var forwardButton: UIButton!
+    @IBOutlet var reverseButton: UIButton!
+    
     var crowd : Crowd?
     var playlist : Playlist?
+    
     
     var player : SPTAudioStreamingController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get Crowd from TabViewController
         let tbvc = self.tabBarController as CrowdTabViewController
-        crowd = tbvc.myCrowd
+        self.crowd = tbvc.myCrowd?
         playlist = crowd!.playlist
         
-    //    self.handleNewSession()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.view.addSubview(tableView)
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // @TODO: add if user or host flow
+        
+        // Initializes and logs-in to the SPTAudioStreamingController
+        self.handleNewSession()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    // MARK: - Player Control Methods
+    
+    @IBAction func playPause(sender: AnyObject) {
+        NSLog("User pressed play/pause button")
+        self.player?.setIsPlaying(!self.player!.isPlaying, callback: nil)
+    }
+    
+    @IBAction func fastForward(sender: AnyObject) {
+        
+        self.player?.skipNext({ (error: NSError!) -> Void in
+            if error != nil {
+                NSLog("Error Skipping Song")
+            }
+            NSLog("fastFoward(): Skipping to Song Index \(self.crowd?.currentTrackIndex)")
+        })
+    }
+    
+    //     TODO: Rewind Action: Need to figure out how to handle rewinding if it will be possible.
+    @IBAction func rewind(sender: AnyObject) {
+        //        self.player?.skipPrevious({ (error :NSError!) -> Void in
+        //            if error != nil {
+        //                NSLog("Error Rewinding Song")
+        //            }
+        //            // Subtract 2 because didStopPlayingTrack() increments track index by 1
+        //            self.crowd?.currentTrackIndex -= 2
+        //            NSLog("rewind(): Skipping to Song Index \(self.crowd?.currentTrackIndex)")
+        //        })
+    }
+    
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // Return number of sections
         return 1
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        
-        return playlist!.songs.count
-        
-        
-//        let currentTrackIndex = self.player?.queueSize ?? Int32(playlist!.songs.count)
-//        let queueSize = playlist!.songs.count - crowd!.currentTrackIndex
-////        NSLog("table size: \(queueSize)")
-//        NSLog("queue size: \(player?.queueSize)")
-//        
-//        // The number of cells in the table view is the number of songs in the queue + 1 (for the song currently playing)
-//        return Int(currentTrackIndex) + 1
-    }
-
-    func playPause(sender : UIButton!) {
-        let bool = self.player?.isPlaying ?? true
-        self.player?.setIsPlaying(!bool, callback: nil)
-        NSLog("Pressed Play/Pause")
+        return playlist!.count() * 5
     }
     
-    func fastForward(sender : UIButton!) {
-        NSLog("Next song")
-        self.player?.skipNext(nil)
-        self.crowd?.currentTrackIndex++
-        NSLog("Crowd Index: \(self.crowd?.currentTrackIndex)")
-        NSLog("Now playing index: \(self.player?.currentTrackIndex)")
-        self.updatePlayer()
-    }
-    
-    func rewind(sender : UIButton!) {
-        self.player?.skipPrevious(nil)
-        NSLog("Rewinded to index: \(self.player?.currentTrackIndex)")
-        self.updatePlayer()
-    }
-    
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//
-//        // Makes the first player cell
-//        if (indexPath.row == 0) {
-//            // custom cell
-//            let cell = tableView.dequeueReusableCellWithIdentifier("playerCell", forIndexPath: indexPath) as PlayerCell
-//            
-//            // If there are no songs playing anymore, disenable play buttons
-//            if self.player?.trackListSize == 0 {
-//                cell.songLabel.text = ""
-//                cell.artistLabel.text = ""
-//                cell.backButton.enabled = false
-//                cell.playButton.enabled = false
-//                cell.nextButton.enabled = false
-//            }
-//            else {
-//                cell.backButton.enabled = true
-//                cell.playButton.enabled = true
-//                cell.nextButton.enabled = true
-//                
-//                cell.playButton.addTarget(self, action: "playPause:", forControlEvents: UIControlEvents.TouchUpInside)
-//                cell.nextButton.addTarget(self, action: "fastForward:", forControlEvents: UIControlEvents.TouchUpInside)
-//                cell.backButton.addTarget(self, action: "rewind", forControlEvents: UIControlEvents.TouchUpInside)
-//                
-//                let currentIndex = self.player?.currentTrackIndex ?? Int32(0)
-//                let currentSong = playlist?.songs[Int(currentIndex)]
-//                cell.songLabel.text = currentSong?.name
-//                cell.artistLabel.text = currentSong?.artist
-//
-//            }
-//            
-//            return cell
-//        }
-//        // Fills all the cells with the playlist
-//        else {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
-
-            // Configure the cell...
-            let currentSongIndex = self.player?.currentTrackIndex ?? -1
-            
-            var currentSong = playlist!.songs[indexPath.row]
-            // Index is based on what song we are currently playing. Only shows songs that come after current song.
-//            var currentSong = playlist!.songs[indexPath.row + Int(currentSongIndex)]
-            cell.textLabel?.text = currentSong.name
-            
-            return cell
-   //     }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
+        
+        // Configure the cell...
+        let currentSong = playlist!.songs[indexPath.row % playlist!.count()]
+        cell.textLabel?.text = currentSong.name
         
         
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.updatePlayer()
+        return cell
     }
     
-    // Updates the tableView data which is populated with items that are in the player's queue
-    func updatePlayer() {
-        self.tableView.reloadData()
-        
-        return
-    }
+    // MARK: - SPTAudioController methods
     
-    // Initialzies the Player with you first load the table view
     func handleNewSession() {
+        // Called when the controller is first loaded
+        
         let auth = SPTAuth.defaultInstance()
         
         if (self.player == nil) {
@@ -162,111 +121,92 @@ class PlaylistTableViewController: UITableViewController, SPTAudioStreamingDeleg
                 return
             }
             
-            self.updatePlayer()
-
-            // Adds the songs that are currently in the playlist - only works with static playlists
-//            self.player?.queueURIs(self.playlist?.getURIs(), clearQueue: true, callback: nil)
-            
-            // Adds only the first song
-            self.player?.queueURI(self.playlist?.songs[0].spotifyURI, clearQueue: true, callback: nil)
-            
-            })
-    }
-    
-    
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didReceiveMessage message: String!) {
-        let alertView = UIAlertView(title: "Messsage from Spotify", message: message, delegate: nil, cancelButtonTitle: "OK")
+            // Starts playing the first song
+            self.crowd?.currentTrackIndex = 0
+            if self.playlist?.count() > 0 {
+                self.player?.playURI(self.crowd?.playlist.songs[0].spotifyURI, callback: nil)
+            }
+        })
         
-        alertView.show()
-    }
-    
-    // Receives event everytime a song stops playing
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
-        NSLog("Song \(self.player?.currentTrackIndex) stopped playing")
-        if self.player?.currentTrackIndex != nil {
-//            let index = self.player?.currentTrackIndex
-            let index = self.crowd?.currentTrackIndex ?? 0
-            self.player?.queueURI(playlist?.songs[index].spotifyURI, clearQueue: false, callback: nil)
-        }
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
         NSLog("Failed to play track: \(trackUri)")
     }
     
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
-        NSLog("track changed to index: \(self.player?.currentTrackIndex)")
-        NSLog("Current track length: \(self.player?.trackListSize)")
-        NSLog("Current queue length: \(self.player?.queueSize)")
-        self.updatePlayer()
-    }
-    
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
         NSLog("Is playing = \(isPlaying)")
     }
-
-    // Tableview Functions to support a custom height table cell (for the player)
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (indexPath.row == 0) {
-            return 100;
-        }
-        else {
-            return 44;
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
+        NSLog("didChangeToTrack(): Changed track")
+    }
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
+        // TODO: Code for when a track ends: need to increase the playing index and then play the next song
+        
+        NSLog("didStopPlayingTrack(): Song \(self.crowd?.currentTrackIndex) Ended")
+        
+        if ++self.crowd!.currentTrackIndex < self.crowd?.playlist.count() {
+            self.player?.playURI(self.crowd?.playlist.songs[self.crowd!.currentTrackIndex].spotifyURI, callback: nil)
         }
     }
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (indexPath.row == 0) {
-            return 100;
-        }
-        else {
-            return 44;
-        }
+    func audioStreamingDidSkipToNextTrack(audioStreaming: SPTAudioStreamingController!) {
+        
+        NSLog("DidSkipToNextTrack() \(self.crowd?.currentTrackIndex)")
     }
+    
+    //    func printTracks () {
+    //        self.player?.replaceURIs(<#uris: [AnyObject]!#>, withCurrentTrack: <#Int32#>, callback: <#SPTErrorableOperationCallback!##(NSError!) -> Void#>)
+    //        for 1..self.player?.trackListSize {
+    //
+    //            }
+    //    }
     
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    // Return NO if you do not want the specified item to be editable.
+    return true
     }
     */
-
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    if editingStyle == .Delete {
+    // Delete the row from the data source
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    } else if editingStyle == .Insert {
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
     }
     */
-
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
     }
     */
-
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
+    // Return NO if you do not want the item to be re-orderable.
+    return true
     }
     */
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
