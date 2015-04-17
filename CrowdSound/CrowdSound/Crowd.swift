@@ -27,7 +27,7 @@ class Crowd {
         host = ""
         threshold = 0
         guests = []
-        currentTrackIndex = 0
+        currentTrackIndex = -1
         isPrivate = false
         password = ""
     }

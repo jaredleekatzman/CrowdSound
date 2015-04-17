@@ -43,6 +43,11 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         // Initializes and logs-in to the SPTAudioStreamingController
         self.handleNewSession()
+//        self.updateUI()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.updateUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,18 +93,37 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return playlist!.count() * 5
+        return playlist!.count() - (1 + (self.crowd?.currentTrackIndex ?? 0))
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        let currentSong = playlist!.songs[indexPath.row % playlist!.count()]
-        cell.textLabel?.text = currentSong.name
+        let songIndex = indexPath.row + (1 + (self.crowd?.currentTrackIndex ?? 0))
+        let song = playlist!.songs[songIndex]
+        cell.textLabel?.text = song.name
         
         
         return cell
+    }
+    
+    func updateUI() {
+        self.tableView.reloadData()
+        
+        if self.crowd?.currentTrackIndex >= 0 && self.crowd?.currentTrackIndex < self.crowd?.playlist.count() {
+            self.forwardButton.enabled = true
+            
+            let currentSong = self.crowd?.playlist.songs[self.crowd!.currentTrackIndex]
+            
+            songLabel.text = currentSong?.name
+            artistLabel.text = currentSong?.artist
+        }
+        else {
+            self.forwardButton.enabled = false
+            songLabel.text = ""
+            artistLabel.text = ""
+        }
     }
     
     // MARK: - SPTAudioController methods
@@ -124,7 +148,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             // Starts playing the first song
             self.crowd?.currentTrackIndex = 0
             if self.playlist?.count() > 0 {
-                self.player?.playURI(self.crowd?.playlist.songs[0].spotifyURI, callback: nil)
+                self.player?.playURIs(self.crowd?.playlist.getURIs(), fromIndex: 0, callback: nil)
+                
+//                self.player?.playURI(self.crowd?.playlist.songs[0].spotifyURI, callback: nil)
             }
         })
         
@@ -140,6 +166,8 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
         NSLog("didChangeToTrack(): Changed track")
+        NSLog("Player index: \(self.player?.currentTrackIndex)")
+        self.updateUI()
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
@@ -148,7 +176,16 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         NSLog("didStopPlayingTrack(): Song \(self.crowd?.currentTrackIndex) Ended")
         
         if ++self.crowd!.currentTrackIndex < self.crowd?.playlist.count() {
-            self.player?.playURI(self.crowd?.playlist.songs[self.crowd!.currentTrackIndex].spotifyURI, callback: nil)
+            self.updateUI()
+            
+            self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
+                if error != nil {
+                    NSLog("Error replacing URIS \(error)")
+                }
+                
+            })
+            
+//            self.player?.playURI(self.crowd?.playlist.songs[self.crowd!.currentTrackIndex].spotifyURI, callback: nil)
         }
     }
     
@@ -156,13 +193,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         NSLog("DidSkipToNextTrack() \(self.crowd?.currentTrackIndex)")
     }
-    
-    //    func printTracks () {
-    //        self.player?.replaceURIs(<#uris: [AnyObject]!#>, withCurrentTrack: <#Int32#>, callback: <#SPTErrorableOperationCallback!##(NSError!) -> Void#>)
-    //        for 1..self.player?.trackListSize {
-    //
-    //            }
-    //    }
     
     /*
     // Override to support conditional editing of the table view.
