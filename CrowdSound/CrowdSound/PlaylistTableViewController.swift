@@ -109,7 +109,15 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func updateUI() {
+        
         self.tableView.reloadData()
+        self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
+            if error != nil {
+                NSLog("Error replacing URIS \(error)")
+            }
+            NSLog("Current Track List: \(self.player?.trackListSize)")
+            
+        })
         
         if self.crowd?.currentTrackIndex >= 0 && self.crowd?.currentTrackIndex < self.crowd?.playlist.count() {
             self.forwardButton.enabled = true
@@ -124,6 +132,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             songLabel.text = ""
             artistLabel.text = ""
         }
+        
     }
     
     // MARK: - SPTAudioController methods
@@ -177,15 +186,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         if ++self.crowd!.currentTrackIndex < self.crowd?.playlist.count() {
             self.updateUI()
-            
-            self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
-                if error != nil {
-                    NSLog("Error replacing URIS \(error)")
-                }
-                NSLog("Current Track List: \(self.player?.trackListSize)")
-                
-            })
-            
+
 //            self.player?.playURI(self.crowd?.playlist.songs[self.crowd!.currentTrackIndex].spotifyURI, callback: nil)
         }
     }
