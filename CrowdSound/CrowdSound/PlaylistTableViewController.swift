@@ -182,6 +182,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                 if error != nil {
                     NSLog("Error replacing URIS \(error)")
                 }
+                NSLog("Current Track List: \(self.player?.trackListSize)")
                 
             })
             
