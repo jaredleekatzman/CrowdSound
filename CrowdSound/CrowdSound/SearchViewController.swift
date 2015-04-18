@@ -44,7 +44,6 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         let tbvc = self.tabBarController as CrowdTabViewController
         crowd = tbvc.myCrowd
-
         // Do any additional setup after loading the view.
     }
 
