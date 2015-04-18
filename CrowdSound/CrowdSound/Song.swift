@@ -30,7 +30,8 @@ class Song {
 //    
     // for testing - create default song
     class func defaultSong(id : String = "") -> Song {
-        var SONGSARR = ["spotify:track:3GfZhVmn4nGqbuGG1be5ML","spotify:track:4iEOVEULZRvmzYSZY2ViKN", "spotify:track:6BVBkKpZK09NmifUMZqj1z", "spotify:track:2mkv1b3dRFyiJ4Ybq31owf", "spotify:track:2WMRd3xAb9FwXopCRNWDq1", "spotify:track:3vlVbJmvSm3x5Hqmnzh8HI","spotify:track:2YKcA5ZkWQfVHd7bMIv4iw"]
+        // Song that is 12 seconds: "spotify:track:3GfZhVmn4nGqbuGG1be5ML"
+        var SONGSARR = ["spotify:track:2YKcA5ZkWQfVHd7bMIv4iw", "spotify:track:2WMRd3xAb9FwXopCRNWDq1","spotify:track:4iEOVEULZRvmzYSZY2ViKN", "spotify:track:6BVBkKpZK09NmifUMZqj1z", "spotify:track:2mkv1b3dRFyiJ4Ybq31owf", "spotify:track:3vlVbJmvSm3x5Hqmnzh8HI"]
         var song = Song()
         song.name = "name" + id
         song.artist = "Jared Katzman"

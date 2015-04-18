@@ -87,14 +87,14 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return playlist!.count() - (1 + (self.crowd?.currentTrackIndex ?? 0))
+        return playlist!.count()// - (1 + (self.crowd?.currentTrackIndex ?? 0))
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        let songIndex = indexPath.row + (1 ) //+ (self.crowd?.currentTrackIndex ?? 0))
+        let songIndex = indexPath.row //+ (1 + (self.crowd?.currentTrackIndex ?? 0))
         let song = playlist!.songs[songIndex]
         cell.textLabel?.text = song.name
         
@@ -116,7 +116,8 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                 if error != nil {
                     NSLog("Error replacing URIS \(error)")
                 }
-                
+                NSLog("Crowd, Player index: \(self.crowd?.currentTrackIndex), \(self.player?.currentTrackIndex)")
+                NSLog("Current Track List: \(self.player?.trackListSize)")
             })
             
             if self.playlistEnded {
@@ -193,14 +194,18 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         if self.crowd!.currentTrackIndex >= self.crowd?.playlist.count() {
             self.playlistEnded = true
+            self.player?.setIsPlaying(false, callback: nil)
         }
-        
-        self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
-            if error != nil {
-                NSLog("Error replacing URIS \(error)")
-            }
-            
-        })
+//        else {
+//        
+//            self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
+//            
+//                if error != nil {
+//                    NSLog("Error replacing URIS \(error)")
+//
+//                }
+//            })
+//        }
         
         self.updateUI()
         // Putting self.updateUI() in this section makes it so the first song is skipped

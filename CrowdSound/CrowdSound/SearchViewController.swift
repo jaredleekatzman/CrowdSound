@@ -26,6 +26,9 @@ class SearchViewController: UIViewController {
                 return
             }
             let trackListPage = result as SPTListPage
+            
+            // @TODO: Error when there the string does not return any songs
+            
             let partialTrack = trackListPage.items.first as SPTPartialTrack
             // using first result for now.
             // will be able to use items.count to get the whole list...
