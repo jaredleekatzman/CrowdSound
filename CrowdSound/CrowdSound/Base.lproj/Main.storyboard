@@ -444,7 +444,7 @@
         <!--Playlist-->
         <scene sceneID="uPP-A3-mja">
             <objects>
-                <viewController title="Playlist" id="Q7L-hJ-irK" sceneMemberID="viewController">
+                <viewController title="Playlist" id="Q7L-hJ-irK" customClass="PlaylistTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NI0-VL-8JU"/>
                         <viewControllerLayoutGuide type="bottom" id="AET-mA-dK1"/>
@@ -489,6 +489,9 @@
                                         <state key="normal" title="Next Song">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="fastForward:" destination="Q7L-hJ-irK" eventType="touchUpInside" id="axz-of-s4V"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaY-sk-wb1">
                                         <rect key="frame" x="260" y="55" width="80" height="30"/>
@@ -504,6 +507,9 @@
                                         <state key="normal" title="Play/Pause">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="playPause:" destination="Q7L-hJ-irK" eventType="touchUpInside" id="jO8-Ea-4gI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -537,6 +543,15 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Playlist" id="QVn-JF-Vlb"/>
+                    <connections>
+                        <outlet property="artistLabel" destination="cjh-W8-UHu" id="gG3-7c-7gC"/>
+                        <outlet property="forwardButton" destination="uep-6X-FOO" id="6hX-Tm-u6A"/>
+                        <outlet property="playButton" destination="a4I-64-rDC" id="b5h-xQ-zQf"/>
+                        <outlet property="playerView" destination="A7M-Ti-6L5" id="AD8-fo-T71"/>
+                        <outlet property="reverseButton" destination="BaY-sk-wb1" id="TiV-1Z-Ll0"/>
+                        <outlet property="songLabel" destination="ndY-YR-XQO" id="S8t-yp-TaE"/>
+                        <outlet property="tableView" destination="EGP-HS-q8R" id="h8N-OH-Pwr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZm-kg-JBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
