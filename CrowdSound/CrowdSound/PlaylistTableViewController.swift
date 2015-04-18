@@ -10,7 +10,7 @@ import UIKit
 
 class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate {
     
-    
+    // UI Elements
     @IBOutlet var tableView: UITableView!
     @IBOutlet var playerView: UIView!
     
@@ -20,9 +20,11 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var forwardButton: UIButton!
     @IBOutlet var reverseButton: UIButton!
     
+
     var crowd : Crowd?
     var playlist : Playlist?
     
+    var playlistEnded = false
     
     var player : SPTAudioStreamingController?
     
@@ -103,18 +105,24 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     func updateUI() {
         
         self.tableView.reloadData()
-       
-//        self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
-//            if error != nil {
-//                NSLog("Error replacing URIS \(error)")
-//            }
-//            NSLog("Crowd, Player index: \(self.crowd?.currentTrackIndex), \(self.player?.currentTrackIndex)")
-//            NSLog("Current Track List: \(self.player?.trackListSize)")
-//            
-//        })
         
         NSLog("Crowd, Player index: \(self.crowd?.currentTrackIndex), \(self.player?.currentTrackIndex)")
         NSLog("Current Track List: \(self.player?.trackListSize)")
+        
+        if Int(self.player!.trackListSize) < self.crowd?.playlist.count() && self.crowd?.currentTrackIndex > 0 {
+            NSLog("replace URIs")
+            
+            self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
+                if error != nil {
+                    NSLog("Error replacing URIS \(error)")
+                }
+                
+            })
+            
+            if self.playlistEnded {
+                self.player?.setIsPlaying(true, callback: nil)
+            }
+        }
         
         if self.crowd?.currentTrackIndex >= 0 && self.crowd?.currentTrackIndex < self.crowd?.playlist.count() {
             self.forwardButton.enabled = true
@@ -182,6 +190,17 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         NSLog("didStopPlayingTrack(): Song \(self.crowd?.currentTrackIndex) Ended")
         self.crowd!.currentTrackIndex++
+        
+        if self.crowd!.currentTrackIndex >= self.crowd?.playlist.count() {
+            self.playlistEnded = true
+        }
+        
+        self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
+            if error != nil {
+                NSLog("Error replacing URIS \(error)")
+            }
+            
+        })
         
         self.updateUI()
         // Putting self.updateUI() in this section makes it so the first song is skipped

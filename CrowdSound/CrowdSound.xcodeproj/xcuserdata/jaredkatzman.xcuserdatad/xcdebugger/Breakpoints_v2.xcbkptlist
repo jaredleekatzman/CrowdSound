@@ -147,5 +147,67 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrowdSound/PlaylistTableViewController.swift"
+            timestampString = "451083508.76714"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "updateUI()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CrowdSound.PlaylistTableViewController.updateUI (CrowdSound.PlaylistTableViewController)() -&gt; ()"
+                  moduleName = "CrowdSound"
+                  urlString = "file:///Users/jaredkatzman/Documents/Classes/Junior%20Year/Spring%20Semester/CPSC%20439/CrowdSound/CrowdSound-iOS/CrowdSound/CrowdSound/PlaylistTableViewController.swift"
+                  timestampString = "451082870.744013"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "2539">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CrowdSound.PlaylistTableViewController.updateUI (CrowdSound.PlaylistTableViewController)() -&gt; ()"
+                  moduleName = "CrowdSound"
+                  urlString = "file:///Users/jaredkatzman/Documents/Classes/Junior%20Year/Spring%20Semester/CPSC%20439/CrowdSound/CrowdSound-iOS/CrowdSound/CrowdSound/PlaylistTableViewController.swift"
+                  timestampString = "451082870.745182"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "3549">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrowdSound/PlaylistTableViewController.swift"
+            timestampString = "451083571.396807"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "updateUI()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
