@@ -25,6 +25,8 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
         var eliCrowd = Crowd.defaultCrowd()
         eliCrowd.host = "Eli"
         eliCrowd.name = "Eli's on a boat!"
+        eliCrowd.password = "ELI - ELI - ELI"
+        eliCrowd.isPrivate = true 
         
         crowds.append(defaultCrowd)
         crowds.append(eliCrowd)

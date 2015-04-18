@@ -17,6 +17,8 @@ class CrowdTabViewController: UITabBarController {
 
         // TODO: change default screen if host
         self.navigationItem.title = myCrowd?.name
+        var settingsBtn : UIBarButtonItem = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.Plain, target: self, action: "settingsBtnClicked:")
+        self.navigationItem.rightBarButtonItem = settingsBtn
         self.selectedIndex = 1
     }
 
@@ -24,6 +26,20 @@ class CrowdTabViewController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func settingsBtnClicked(sender:UIBarButtonItem!) {
+        NSLog("clicked the settings btn!")
+        self.performSegueWithIdentifier("GoToSettingsPage", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GoToSettingsPage" {
+            var secondScene = segue.destinationViewController as SettingsTableViewController
+            secondScene.myCrowd = myCrowd!
+        }
+    }
+    
+
     
 
     /*
