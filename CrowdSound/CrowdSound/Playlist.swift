@@ -40,7 +40,8 @@ class Playlist {
     
     
     func upvoteSong(songIndex:Int) {
-        println("Upvoting: \(songs[songIndex])")
+//        println("Upvoting: \(songs[songIndex])")
+        
         songs[songIndex].upvote()
         
         // Re-sort playlist

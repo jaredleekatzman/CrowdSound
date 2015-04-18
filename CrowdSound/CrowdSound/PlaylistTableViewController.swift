@@ -43,7 +43,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         // Initializes and logs-in to the SPTAudioStreamingController
         self.handleNewSession()
-//        self.updateUI()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -68,20 +68,12 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             if error != nil {
                 NSLog("Error Skipping Song")
             }
-            NSLog("fastFoward(): Skipping to Song Index \(self.crowd?.currentTrackIndex)")
+//            NSLog("fastFoward(): Skipping to Song Index \(self.crowd?.currentTrackIndex)")
         })
     }
     
-    //     TODO: Rewind Action: Need to figure out how to handle rewinding if it will be possible.
+    // TODO: Rewind Action: Need to figure out how to handle rewinding if it will be possible.
     @IBAction func rewind(sender: AnyObject) {
-        //        self.player?.skipPrevious({ (error :NSError!) -> Void in
-        //            if error != nil {
-        //                NSLog("Error Rewinding Song")
-        //            }
-        //            // Subtract 2 because didStopPlayingTrack() increments track index by 1
-        //            self.crowd?.currentTrackIndex -= 2
-        //            NSLog("rewind(): Skipping to Song Index \(self.crowd?.currentTrackIndex)")
-        //        })
     }
     
     // MARK: - Table view data source
@@ -100,7 +92,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        let songIndex = indexPath.row + (1 + (self.crowd?.currentTrackIndex ?? 0))
+        let songIndex = indexPath.row + (1 ) //+ (self.crowd?.currentTrackIndex ?? 0))
         let song = playlist!.songs[songIndex]
         cell.textLabel?.text = song.name
         
@@ -111,24 +103,32 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     func updateUI() {
         
         self.tableView.reloadData()
-        self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
-            if error != nil {
-                NSLog("Error replacing URIS \(error)")
-            }
-            NSLog("Current Track List: \(self.player?.trackListSize)")
-            
-        })
+       
+//        self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
+//            if error != nil {
+//                NSLog("Error replacing URIS \(error)")
+//            }
+//            NSLog("Crowd, Player index: \(self.crowd?.currentTrackIndex), \(self.player?.currentTrackIndex)")
+//            NSLog("Current Track List: \(self.player?.trackListSize)")
+//            
+//        })
+        
+        NSLog("Crowd, Player index: \(self.crowd?.currentTrackIndex), \(self.player?.currentTrackIndex)")
+        NSLog("Current Track List: \(self.player?.trackListSize)")
         
         if self.crowd?.currentTrackIndex >= 0 && self.crowd?.currentTrackIndex < self.crowd?.playlist.count() {
             self.forwardButton.enabled = true
+            self.playButton.enabled = true
             
             let currentSong = self.crowd?.playlist.songs[self.crowd!.currentTrackIndex]
-            
             songLabel.text = currentSong?.name
             artistLabel.text = currentSong?.artist
         }
         else {
+            // No more songs in the playlist
             self.forwardButton.enabled = false
+            self.playButton.enabled = false
+            
             songLabel.text = ""
             artistLabel.text = ""
         }
@@ -158,8 +158,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             self.crowd?.currentTrackIndex = 0
             if self.playlist?.count() > 0 {
                 self.player?.playURIs(self.crowd?.playlist.getURIs(), fromIndex: 0, callback: nil)
-                
-//                self.player?.playURI(self.crowd?.playlist.songs[0].spotifyURI, callback: nil)
             }
         })
         
@@ -170,31 +168,31 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-        NSLog("Is playing = \(isPlaying)")
+//        NSLog("Is playing = \(isPlaying)")
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
-        NSLog("didChangeToTrack(): Changed track")
-        NSLog("Player index: \(self.player?.currentTrackIndex)")
-        self.updateUI()
+        NSLog("didChangeToTrack(): track index \(self.crowd?.currentTrackIndex)")
+        
+//        self.updateUI()
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
         // TODO: Code for when a track ends: need to increase the playing index and then play the next song
         
         NSLog("didStopPlayingTrack(): Song \(self.crowd?.currentTrackIndex) Ended")
+        self.crowd!.currentTrackIndex++
         
-        if ++self.crowd!.currentTrackIndex < self.crowd?.playlist.count() {
-            self.updateUI()
-
-//            self.player?.playURI(self.crowd?.playlist.songs[self.crowd!.currentTrackIndex].spotifyURI, callback: nil)
-        }
+        self.updateUI()
+        // Putting self.updateUI() in this section makes it so the first song is skipped
+        //        self.updateUI()
+        
     }
     
     func audioStreamingDidSkipToNextTrack(audioStreaming: SPTAudioStreamingController!) {
-        
-        NSLog("DidSkipToNextTrack() \(self.crowd?.currentTrackIndex)")
+//        NSLog("DidSkipToNextTrack() \(self.crowd?.currentTrackIndex)")
     }
+    
     
     /*
     // Override to support conditional editing of the table view.

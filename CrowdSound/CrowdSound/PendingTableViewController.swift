@@ -67,7 +67,7 @@ class PendingTableViewController: UITableViewController {
     }
 
     func upvote(sender:UIButton!) {
-        println("Upvoting!")
+//        println("Upvoting!")
 //        pending?.upvoteSong(sender.tag)
         crowd?.upvotePendingSong(sender.tag)
 //        println("Upvoted \(pending?.songs[sender.tag].upvotes)!")
