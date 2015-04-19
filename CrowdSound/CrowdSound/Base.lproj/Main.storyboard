@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Crowds-->
+        <!--Crowds Table View Controller-->
         <scene sceneID="9sL-g7-79A">
             <objects>
                 <tableViewController id="5uS-XK-Xde" customClass="CrowdsTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,12 +29,20 @@
                             <outlet property="delegate" destination="5uS-XK-Xde" id="x1u-3m-x8L"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Crowds" id="7hH-vy-iTd">
+                    <navigationItem key="navigationItem" id="7hH-vy-iTd">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Log In" id="QHc-M2-THi">
                             <connections>
                                 <action selector="loginClicked:" destination="5uS-XK-Xde" id="9fT-zi-OEc"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tdJ-iM-TsT">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Facebook Login">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="Da9-ZS-xwy">
                             <connections>
                                 <segue destination="1qs-Dg-Q2g" kind="show" id="Z3q-ct-kdU"/>
@@ -743,8 +751,25 @@
             </objects>
             <point key="canvasLocation" x="-10" y="-651"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="KrL-dB-Y9l">
+            <objects>
+                <viewController id="zNr-04-cJY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Ug-UQ-Q5e"/>
+                        <viewControllerLayoutGuide type="bottom" id="CBg-uy-nJ1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zmW-gK-wGy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69B-Ec-6Me" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7vp-gq-6lL"/>
+        <segue reference="xmd-06-mqX"/>
     </inferredMetricsTieBreakers>
 </document>

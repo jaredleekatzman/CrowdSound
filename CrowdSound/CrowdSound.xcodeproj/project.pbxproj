@@ -23,6 +23,12 @@
 		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
 		C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */; };
 		C39B51981AE2ECA7008946E1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */; };
+		C3B99D101AE34F4D001A03C0 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D30E511AE348B0003C0E8A /* FBAudienceNetwork.framework */; };
+		C3B99D111AE34F4D001A03C0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D30E521AE348B0003C0E8A /* FBSDKLoginKit.framework */; };
+		C3B99D121AE34F4D001A03C0 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D30E531AE348B0003C0E8A /* FBSDKMessengerShareKit.framework */; };
+		C3B99D131AE34F4D001A03C0 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D30E541AE348B0003C0E8A /* FBSDKShareKit.framework */; };
+		C3D30E4F1AE340AF003C0E8A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D30E4E1AE340AF003C0E8A /* FBSDKCoreKit.framework */; };
+		C3D30E551AE348B0003C0E8A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3D30E501AE348B0003C0E8A /* Bolts.framework */; };
 		ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */; };
 		ED9CFDA41AE1A009005C1DF7 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9CFDA31AE1A009005C1DF7 /* PlaylistTableViewController.swift */; };
 		EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */; };
@@ -68,6 +74,12 @@
 		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
 		C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		C3D30E4E1AE340AF003C0E8A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C3D30E501AE348B0003C0E8A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		C3D30E511AE348B0003C0E8A /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAudienceNetwork.framework; path = ../../../FacebookSDK/FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		C3D30E521AE348B0003C0E8A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		C3D30E531AE348B0003C0E8A /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKMessengerShareKit.framework; path = ../../../FacebookSDK/FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		C3D30E541AE348B0003C0E8A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		ED9CFDA31AE1A009005C1DF7 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
 		EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdTests.swift; path = CrowdSoundTests/CrowdTests.swift; sourceTree = SOURCE_ROOT; };
@@ -85,8 +97,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3D30E551AE348B0003C0E8A /* Bolts.framework in Frameworks */,
+				C3B99D101AE34F4D001A03C0 /* FBAudienceNetwork.framework in Frameworks */,
+				C3B99D111AE34F4D001A03C0 /* FBSDKLoginKit.framework in Frameworks */,
+				C3B99D121AE34F4D001A03C0 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				C3B99D131AE34F4D001A03C0 /* FBSDKShareKit.framework in Frameworks */,
 				EDF0C2B01AD49CAD00221DFD /* AVFoundation.framework in Frameworks */,
 				EDCBFA6C1AD4A59D00C5CF96 /* Spotify.framework in Frameworks */,
+				C3D30E4F1AE340AF003C0E8A /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +121,12 @@
 		C31CB1431AAA48B700D229DC = {
 			isa = PBXGroup;
 			children = (
+				C3D30E501AE348B0003C0E8A /* Bolts.framework */,
+				C3D30E511AE348B0003C0E8A /* FBAudienceNetwork.framework */,
+				C3D30E521AE348B0003C0E8A /* FBSDKLoginKit.framework */,
+				C3D30E531AE348B0003C0E8A /* FBSDKMessengerShareKit.framework */,
+				C3D30E541AE348B0003C0E8A /* FBSDKShareKit.framework */,
+				C3D30E4E1AE340AF003C0E8A /* FBSDKCoreKit.framework */,
 				EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */,
 				EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */,
 				C31CB14E1AAA48B700D229DC /* CrowdSound */,
@@ -424,6 +448,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/terinpatelwilson/Desktop/FacebookSDK,
 				);
 				INFOPLIST_FILE = CrowdSound/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -442,6 +467,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/terinpatelwilson/Desktop/FacebookSDK,
 				);
 				INFOPLIST_FILE = CrowdSound/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
