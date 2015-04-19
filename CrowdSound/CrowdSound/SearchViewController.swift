@@ -10,7 +10,6 @@ import UIKit
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     var crowd : Crowd?
-    
 
     @IBOutlet weak var songTable: UITableView!
     
