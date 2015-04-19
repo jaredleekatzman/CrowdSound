@@ -13,6 +13,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexColor" red="0.050980392156862744" green="0.098039215686274508" blue="0.17647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.92156862745098034" green="0.9137254901960784" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="crowdCell" id="S7S-Mk-SnL">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -723,7 +725,18 @@
                     <view key="view" contentMode="scaleToFill" id="Dod-NT-8Dh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="front_iPhone6" translatesAutoresizingMaskIntoConstraints="NO" id="XAW-hz-8fc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XAW-hz-8fc" firstAttribute="leading" secondItem="Dod-NT-8Dh" secondAttribute="leading" id="jLc-5q-6lh"/>
+                            <constraint firstItem="XAW-hz-8fc" firstAttribute="bottom" secondItem="b6l-sb-LXl" secondAttribute="top" id="lMt-aB-hxG"/>
+                            <constraint firstItem="XAW-hz-8fc" firstAttribute="top" secondItem="Dod-NT-8Dh" secondAttribute="top" id="lNv-QZ-OcL"/>
+                            <constraint firstAttribute="trailing" secondItem="XAW-hz-8fc" secondAttribute="trailing" id="zHe-qs-s45"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="k0j-7u-Rf2" kind="show" identifier="GoToCrowdsList" id="8QJ-6k-5JE"/>
@@ -731,7 +744,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMr-bV-IrP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-696" y="-651"/>
+            <point key="canvasLocation" x="-696" y="-793"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YVb-lb-txR">
@@ -750,6 +763,9 @@
             <point key="canvasLocation" x="-10" y="-651"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="front_iPhone6" width="750" height="1334"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xmd-06-mqX"/>
     </inferredMetricsTieBreakers>
