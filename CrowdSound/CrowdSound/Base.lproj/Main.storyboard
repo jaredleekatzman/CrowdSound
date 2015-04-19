@@ -318,14 +318,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zl7-eW-Efl">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-BV-dEm">
+                                <rect key="frame" x="0.0" y="72" width="600" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="j1T-8E-WYm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="TCw-Y6-kGL">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j1T-8E-WYm" id="i0L-t1-TdI">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TCw-Y6-kGL" id="XUs-sy-VIp">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -334,15 +334,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="zl7-eW-Efl" secondAttribute="bottom" id="OMQ-fc-cAK"/>
-                            <constraint firstItem="zl7-eW-Efl" firstAttribute="top" secondItem="HFQ-yQ-GYh" secondAttribute="top" id="RrW-NX-MWq"/>
-                            <constraint firstAttribute="trailing" secondItem="zl7-eW-Efl" secondAttribute="trailing" id="cDo-gB-dbZ"/>
-                            <constraint firstItem="zl7-eW-Efl" firstAttribute="leading" secondItem="HFQ-yQ-GYh" secondAttribute="leading" id="hPm-ML-MEw"/>
+                            <constraint firstAttribute="bottom" secondItem="MJ6-BV-dEm" secondAttribute="bottom" id="Fl9-Yq-8Bp"/>
+                            <constraint firstItem="MJ6-BV-dEm" firstAttribute="top" secondItem="HFQ-yQ-GYh" secondAttribute="top" id="agX-M9-6fl"/>
+                            <constraint firstAttribute="trailing" secondItem="MJ6-BV-dEm" secondAttribute="trailing" id="pHh-dc-wCW"/>
+                            <constraint firstItem="MJ6-BV-dEm" firstAttribute="leading" secondItem="HFQ-yQ-GYh" secondAttribute="leading" id="rOB-Gh-HY2"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="gJR-e3-q8e"/>
                     <connections>
-                        <outlet property="songTable" destination="zl7-eW-Efl" id="SQG-iq-WCN"/>
+                        <outlet property="songTable" destination="MJ6-BV-dEm" id="Nki-fR-1TH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JPa-6g-U1h" userLabel="First Responder" sceneMemberID="firstResponder"/>

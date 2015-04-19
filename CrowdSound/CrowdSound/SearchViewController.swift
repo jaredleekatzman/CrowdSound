@@ -11,7 +11,7 @@ import UIKit
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     var crowd : Crowd?
     
-    
+
     @IBOutlet weak var songTable: UITableView!
     
     var searchArray:[Song] = [Song](){
@@ -42,6 +42,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            //self. = controller.searchBar
             self.songTable.tableHeaderView = controller.searchBar
             
             return controller
@@ -67,6 +68,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -105,15 +109,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.crowd?.pending.addSong(searchArray[indexPath.row])
     }
     
+    // TODO: if search not 'cancelled,' search bar is still open on other views (segue)
+    // TODO: when search is 'cancelled,' there is one song in the array when there should be none.
+    // TODO: crashes after typing a while in the search...?
+    
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         self.searchArray.removeAll(keepCapacity: false)
-        
-        // let searchPredicate = NSPredicate(format:ELF CONTAINS[c] %@", searchController.searchBar.text)
-        // let array = (self.countryArray as NSArray).filteredArrayUsingPredicate(searchPredicate)
-        // self.searchArray = array as! [String]
-        
-        
         let searchString = searchController.searchBar.text
         
         SPTRequest.performSearchWithQuery(searchString, queryType: SPTSearchQueryType.QueryTypeTrack, offset: 0, session: nil, callback: {(error: NSError!, result:AnyObject!) -> Void in
@@ -122,15 +124,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 println("error performing query")
                 return
             }
+            
             let trackListPage = result as SPTListPage
-            //let partialTrack = trackListPage.items.first as SPTPartialTrack
-            // using first result for now.
-            // will be able to use items.count to get the whole list...
-            
             let items = trackListPage.items
-
             var resultsArray = [Song]()
-            
+            if (items == nil) {
+                return
+            }
             for item in items {
                 var newSong = Song()
                 let partialTrack = item as SPTPartialTrack
@@ -140,16 +140,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 newSong.upvotes = 1
                 // TODO: add the artist name to the song!!
                 resultsArray.append(newSong)
-//                self.searchArray.append(newSong)
+
             }
-            println("Results Array: \(resultsArray.map { a in a.name })")
             
             self.searchArray = resultsArray
-            println("Search Array: \(self.searchArray.map { a in a.name })")
-
-//            self.crowd?.pending.addSong(newSong)
-//            println("Adding a new song")
-//            self.searchField.text = ""
         })
     }
 
