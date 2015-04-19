@@ -29,11 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         auth.tokenSwapURL = NSURL(string: kTokenSwapServiceURL)
         auth.tokenRefreshURL = NSURL(string: kTokenRefreshServiceURL)
         auth.sessionUserDefaultsKey = kSessionUserDefaultsKey
-        // TODO: UNCOMMENT IF SWITCHING TO JUST SPOTIFY
-        /*return true*/
+        return true
 
         // FB Login
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        // TODO: Uncomment!!! to figure out facebook
+//        NSLog("options = \(launchOptions)")
+//        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         
         
@@ -54,29 +55,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-
-//         Spotify Login
-        // TODO: UNCOMMENT WHEN FIGURE OUT HOW SPOTIFY AND FB LOGIN WORKS
-        /*let auth = SPTAuth.defaultInstance()
-        
-        let authCallback = { (error : NSError?, session : SPTSession?) -> () in
-            if (error != nil) {
-                NSLog("*** Auth Error \(error)")
-                return
-            }
-            auth.session = session
-            NSNotificationCenter.defaultCenter().postNotificationName("sessionUpdated", object: self)
+        // create string URL for multiple log ins
+        var urlString : String! = url.absoluteString!
+        if urlString == nil {
+            urlString = ""
         }
-        
-        if auth.canHandleURL(url) {
-            auth.handleAuthCallbackWithTriggeredAuthURL(url, callback: authCallback)
+        NSLog("urlString = \(urlString)")
+        NSLog("url = \(url)")
+
+        if urlString.rangeOfString("facebook") != nil { // facebook login
+            NSLog("doing Facebook URL")
+            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        } else if urlString.rangeOfString("spotify") != nil {   // spotify login
+            NSLog("doing Spotify URL")
+            let auth = SPTAuth.defaultInstance()
+            
+            let authCallback = { (error : NSError?, session : SPTSession?) -> () in
+                if (error != nil) {
+                    NSLog("*** Auth Error \(error)")
+                    return
+                }
+                auth.session = session
+                NSNotificationCenter.defaultCenter().postNotificationName("sessionUpdated", object: self)
+            }
+            
+            if auth.canHandleURL(url) {
+                auth.handleAuthCallbackWithTriggeredAuthURL(url, callback: authCallback)
+                return true
+            }
+            return false
+        } else {
+            NSLog("Shoudln't get here, not in either")
             return true
         }
-        
-        return false */
-        
-        // Facebook Login
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
 
     }
 
