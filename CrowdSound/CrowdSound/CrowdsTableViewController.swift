@@ -100,7 +100,7 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
     
     
     func showConfigButton() {
-        self.loginButton.enabled = false
+//        self.loginButton.enabled = false
         self.configButton.enabled = true
         
         // Need to switch toolbar buttons
@@ -132,6 +132,7 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
         
         // Check if it's still valid
         if auth.session.isValid() {
+            
             
             // Change buttons
             return

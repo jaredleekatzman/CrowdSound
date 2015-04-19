@@ -35,7 +35,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         let tbvc = self.tabBarController as CrowdTabViewController
         self.crowd = tbvc.myCrowd?
         playlist = crowd!.playlist
-        
+//        self.player = tbvc.player?
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -55,6 +55,18 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        NSLog("Back pressed")
+        if parent == nil {
+            NSLog("Back 0")
+        }
+        if let bool = parent?.isEqual(self.parentViewController) {
+            if !bool {
+                NSLog("Back 1")
+            }
+        }
     }
     
     // MARK: - Player Control Methods
@@ -149,14 +161,17 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     func handleNewSession() {
         // Called when the controller is first loaded
         
+        let tbvc = self.tabBarController as CrowdTabViewController
         let auth = SPTAuth.defaultInstance()
         
         // Create new player
-        if (self.player == nil) {
-            self.player = SPTAudioStreamingController(clientId: auth.clientID)
-            self.player!.playbackDelegate = self;
-            self.player!.diskCache = SPTDiskCache(capacity: 1024 * 1024 * 64)
+        if (tbvc.player == nil) {
+            tbvc.player = SPTAudioStreamingController(clientId: auth.clientID)
+            tbvc.player!.playbackDelegate = self;
+            tbvc.player!.diskCache = SPTDiskCache(capacity: 1024 * 1024 * 64)
         }
+
+        self.player = tbvc.player
         
         // Log-in with the player
         self.player?.loginWithSession(auth.session, callback: { (error : NSError?) -> () in

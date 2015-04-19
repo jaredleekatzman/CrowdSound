@@ -11,6 +11,7 @@ import UIKit
 class CrowdTabViewController: UITabBarController {
         
     var myCrowd : Crowd?
+    var player : SPTAudioStreamingController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,22 @@ class CrowdTabViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        NSLog("TAB BACK!!!!")
+        
+        let auth = SPTAuth.defaultInstance()
+        
+        if player != nil {
+            NSLog("WE GOT A PLAYER")
+            self.player?.logout({ (error:NSError!) -> Void in
+                auth.session = nil
+            })
+        }
+        else {
+            NSLog("WE DO NOT GOT A PLAYER")
+            
+        }
+    }
 
     /*
     // MARK: - Navigation
