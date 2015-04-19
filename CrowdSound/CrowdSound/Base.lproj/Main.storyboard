@@ -320,20 +320,36 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zl7-eW-Efl">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rN4-WE-Xlv">
+                                <rect key="frame" x="143" y="80" width="300" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="R3z-hJ-SNN">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="a8U-jj-eTH">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a8U-jj-eTH" id="u18-tE-V8b">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="zl7-eW-Efl" secondAttribute="bottom" id="OMQ-fc-cAK"/>
-                            <constraint firstItem="zl7-eW-Efl" firstAttribute="top" secondItem="HFQ-yQ-GYh" secondAttribute="top" id="RrW-NX-MWq"/>
-                            <constraint firstAttribute="trailing" secondItem="zl7-eW-Efl" secondAttribute="trailing" id="cDo-gB-dbZ"/>
-                            <constraint firstItem="zl7-eW-Efl" firstAttribute="leading" secondItem="HFQ-yQ-GYh" secondAttribute="leading" id="hPm-ML-MEw"/>
+                            <constraint firstItem="R3z-hJ-SNN" firstAttribute="bottom" secondItem="hF7-vX-5g6" secondAttribute="top" id="II2-K9-TA8"/>
+                            <constraint firstItem="R3z-hJ-SNN" firstAttribute="leading" secondItem="HFQ-yQ-GYh" secondAttribute="leading" id="NMS-Gb-0ic"/>
+                            <constraint firstAttribute="trailing" secondItem="R3z-hJ-SNN" secondAttribute="trailing" id="dZ0-xB-KLw"/>
+                            <constraint firstItem="R3z-hJ-SNN" firstAttribute="top" secondItem="bfy-FF-8rS" secondAttribute="bottom" id="nDH-7P-dVJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="gJR-e3-q8e"/>
+                    <connections>
+                        <outlet property="songTable" destination="R3z-hJ-SNN" id="MbN-eE-Ml4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JPa-6g-U1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -588,22 +604,6 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EGP-HS-q8R">
-                                <rect key="frame" x="0.0" y="165" width="600" height="435"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="435" id="0DR-iA-pBA"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistSongCell" id="oPA-k3-NtJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oPA-k3-NtJ" id="Egv-bg-3KV">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7M-Ti-6L5">
                                 <rect key="frame" x="0.0" y="64" width="600" height="93"/>
                                 <subviews>
@@ -665,6 +665,22 @@
                                     <constraint firstItem="uep-6X-FOO" firstAttribute="leading" secondItem="BaY-sk-wb1" secondAttribute="trailing" constant="8" symbolic="YES" id="urS-8F-2a3"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EGP-HS-q8R">
+                                <rect key="frame" x="0.0" y="165" width="600" height="435"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="435" id="0DR-iA-pBA"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistSongCell" id="oPA-k3-NtJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oPA-k3-NtJ" id="Egv-bg-3KV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
