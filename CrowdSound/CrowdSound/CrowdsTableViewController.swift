@@ -14,7 +14,8 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
     @IBOutlet weak var loginButton: UIBarButtonItem!
     
     var authViewController : SPTAuthViewController?
-    var crowds = [Crowd]() 
+//    var fbl : FBLoginView = FBLoginView()
+    var crowds = [Crowd]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,10 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // For Facebook Login
+//        self.fbLoginView.delegate = self
+//        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"]
     }
     
     func sessionUpdatedNotification(notification : NSNotification) {

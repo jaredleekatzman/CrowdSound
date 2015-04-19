@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -27,8 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         auth.tokenSwapURL = NSURL(string: kTokenSwapServiceURL)
         auth.tokenRefreshURL = NSURL(string: kTokenRefreshServiceURL)
         auth.sessionUserDefaultsKey = kSessionUserDefaultsKey
-        
         return true
+
+        // FB Login
+        // TODO: Uncomment!!! to figure out facebook
+//        NSLog("options = \(launchOptions)")
+//        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        
         
         // Objective-C code
 //        SPTAuth *auth = [SPTAuth defaultInstance];
@@ -47,23 +55,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        let auth = SPTAuth.defaultInstance()
-        
-        let authCallback = { (error : NSError?, session : SPTSession?) -> () in
-            if (error != nil) {
-                NSLog("*** Auth Error \(error)")
-                return
-            }
-            auth.session = session
-            NSNotificationCenter.defaultCenter().postNotificationName("sessionUpdated", object: self)
+        // create string URL for multiple log ins
+        var urlString : String! = url.absoluteString!
+        if urlString == nil {
+            urlString = ""
         }
-        
-        if auth.canHandleURL(url) {
-            auth.handleAuthCallbackWithTriggeredAuthURL(url, callback: authCallback)
+        NSLog("urlString = \(urlString)")
+        NSLog("url = \(url)")
+
+        if urlString.rangeOfString("facebook") != nil { // facebook login
+            NSLog("doing Facebook URL")
+            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        } else if urlString.rangeOfString("spotify") != nil {   // spotify login
+            NSLog("doing Spotify URL")
+            let auth = SPTAuth.defaultInstance()
+            
+            let authCallback = { (error : NSError?, session : SPTSession?) -> () in
+                if (error != nil) {
+                    NSLog("*** Auth Error \(error)")
+                    return
+                }
+                auth.session = session
+                NSNotificationCenter.defaultCenter().postNotificationName("sessionUpdated", object: self)
+            }
+            
+            if auth.canHandleURL(url) {
+                auth.handleAuthCallbackWithTriggeredAuthURL(url, callback: authCallback)
+                return true
+            }
+            return false
+        } else {
+            NSLog("Shoudln't get here, not in either")
             return true
         }
-        
-        return false
+
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -82,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
