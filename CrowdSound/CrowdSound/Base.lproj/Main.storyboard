@@ -318,35 +318,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5WQ-36-g12">
-                                <rect key="frame" x="16" y="72" width="568" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sj6-zI-bb1">
-                                <rect key="frame" x="538" y="72" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="searchForSongByString:" destination="ti7-eS-gnE" eventType="touchUpInside" id="5fw-YZ-Bxo"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zl7-eW-Efl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5WQ-36-g12" firstAttribute="trailing" secondItem="HFQ-yQ-GYh" secondAttribute="trailingMargin" id="2DV-1S-xup"/>
-                            <constraint firstItem="5WQ-36-g12" firstAttribute="leading" secondItem="HFQ-yQ-GYh" secondAttribute="leadingMargin" id="5ng-KF-qYb"/>
-                            <constraint firstItem="5WQ-36-g12" firstAttribute="top" secondItem="bfy-FF-8rS" secondAttribute="bottom" constant="8" symbolic="YES" id="VH3-Ky-MNM"/>
-                            <constraint firstItem="sj6-zI-bb1" firstAttribute="trailing" secondItem="5WQ-36-g12" secondAttribute="trailing" id="djF-cP-0Lh"/>
-                            <constraint firstItem="sj6-zI-bb1" firstAttribute="top" secondItem="5WQ-36-g12" secondAttribute="top" id="x23-SG-S4T"/>
+                            <constraint firstAttribute="bottom" secondItem="zl7-eW-Efl" secondAttribute="bottom" id="OMQ-fc-cAK"/>
+                            <constraint firstItem="zl7-eW-Efl" firstAttribute="top" secondItem="HFQ-yQ-GYh" secondAttribute="top" id="RrW-NX-MWq"/>
+                            <constraint firstAttribute="trailing" secondItem="zl7-eW-Efl" secondAttribute="trailing" id="cDo-gB-dbZ"/>
+                            <constraint firstItem="zl7-eW-Efl" firstAttribute="leading" secondItem="HFQ-yQ-GYh" secondAttribute="leading" id="hPm-ML-MEw"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="gJR-e3-q8e"/>
-                    <connections>
-                        <outlet property="searchButton" destination="sj6-zI-bb1" id="5c5-yn-Sae"/>
-                        <outlet property="searchField" destination="5WQ-36-g12" id="r4d-Wf-48g"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JPa-6g-U1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
