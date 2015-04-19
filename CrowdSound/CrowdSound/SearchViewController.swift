@@ -27,8 +27,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         // Configure countryTable
+        self.songTable.contentInset = UIEdgeInsetsZero
         self.songTable.delegate = self
         self.songTable.dataSource = self
+        
+        self.view.addSubview(self.songTable)
+        self.automaticallyAdjustsScrollViewInsets = false;
         
         
         // Configure countrySearchController
