@@ -34,7 +34,8 @@ class CrowdTabViewController: UITabBarController {
         if player != nil {
             NSLog("WE GOT A PLAYER")
             self.player?.logout({ (error:NSError!) -> Void in
-                auth.session = nil
+//                auth.session = nil
+                
             })
         }
         else {
