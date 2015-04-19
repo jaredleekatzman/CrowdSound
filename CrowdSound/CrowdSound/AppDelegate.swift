@@ -60,8 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if urlString == nil {
             urlString = ""
         }
-        NSLog("urlString = \(urlString)")
-        NSLog("url = \(url)")
+//        NSLog("urlString = \(urlString)")
+//        NSLog("url = \(url)")
 
         if urlString.rangeOfString("facebook") != nil { // facebook login
             NSLog("doing Facebook URL")

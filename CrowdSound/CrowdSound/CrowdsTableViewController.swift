@@ -19,7 +19,7 @@ class CrowdsTableViewController: UITableViewController, SPTAuthViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sessionUpdateNotification:", name: "sessionUpdated", object: nil)
 
         var defaultCrowd = Crowd.defaultCrowd()
