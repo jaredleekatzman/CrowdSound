@@ -35,7 +35,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         let tbvc = self.tabBarController as CrowdTabViewController
         self.crowd = tbvc.myCrowd?
         playlist = crowd!.playlist
-//        self.player = tbvc.player?
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -98,14 +97,14 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return playlist!.count()// - (1 + (self.crowd?.currentTrackIndex ?? 0))
+        return playlist!.count() - (1 + (self.crowd?.currentTrackIndex ?? 0))
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        let songIndex = indexPath.row //+ (1 + (self.crowd?.currentTrackIndex ?? 0))
+        let songIndex = indexPath.row + (1 + (self.crowd?.currentTrackIndex ?? 0))
         let song = playlist!.songs[songIndex]
         cell.textLabel?.text = song.name
         
