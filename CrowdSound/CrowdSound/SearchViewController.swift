@@ -27,13 +27,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         // Configure countryTable
-        self.songTable.contentInset = UIEdgeInsetsZero
         self.songTable.delegate = self
         self.songTable.dataSource = self
-        
-        self.view.addSubview(self.songTable)
-        self.automaticallyAdjustsScrollViewInsets = false;
-        
+        self.definesPresentationContext = true
         
         // Configure countrySearchController
         self.songSearchController = ({
@@ -51,6 +47,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             return controller
         })()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,6 +125,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 println("error performing query")
                 return
             }
+
             
             let trackListPage = result as SPTListPage
             let items = trackListPage.items
