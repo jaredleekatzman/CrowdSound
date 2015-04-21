@@ -32,12 +32,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Crowds" id="7hH-vy-iTd">
-                        <barButtonItem key="leftBarButtonItem" title="Log In" id="QHc-M2-THi">
-                            <connections>
-                                <action selector="loginClicked:" destination="5uS-XK-Xde" id="9fT-zi-OEc"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="Da9-ZS-xwy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Da9-ZS-xwy">
                             <connections>
                                 <segue destination="1qs-Dg-Q2g" kind="show" id="Z3q-ct-kdU"/>
                             </connections>
@@ -45,7 +40,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="configButton" destination="Da9-ZS-xwy" id="AKt-8a-yo7"/>
-                        <outlet property="loginButton" destination="QHc-M2-THi" id="CYL-jW-rYT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7PC-xz-PbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,6 +164,40 @@
                                                 <constraint firstItem="5Rp-nd-GaN" firstAttribute="top" secondItem="DNv-cY-ts5" secondAttribute="topMargin" id="7cQ-7P-NVR"/>
                                                 <constraint firstItem="3RP-1D-nng" firstAttribute="leading" secondItem="DNv-cY-ts5" secondAttribute="leadingMargin" constant="10" id="k7M-r2-XtA"/>
                                                 <constraint firstItem="3RP-1D-nng" firstAttribute="centerY" secondItem="DNv-cY-ts5" secondAttribute="centerY" id="myd-de-kz1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WNb-he-GW2">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WNb-he-GW2" id="XxD-Bm-eQk">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Spotify Status: Logged Out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgF-8J-lRT">
+                                                    <rect key="frame" x="18" y="11" width="209" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="95" id="85P-hm-ldu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqI-hF-x1M">
+                                                    <rect key="frame" x="286" y="6" width="48" height="30"/>
+                                                    <state key="normal" title="Sign In">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="spotifyBtnPressed:" destination="1qs-Dg-Q2g" eventType="touchUpInside" id="QUx-ES-14H"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EqI-hF-x1M" firstAttribute="centerY" secondItem="mgF-8J-lRT" secondAttribute="centerY" id="4PZ-6I-eRJ"/>
+                                                <constraint firstItem="mgF-8J-lRT" firstAttribute="top" secondItem="XxD-Bm-eQk" secondAttribute="topMargin" constant="3" id="FYd-Vp-7Zi"/>
+                                                <constraint firstItem="EqI-hF-x1M" firstAttribute="leading" secondItem="mgF-8J-lRT" secondAttribute="trailing" constant="59" id="gwb-zt-0NF"/>
+                                                <constraint firstItem="mgF-8J-lRT" firstAttribute="centerY" secondItem="XxD-Bm-eQk" secondAttribute="centerY" id="hoW-zO-B7U"/>
+                                                <constraint firstItem="mgF-8J-lRT" firstAttribute="leading" secondItem="XxD-Bm-eQk" secondAttribute="leadingMargin" constant="10" id="qCp-aT-oKq"/>
+                                                <constraint firstItem="EqI-hF-x1M" firstAttribute="leading" secondItem="XxD-Bm-eQk" secondAttribute="leading" constant="286" id="w7g-Dg-rcU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -300,6 +328,8 @@
                         <outlet property="hostNameText" destination="AdN-JP-fy0" id="rhg-DI-6a4"/>
                         <outlet property="passwordProtectedSwitch" destination="8lv-zZ-5B5" id="VNO-X1-0kN"/>
                         <outlet property="passwordText" destination="8dO-eO-P11" id="sHg-3P-aVr"/>
+                        <outlet property="spotifyLoginBtn" destination="EqI-hF-x1M" id="0wu-va-g7Y"/>
+                        <outlet property="spotifyStatusLabel" destination="mgF-8J-lRT" id="PhY-qL-0y4"/>
                         <outlet property="upvotesLabel" destination="3RP-1D-nng" id="KTv-rQ-9ca"/>
                         <outlet property="upvotesSlider" destination="5Rp-nd-GaN" id="sAD-rO-FcN"/>
                     </connections>
