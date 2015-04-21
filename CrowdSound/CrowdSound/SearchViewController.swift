@@ -114,6 +114,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     // TODO: crashes after typing a while in the search...?
     // TODO: add new song for each added element (so no repeats in pending)
     // TODO: add artist to search results. 
+    // TODO: cancel the search in the prepare for segue (otherwise black page error)
     
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
