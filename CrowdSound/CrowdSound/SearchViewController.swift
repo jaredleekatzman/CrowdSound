@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
     var crowd : Crowd?
 
     @IBOutlet weak var songTable: UITableView!
@@ -41,6 +41,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            controller.delegate = self
             //self. = controller.searchBar
             self.songTable.tableHeaderView = controller.searchBar
             
@@ -59,6 +60,32 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.songTable.reloadData()
     }
 
+    // MARK: - Navigation
+    override func viewWillAppear(animated: Bool) {
+        println("Here")
+        self.songSearchController.active = false
+        self.songSearchController.searchBar.text = ""
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.songSearchController.searchBar.setShowsCancelButton(false, animated: true)
+        println(self.songSearchController.active)
+    }
+    
+    func willDismissSearchController(searchController: UISearchController) {
+        println("1")
+    }
+    
+    func didPresentSearchController(searchController: UISearchController) {
+        println("2")
+    }
+    
+    func willPresentSearchController(searchController: UISearchController) {
+        println("3")
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

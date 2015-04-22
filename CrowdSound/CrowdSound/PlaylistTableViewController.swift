@@ -20,6 +20,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var forwardButton: UIButton!
     @IBOutlet var reverseButton: UIButton!
     
+    @IBOutlet var albumView: UIImageView!
 
     var crowd : Crowd?
     var playlist : Playlist?
@@ -118,7 +119,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         NSLog("Crowd, Player index: \(self.crowd?.currentTrackIndex), \(self.player?.currentTrackIndex)")
         NSLog("Current Track List: \(self.player?.trackListSize)")
-        
+        NSLog("Current Playlist Count \(self.crowd?.playlist.count())")
         if self.playlistEnded {
             
             // TODO: Need to check if what happens when player is nil
@@ -143,6 +144,47 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             let currentSong = self.crowd?.playlist.songs[self.crowd!.currentTrackIndex]
             songLabel.text = currentSong?.name
             artistLabel.text = currentSong?.artist
+            
+            SPTTrack.trackWithURI(currentSong?.spotifyURI, session: SPTAuth.defaultInstance().session, callback: { (error:NSError!, obj: AnyObject!) -> Void in
+                if error != nil {
+                    NSLog("no session")
+                    return
+                }
+                else {
+                    NSLog("Found track with URI")
+                    let track = obj as SPTTrack
+                    self.songLabel.text = track.name
+                    self.artistLabel.text = track.artists[0].name
+                    
+                    let imageURL = track.album.largestCover.imageURL
+                    if (imageURL == nil) {
+                        NSLog("No Album Art")
+                        self.albumView.image = nil;
+                        return
+                    }
+                    
+                    // Pop over to a background queue to load the image over the network.
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+                        var err : NSErrorPointer
+                        var image : UIImage?
+
+                        let imageData = NSData(contentsOfURL: imageURL)
+                        if (imageData != nil) {
+                            image = UIImage(data: imageData!)
+                        }
+                        
+                        // ... and back to the main queue to display the image
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.albumView.image = image
+                            if (image == nil) {
+                                NSLog("Couldn't load cover image")
+                                return
+                            }
+                        })
+                    })
+                }
+            })
+            
         }
         else {
             // No more songs in the playlist: Disable Controls
@@ -151,6 +193,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             songLabel.text = ""
             artistLabel.text = ""
+            albumView.image = nil
         }
         
     }

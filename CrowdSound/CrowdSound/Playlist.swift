@@ -23,7 +23,7 @@ class Playlist {
         let song2 = Song(name: "Punga", artist: "Klingande", uri: NSURL(string: "spotify:track:1zKL8G85Yx3T9Q84TuOCSL")!)
         let song3 = Song(name: "Elevate", artist: "St. Lucia", uri: NSURL(string: "spotify:track:5BxVRqpZi6tIhAap1ZjzVD")!)
         
-        playlist.songs = [song1, song2, song3]
+        playlist.songs = [song1, song3, song2]
         //        playlist.songs = [Song.defaultSong(id: "1"), Song.defaultSong(id: "2"), Song.defaultSong(id: "3")]
         return playlist
     }
@@ -34,6 +34,8 @@ class Playlist {
         
         let song1 = Song(name: "Bang Bang", artist: "Jessie J", uri: NSURL(string: "spotify:track:0puf9yIluy9W0vpMEUoAnN")!)
         let song2 = Song(name: "Price Tag", artist: "Jessie J", uri: NSURL(string: "spotify:track:5mvKuE9Lf9ARVXVXA32kK9")!)
+        
+        playlist.songs = [song1, song2]
         return playlist
     }
     // Return the number of songs in the playlist

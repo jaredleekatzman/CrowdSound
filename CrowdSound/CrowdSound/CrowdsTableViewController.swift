@@ -17,17 +17,68 @@ class CrowdsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sessionUpdateNotification:", name: "sessionUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sessionUpdateNotification:", name:
+            "sessionUpdated", object: nil)
 
+        var springFling = Crowd.defaultCrowd()
+        springFling.name = "Spring Fling Playlist"
+        crowds.append(springFling)
+        
         var defaultCrowd = Crowd.defaultCrowd()
+        defaultCrowd.name = "Jack's Naptime Playlist"
+        crowds.append(defaultCrowd)
+        
         var eliCrowd = Crowd.defaultCrowd()
         eliCrowd.host = "Eli"
         eliCrowd.name = "Eli's on a boat!"
         eliCrowd.password = "ELI - ELI - ELI"
-        eliCrowd.isPrivate = true 
+        eliCrowd.isPrivate = true
+        crowds.append(eliCrowd)
+        
+        var jaredCrowd = Crowd.defaultCrowd()
+        jaredCrowd.name = "Jared's Fun Party"
+        crowds.append(jaredCrowd)
+        
+        var timCrowd = Crowd.defaultCrowd()
+        timCrowd.name = "Tim's Rockin' Party"
+        crowds.append(timCrowd)
+        
+        var coding = Crowd.defaultCrowd()
+        coding.name = "CPSC 365 Hangout"
+        crowds.append(coding)
+        
+        var coding2 = Crowd.defaultCrowd()
+        coding2.name = "Plug in to Code"
+        crowds.append(coding2)
+        
+        var crowd1 = Crowd.defaultCrowd()
+        crowd1.name = "Looking to boogy"
+        crowds.append(crowd1)
+        
+        var crowd2 = Crowd.defaultCrowd()
+        crowd2.name = "April 20th"
+        crowds.append(crowd2)
+        
+        var crowd3 = Crowd.defaultCrowd()
+        crowd3.name = "Goin' on a trip"
+        crowds.append(crowd3)
+        
+        var crowd4 = Crowd.defaultCrowd()
+        crowd4.name = "Skull n' Horns"
+        crowds.append(crowd4)
+        
+        var crowd5 = Crowd.defaultCrowd()
+        crowd5.name = "Noise Bans in New Haven"
+        crowds.append(crowd5)
+        
+        var crowd6 = Crowd.defaultCrowd()
+        crowd6.name = "Birthday Party Playlist"
+        crowds.append(crowd6)
         
         crowds.append(defaultCrowd)
         crowds.append(eliCrowd)
+        
+        
 
     }
     

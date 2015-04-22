@@ -181,7 +181,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqI-hF-x1M">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqI-hF-x1M">
                                                     <rect key="frame" x="286" y="6" width="48" height="30"/>
                                                     <state key="normal" title="Sign In">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -336,9 +336,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="my5-Ha-i3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="-637"/>
+            <point key="canvasLocation" x="1516" y="-651"/>
         </scene>
-        <!--Search-->
+        <!--Search View Controller-->
         <scene sceneID="X3A-lV-k10">
             <objects>
                 <viewController id="ti7-eS-gnE" customClass="SearchViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
@@ -376,7 +376,7 @@
                             <constraint firstItem="R3z-hJ-SNN" firstAttribute="top" secondItem="bfy-FF-8rS" secondAttribute="bottom" id="nDH-7P-dVJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="gJR-e3-q8e"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="gJR-e3-q8e"/>
                     <connections>
                         <outlet property="songTable" destination="R3z-hJ-SNN" id="MbN-eE-Ml4"/>
                     </connections>
@@ -385,7 +385,7 @@
             </objects>
             <point key="canvasLocation" x="88" y="1074"/>
         </scene>
-        <!--Pending-->
+        <!--Queue-->
         <scene sceneID="coq-yd-xVd">
             <objects>
                 <tableViewController id="ao9-aO-b7Q" customClass="PendingTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
@@ -468,7 +468,7 @@
                             <outlet property="delegate" destination="ao9-aO-b7Q" id="7Hy-BU-zXY"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Pending" id="wNU-qT-8wT"/>
+                    <tabBarItem key="tabBarItem" title="Queue" id="wNU-qT-8wT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dx-fA-ecO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -637,20 +637,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7M-Ti-6L5">
                                 <rect key="frame" x="0.0" y="64" width="600" height="93"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Song Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndY-YR-XQO">
-                                        <rect key="frame" x="0.0" y="8" width="600" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndY-YR-XQO">
+                                        <rect key="frame" x="175" y="8" width="425" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="Sy1-Ez-FWu"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-W8-UHu">
-                                        <rect key="frame" x="0.0" y="36" width="600" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-W8-UHu">
+                                        <rect key="frame" x="175" y="28" width="425" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="F8F-WE-Q22"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uep-6X-FOO">
-                                        <rect key="frame" x="348" y="54" width="73" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uep-6X-FOO">
+                                        <rect key="frame" x="175" y="65" width="417" height="30"/>
                                         <state key="normal" title="Next Song">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -658,17 +664,14 @@
                                             <action selector="fastForward:" destination="Q7L-hJ-irK" eventType="touchUpInside" id="axz-of-s4V"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaY-sk-wb1">
-                                        <rect key="frame" x="260" y="54" width="80" height="30"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S56-og-Dpd">
+                                        <rect key="frame" x="0.0" y="0.0" width="167" height="93"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="XXm-Qj-piY"/>
+                                            <constraint firstAttribute="width" constant="167" id="bgm-rb-9bG"/>
                                         </constraints>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4I-64-rDC">
-                                        <rect key="frame" x="175" y="54" width="77" height="30"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4I-64-rDC">
+                                        <rect key="frame" x="175" y="43" width="417" height="30"/>
                                         <state key="normal" title="Play/Pause">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -679,20 +682,21 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="cjh-W8-UHu" firstAttribute="centerY" secondItem="A7M-Ti-6L5" secondAttribute="centerY" id="2RR-Ar-rF3"/>
-                                    <constraint firstItem="uep-6X-FOO" firstAttribute="baseline" secondItem="a4I-64-rDC" secondAttribute="baseline" id="4cy-BL-5KK"/>
-                                    <constraint firstItem="uep-6X-FOO" firstAttribute="top" secondItem="BaY-sk-wb1" secondAttribute="top" id="5N6-Fq-xhp"/>
-                                    <constraint firstItem="ndY-YR-XQO" firstAttribute="leading" secondItem="cjh-W8-UHu" secondAttribute="leading" id="G7H-ah-dkO"/>
-                                    <constraint firstAttribute="trailing" secondItem="cjh-W8-UHu" secondAttribute="trailing" id="GPx-Wl-VtU"/>
-                                    <constraint firstItem="BaY-sk-wb1" firstAttribute="leading" secondItem="a4I-64-rDC" secondAttribute="trailing" constant="8" symbolic="YES" id="Goq-iM-drD"/>
-                                    <constraint firstItem="a4I-64-rDC" firstAttribute="top" secondItem="ndY-YR-XQO" secondAttribute="bottom" constant="26" id="Pte-PX-uA8"/>
-                                    <constraint firstItem="cjh-W8-UHu" firstAttribute="top" secondItem="ndY-YR-XQO" secondAttribute="bottom" constant="7" id="cbz-Eu-zKN"/>
-                                    <constraint firstItem="ndY-YR-XQO" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="topMargin" id="dIM-1V-fru"/>
-                                    <constraint firstItem="ndY-YR-XQO" firstAttribute="trailing" secondItem="cjh-W8-UHu" secondAttribute="trailing" id="jJ5-G6-O7r"/>
-                                    <constraint firstItem="BaY-sk-wb1" firstAttribute="centerX" secondItem="cjh-W8-UHu" secondAttribute="centerX" id="jMv-yY-cPh"/>
-                                    <constraint firstItem="ndY-YR-XQO" firstAttribute="leading" secondItem="A7M-Ti-6L5" secondAttribute="leading" id="p6r-Nv-tEW"/>
-                                    <constraint firstItem="a4I-64-rDC" firstAttribute="bottom" secondItem="A7M-Ti-6L5" secondAttribute="bottomMargin" id="rl1-kv-DTf"/>
-                                    <constraint firstItem="uep-6X-FOO" firstAttribute="leading" secondItem="BaY-sk-wb1" secondAttribute="trailing" constant="8" symbolic="YES" id="urS-8F-2a3"/>
+                                    <constraint firstItem="S56-og-Dpd" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="top" id="0Be-zF-92j"/>
+                                    <constraint firstItem="a4I-64-rDC" firstAttribute="leading" secondItem="uep-6X-FOO" secondAttribute="leading" id="15x-sF-z5p"/>
+                                    <constraint firstAttribute="bottom" secondItem="S56-og-Dpd" secondAttribute="bottom" id="2By-kz-Wvd"/>
+                                    <constraint firstItem="cjh-W8-UHu" firstAttribute="trailing" secondItem="ndY-YR-XQO" secondAttribute="trailing" id="8EY-JN-iCO"/>
+                                    <constraint firstItem="a4I-64-rDC" firstAttribute="trailing" secondItem="A7M-Ti-6L5" secondAttribute="trailingMargin" id="BXx-RP-tJW"/>
+                                    <constraint firstItem="S56-og-Dpd" firstAttribute="leading" secondItem="A7M-Ti-6L5" secondAttribute="leading" id="FeO-ky-b2h"/>
+                                    <constraint firstItem="a4I-64-rDC" firstAttribute="top" secondItem="ndY-YR-XQO" secondAttribute="bottom" constant="14" id="HXX-Ld-VMf"/>
+                                    <constraint firstItem="cjh-W8-UHu" firstAttribute="leading" secondItem="ndY-YR-XQO" secondAttribute="leading" id="Il4-RP-feo"/>
+                                    <constraint firstItem="cjh-W8-UHu" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="top" constant="28" id="M7q-6q-P4A"/>
+                                    <constraint firstItem="ndY-YR-XQO" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="topMargin" id="Qjx-Ap-j4B"/>
+                                    <constraint firstAttribute="trailing" secondItem="cjh-W8-UHu" secondAttribute="trailing" id="Yqu-M4-5zK"/>
+                                    <constraint firstItem="uep-6X-FOO" firstAttribute="top" secondItem="cjh-W8-UHu" secondAttribute="bottom" constant="16" id="b1i-Gf-2AI"/>
+                                    <constraint firstItem="uep-6X-FOO" firstAttribute="trailing" secondItem="a4I-64-rDC" secondAttribute="trailing" id="dZi-r3-BpF"/>
+                                    <constraint firstItem="ndY-YR-XQO" firstAttribute="leading" secondItem="S56-og-Dpd" secondAttribute="trailing" constant="8" symbolic="YES" id="eNi-Yx-Gvz"/>
+                                    <constraint firstItem="cjh-W8-UHu" firstAttribute="leading" secondItem="a4I-64-rDC" secondAttribute="leading" id="f5X-AT-QxE"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EGP-HS-q8R">
@@ -725,11 +729,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Playlist" id="QVn-JF-Vlb"/>
                     <connections>
+                        <outlet property="albumView" destination="S56-og-Dpd" id="Ea7-Z5-HaT"/>
                         <outlet property="artistLabel" destination="cjh-W8-UHu" id="gG3-7c-7gC"/>
                         <outlet property="forwardButton" destination="uep-6X-FOO" id="6hX-Tm-u6A"/>
                         <outlet property="playButton" destination="a4I-64-rDC" id="b5h-xQ-zQf"/>
                         <outlet property="playerView" destination="A7M-Ti-6L5" id="AD8-fo-T71"/>
-                        <outlet property="reverseButton" destination="BaY-sk-wb1" id="TiV-1Z-Ll0"/>
                         <outlet property="songLabel" destination="ndY-YR-XQO" id="S8t-yp-TaE"/>
                         <outlet property="tableView" destination="EGP-HS-q8R" id="h8N-OH-Pwr"/>
                     </connections>
@@ -748,6 +752,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.83137254901960789" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="ti7-eS-gnE" kind="relationship" relationship="viewControllers" id="7gy-LO-rUi"/>
@@ -817,6 +822,6 @@
         <image name="front_iPhone6" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xmd-06-mqX"/>
+        <segue reference="7vp-gq-6lL"/>
     </inferredMetricsTieBreakers>
 </document>
