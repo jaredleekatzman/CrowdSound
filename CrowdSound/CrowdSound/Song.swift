@@ -11,23 +11,23 @@ import Foundation
 class Song {
     var name : String
     var artist : String
-    var spotifyID : String
     var spotifyURI : NSURL
     var upvotes : Int
     
     init() {
         self.name = ""
         self.artist = ""
-        self.spotifyID = ""
         self.upvotes = 0
         self.spotifyURI = NSURL(string: "nil")!
     }
+
+    init(name : String, artist : String, uri: NSURL) {
+        self.name = name
+        self.artist = artist
+        self.spotifyURI = uri
+        self.upvotes = 1
+    }
     
-//    init(track : SPPTrack) {
-//        self.spotifyTrack = track
-//        self.name =
-//    }
-//    
     // for testing - create default song
     class func defaultSong(id : String = "") -> Song {
         // Song that is 12 seconds: "spotify:track:3GfZhVmn4nGqbuGG1be5ML"
@@ -35,7 +35,6 @@ class Song {
         var song = Song()
         song.name = "name" + id
         song.artist = "Jared Katzman"
-        song.spotifyID = "spotifyId" + id
         song.upvotes = Int(arc4random_uniform(6))
         song.spotifyURI = NSURL(string: SONGSARR[id.toInt() ?? 0])!
         return song 
