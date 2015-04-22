@@ -34,6 +34,8 @@ class Playlist {
         
         let song1 = Song(name: "Bang Bang", artist: "Jessie J", uri: NSURL(string: "spotify:track:0puf9yIluy9W0vpMEUoAnN")!)
         let song2 = Song(name: "Price Tag", artist: "Jessie J", uri: NSURL(string: "spotify:track:5mvKuE9Lf9ARVXVXA32kK9")!)
+        
+        playlist.songs = [song1, song2]
         return playlist
     }
     // Return the number of songs in the playlist
