@@ -106,7 +106,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         self.crowd?.pending.addSong(searchArray[indexPath.row])
+        var alertMsg = "Added song " + searchArray[indexPath.row].name + " to pending songs"
+        
+        // display alert if necessary
+        var alert = UIAlertController(title: "Added song!", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     // TODO: if search not 'cancelled,' search bar is still open on other views (segue)
