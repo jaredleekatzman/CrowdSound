@@ -23,7 +23,7 @@ class Playlist {
         let song2 = Song(name: "Punga", artist: "Klingande", uri: NSURL(string: "spotify:track:1zKL8G85Yx3T9Q84TuOCSL")!)
         let song3 = Song(name: "Elevate", artist: "St. Lucia", uri: NSURL(string: "spotify:track:5BxVRqpZi6tIhAap1ZjzVD")!)
         
-        playlist.songs = [song1, song2, song3]
+        playlist.songs = [song1, song3, song2]
         //        playlist.songs = [Song.defaultSong(id: "1"), Song.defaultSong(id: "2"), Song.defaultSong(id: "3")]
         return playlist
     }

@@ -193,6 +193,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             songLabel.text = ""
             artistLabel.text = ""
+            albumView.image = nil
         }
         
     }
