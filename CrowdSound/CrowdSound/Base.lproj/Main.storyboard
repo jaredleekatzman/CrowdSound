@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pro-dg-h63">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="k0j-7u-Rf2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -679,6 +679,15 @@
                                             <action selector="playPause:" destination="Q7L-hJ-irK" eventType="touchUpInside" id="jO8-Ea-4gI"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-4W-qVv">
+                                        <rect key="frame" x="469" y="37" width="52" height="30"/>
+                                        <state key="normal" title="Rewind">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rewind:" destination="Q7L-hJ-irK" eventType="touchUpInside" id="mCI-9C-OaG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -692,6 +701,8 @@
                                     <constraint firstItem="cjh-W8-UHu" firstAttribute="leading" secondItem="ndY-YR-XQO" secondAttribute="leading" id="Il4-RP-feo"/>
                                     <constraint firstItem="cjh-W8-UHu" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="top" constant="28" id="M7q-6q-P4A"/>
                                     <constraint firstItem="ndY-YR-XQO" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="topMargin" id="Qjx-Ap-j4B"/>
+                                    <constraint firstAttribute="trailing" secondItem="G7e-4W-qVv" secondAttribute="trailing" constant="79" id="UOH-gB-RM5"/>
+                                    <constraint firstItem="G7e-4W-qVv" firstAttribute="top" secondItem="ndY-YR-XQO" secondAttribute="bottom" constant="8" symbolic="YES" id="UnN-Vi-Wwd"/>
                                     <constraint firstAttribute="trailing" secondItem="cjh-W8-UHu" secondAttribute="trailing" id="Yqu-M4-5zK"/>
                                     <constraint firstItem="uep-6X-FOO" firstAttribute="top" secondItem="cjh-W8-UHu" secondAttribute="bottom" constant="16" id="b1i-Gf-2AI"/>
                                     <constraint firstItem="uep-6X-FOO" firstAttribute="trailing" secondItem="a4I-64-rDC" secondAttribute="trailing" id="dZi-r3-BpF"/>

@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var searchArray:[Song] = [Song](){
         didSet  {self.songTable.reloadData()}
     }
+    
     var songSearchController = UISearchController()
     
     override func viewDidLoad() {

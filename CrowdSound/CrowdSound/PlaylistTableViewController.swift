@@ -26,6 +26,8 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     var playlist : Playlist?
     
     var playlistEnded = false
+    var isLastSong = false
+    
     
     var player : SPTAudioStreamingController?
     
@@ -37,19 +39,240 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         self.crowd = tbvc.myCrowd?
         playlist = crowd!.playlist
         
+        // add delegates
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
         
-        // @TODO: add if user or host flow
+        // TODO: add if user or host flow
         
         // Initializes and logs-in to the SPTAudioStreamingController
         self.handleNewSession()
+    }
+    
+
+    // PLAYER CONTROLS 
+    
+    // user pressed play/pause
+    @IBAction func playPause(sender: AnyObject) {
+        NSLog("in playPause")
+        self.player?.setIsPlaying(!self.player!.isPlaying, callback: nil)
+    }
+    
+    // user pressed fastForward
+    @IBAction func fastForward(sender: AnyObject) {
+        println("in fastforward")
+        self.player?.skipNext({ (error: NSError!) -> Void in
+            if error != nil {
+                NSLog("Error Skipping Song: \(error)")
+            }
+        })
+    }
+    
+    // user hit rewind
+    @IBAction func rewind(sender: AnyObject) {
+        println("in rewind")
+        self.player?.skipPrevious({ (error: NSError!) -> Void in
+            if error != nil {
+                NSLog("Error Rewinding Song: \(error)")
+            }
+        })
+    }
+    
+    
+    // MARK: - SPTAudioController methods
+    
+    func handleNewSession() {
+        println("in handle new session")
+        // Called when the controller is first loaded
+        
+        let tbvc = self.tabBarController as CrowdTabViewController
+        let auth = SPTAuth.defaultInstance()
+        
+        // Create new player
+        if (tbvc.player == nil) {
+            tbvc.player = SPTAudioStreamingController(clientId: auth.clientID)
+            tbvc.player!.playbackDelegate = self;
+            tbvc.player!.diskCache = SPTDiskCache(capacity: 1024 * 1024 * 64)
+        }
+        
+        self.player = tbvc.player
+        
+        // Log-in with the player
+        self.player?.loginWithSession(auth.session, callback: { (error : NSError?) -> () in
+            if (error != nil) {
+                NSLog("*** Enabaling playback got error: \(error)")
+                return
+            }
+            
+            // Starts playing the first song
+            if self.playlist?.count() > 0 {
+                var options = SPTPlayOptions() // default track index = 0, start from beginning 
+                self.player?.playURIs(self.crowd?.playlist.getURIs(), withOptions: options, callback: nil)
+            }
+        })
         
     }
     
+    // debugging: error in playing track
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
+        println("in audioStreming-didFailToPlayTrack")
+        NSLog("Failed to play track: \(trackUri)")
+    }
+    
+    // for debugging: changed playback status
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
+        println("in audioStreaming-DidChangePlaybackStatus")
+        NSLog("Is playing = \(isPlaying)")
+    }
+    
+    // handle playing next song
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
+        print("in audioStreaming-DidChangeToTrack")
+        
+        // last song was just played -- reset playlist
+        if isLastSong {
+            println("should reset playlist")
+            self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(0), callback: { (error:NSError!) -> Void in
+                if (error != nil) {
+                    NSLog("error replacing uris: \(error)")
+                }
+                self.updatePlayerArt()
+            })
+            self.player?.setIsPlaying(true, callback: nil)
+            isLastSong = false
+        }
+    }
+    
+    
+    // handle song transition
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
+        println("in audioStreaming-didStopPlayingTrack")
+
+        println("in audioStreaming-didStopPlayingTrack")
+        var index = self.player?.currentTrackIndex
+        var uris = self.crowd?.playlist.getURIs()
+        var urisLength = uris?.count
+
+        // if error in player
+        if (index == nil) {
+            return
+        }
+        
+        println("length of new URIs = \(uris)")
+        
+        // playing last song
+        if let urisLength = uris?.count {
+            if Int(index!) >= urisLength - 1 {
+                isLastSong = true
+            }
+        }
+//
+//        // replace URIs in player
+//        self.player?.replaceURIs(uris, withCurrentTrack: Int32(index!), callback: { (error:NSError!) -> Void in
+//            if (error != nil) {
+//                NSLog("error replacing uris: \(error)")
+//            }
+//        })
+        
+        // TODO: alert users when playlist restarting?
+        
+
+        
+        self.updatePlayerTracklist()
+        self.updatePlayerArt()
+    }
+    
+    func updatePlayerTracklist() {
+//        println("in updatePlayerTracklist")
+//        let playlistIndex = self.player?.currentTrackIndex
+//        let nextSongIndex = Int(playlistIndex!) + 1
+//        println("nextSongindex = \(nextSongIndex)")
+        
+        let uris = self.crowd?.playlist.getURIs()
+        let playlistIndex = self.player?.currentTrackIndex
+        
+        self.player?.replaceURIs(uris, withCurrentTrack: Int32(playlistIndex!), callback: { (error: NSError!) -> Void in
+            
+            if error != nil {
+                println("error replacing uris in updatePlayerTracklist: \(error)")
+            }
+        
+        })
+        
+        
+    
+        self.tableView.reloadData()
+        
+        // if at last song
+//        if (self.crowd?.playlist.count() == nextSongIndex + 1) {
+//            isLastSong = true
+//        }
+//        else if (self.crowd?.playlist.count() > nextSongIndex) {
+//            if isLastSong {
+//                println("resetting last song")
+//                isLastSong = false
+//            }
+//            
+//            var uris = self.crowd?.playlist.getURIs()
+//            var urisLength = uris?.count
+////            var index = self.player?.currentTrackIndex
+//
+//            println("length of new URIs = \(uris)")
+//            
+//
+//            // replace URIs in player
+//            self.player?.replaceURIs(uris, withCurrentTrack: Int32(playlistIndex!), callback: { (error:NSError!) -> Void in
+//                if (error != nil) {
+//                    NSLog("error replacing uris: \(error)")
+//                }
+//            })
+//            
+//        }
+//            var index = self.player?.currentTrackIndex
+//        var uris = self.crowd?.playlist.getURIs()
+//        var urisLength = uris?.count
+        
+//        // if error in player
+//        if (index == nil) {
+//            return
+//        }
+        
+//        println("length of new URIs = \(uris)")
+//        
+//        // playing last song
+//        if let urisLength = uris?.count {
+//            if Int(index!) >= urisLength - 1 {
+//                isLastSong = true
+//            }
+//        }
+//        
+//        // replace URIs in player
+//        self.player?.replaceURIs(uris, withCurrentTrack: Int32(index!), callback: { (error:NSError!) -> Void in
+//            if (error != nil) {
+//                NSLog("error replacing uris: \(error)")
+//            }
+//        })
+        
+
+    }
+    
+    // skipped to next track
+    func audioStreamingDidSkipToNextTrack(audioStreaming: SPTAudioStreamingController!) {
+        println("in audioStreaming-didSkipToNextTrack")
+    }
+    
+    
+    // MARK: - Table view data source
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // Return number of sections
+        return 1
+    }
+    
     override func viewDidAppear(animated: Bool) {
-        self.updateUI()
+        self.tableView.reloadData()
+        self.updatePlayerArt()
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,83 +292,49 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    // MARK: - Player Control Methods
-    
-    @IBAction func playPause(sender: AnyObject) {
-        NSLog("User pressed play/pause button")
-        self.player?.setIsPlaying(!self.player!.isPlaying, callback: nil)
-    }
-    
-    @IBAction func fastForward(sender: AnyObject) {
-        
-        self.player?.skipNext({ (error: NSError!) -> Void in
-            if error != nil {
-                NSLog("Error Skipping Song")
-            }
-        })
-    }
-    
-    // TODO: Rewind Action: Need to figure out how to handle rewinding if it will be possible.
-    @IBAction func rewind(sender: AnyObject) {
-    }
-    
-    // MARK: - Table view data source
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Return number of sections
-        return 1
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return playlist!.count() - (1 + (self.crowd?.currentTrackIndex ?? 0))
+        return playlist!.count()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        // configure the cell
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
-        
-        // Configure the cell...
-        let songIndex = indexPath.row + (1 + (self.crowd?.currentTrackIndex ?? 0))
-        let song = playlist!.songs[songIndex]
+        let song = playlist!.songs[indexPath.row]
         cell.textLabel?.text = song.name
-        
-        
         return cell
     }
     
-    func updateUI() {
+    // TODO: when reload data, if size increases & isLastSong == true, set isLastSong = false
+
+    func updatePlayerArt() {
+        println("IN UPDATE-PLAYER-ART")
         
-        self.tableView.reloadData()
+//        let playlistIndex = self.player?.currentTrackIndex
+//        let oldSize = Int(playlistIndex!) + 1
+//        println("oldPlaylistSize = \(oldSize)")
+//        self.tableView.reloadData()
+//        
+//        if (isLastSong && self.crowd?.playlist.count() > oldSize) {
+//            println("WE SHOULD FUCKING CHANGE THIS")
+//            isLastSong = false
+//        }
         
-        NSLog("Crowd, Player index: \(self.crowd?.currentTrackIndex), \(self.player?.currentTrackIndex)")
-        NSLog("Current Track List: \(self.player?.trackListSize)")
-        NSLog("Current Playlist Count \(self.crowd?.playlist.count())")
-        if self.playlistEnded {
-            
-            // TODO: Need to check if what happens when player is nil
-            if self.crowd?.playlist.count() > Int(self.player!.trackListSize) {
-                NSLog("updateUI(): replace URIs")
-                self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
-                    if error != nil {
-                        NSLog("Error replacing URIS \(error)")
-                    }
-                    
-                    self.player?.setIsPlaying(true, callback: nil)
-                })
-                
-                self.playlistEnded = false
-            }
-        }
+        // if after reloading data we are on the last song, and our new size > old size
         
-        if self.crowd?.currentTrackIndex >= 0 && self.crowd?.currentTrackIndex < self.crowd?.playlist.count() {
+//        self.tableView.reloadData()
+
+        if (playlist!.count() > 0) {
             self.forwardButton.enabled = true
             self.playButton.enabled = true
+            var index = self.player?.currentTrackIndex
             
-            let currentSong = self.crowd?.playlist.songs[self.crowd!.currentTrackIndex]
-            songLabel.text = currentSong?.name
-            artistLabel.text = currentSong?.artist
+            let currentSong = self.playlist!.songs[Int(index!)]
+            songLabel.text = currentSong.name
             
-            SPTTrack.trackWithURI(currentSong?.spotifyURI, session: SPTAuth.defaultInstance().session, callback: { (error:NSError!, obj: AnyObject!) -> Void in
+            
+            SPTTrack.trackWithURI(currentSong.spotifyURI, session: SPTAuth.defaultInstance().session, callback: { (error:NSError!, obj: AnyObject!) -> Void in
                 if error != nil {
                     NSLog("no session")
                     return
@@ -167,7 +356,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
                         var err : NSErrorPointer
                         var image : UIImage?
-
+                        
                         let imageData = NSData(contentsOfURL: imageURL)
                         if (imageData != nil) {
                             image = UIImage(data: imageData!)
@@ -184,10 +373,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                     })
                 }
             })
-            
         }
         else {
-            // No more songs in the playlist: Disable Controls
+            // No songs in the playlist: Disable Controls
             self.forwardButton.enabled = false
             self.playButton.enabled = false
             
@@ -195,85 +383,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             artistLabel.text = ""
             albumView.image = nil
         }
-        
     }
     
-    // MARK: - SPTAudioController methods
-    
-    func handleNewSession() {
-        // Called when the controller is first loaded
-        
-        let tbvc = self.tabBarController as CrowdTabViewController
-        let auth = SPTAuth.defaultInstance()
-        
-        // Create new player
-        if (tbvc.player == nil) {
-            tbvc.player = SPTAudioStreamingController(clientId: auth.clientID)
-            tbvc.player!.playbackDelegate = self;
-            tbvc.player!.diskCache = SPTDiskCache(capacity: 1024 * 1024 * 64)
-        }
 
-        self.player = tbvc.player
-        
-        // Log-in with the player
-        self.player?.loginWithSession(auth.session, callback: { (error : NSError?) -> () in
-            if (error != nil) {
-                NSLog("*** Enabaling playback got error: \(error)")
-                return
-            }
-            
-            // Starts playing the first song
-            self.crowd?.currentTrackIndex = 0
-            if self.playlist?.count() > 0 {
-                self.player?.playURIs(self.crowd?.playlist.getURIs(), fromIndex: 0, callback: nil)
-            }
-        })
-        
-    }
-    
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
-        NSLog("Failed to play track: \(trackUri)")
-    }
-    
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-//        NSLog("Is playing = \(isPlaying)")
-    }
-    
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
-        NSLog("didChangeToTrack(): track index \(self.crowd?.currentTrackIndex)")
-    }
-    
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
-
-        
-        NSLog("didStopPlayingTrack(): Song \(self.crowd?.currentTrackIndex) Ended")
-        self.crowd!.currentTrackIndex++
-        
-        // Turn player off when
-        if self.crowd!.currentTrackIndex >= Int(self.player!.trackListSize) {
-            NSLog("Playlist Ended")
-            self.playlistEnded = true
-            self.player?.setIsPlaying(false, callback: nil)
-        }
-        else {
-            NSLog("replace URIs")
-            self.player?.replaceURIs(self.crowd?.playlist.getURIs(), withCurrentTrack: Int32(self.crowd!.currentTrackIndex), callback: { (error:NSError!) -> Void in
-            
-                if error != nil {
-                    NSLog("Error replacing URIS \(error)")
-
-                }
-            })
-        }
-        
-        self.updateUI()
-        
-    }
-    
-    func audioStreamingDidSkipToNextTrack(audioStreaming: SPTAudioStreamingController!) {
-//        NSLog("DidSkipToNextTrack() \(self.crowd?.currentTrackIndex)")
-    }
-    
     
     /*
     // Override to support conditional editing of the table view.
