@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate {
+class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, updateTracklistObserver {
     
     // UI Elements
     @IBOutlet var tableView: UITableView!
@@ -181,12 +181,14 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
 
         
-        self.updatePlayerTracklist()
+        // self.updatePlayerTracklist()
         self.updatePlayerArt()
     }
     
+    // declared in updateTracklistObserver
+    //  when playlist grows, will call this function to update the player's queue.
     func updatePlayerTracklist() {
-//        println("in updatePlayerTracklist")
+        println("in updatePlayerTracklist")
 //        let playlistIndex = self.player?.currentTrackIndex
 //        let nextSongIndex = Int(playlistIndex!) + 1
 //        println("nextSongindex = \(nextSongIndex)")
