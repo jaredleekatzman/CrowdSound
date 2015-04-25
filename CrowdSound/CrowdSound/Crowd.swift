@@ -8,25 +8,11 @@
 
 import Foundation
 
-// protocol to use when playlist grows in playlistTableViewController.
-protocol updateTracklistObserver{
-    // function call?
-    func updatePlayerTracklist()
-}
+
 
 class Crowd {
     var name : String       // crowd name
-    var playlistDelegate:updateTracklistObserver? = nil
-    var playlist : Playlist
-//        {
-//        didSet{
-//            // update player when playlist changed.
-//            println("=====================DELEGATE GOT CALLED=====================")
-//            if let delegate = self.playlistDelegate {
-//                delegate.updatePlayerTracklist()
-//            }
-//        }
-//    }// playlist songs
+    var playlist : Playlist 
     var pending : Playlist  // pending songs
     var host : String       // host id
     var threshold : Int     // threshold to be upvoted
