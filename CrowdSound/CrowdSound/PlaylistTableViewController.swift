@@ -138,7 +138,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                     NSLog("error replacing uris: \(error)")
                 }
                 
-                // keep this here 
+                // keep this here
                 self.updatePlayerArt()
                 self.player?.setIsPlaying(true, callback: nil)
                 self.isLastSong = false

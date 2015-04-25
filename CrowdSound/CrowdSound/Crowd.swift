@@ -49,6 +49,7 @@ class Crowd {
         pending.upvoteSong(songIndex)
         if (pending.top().upvotes >= threshold) {
             playlist.addSong(pending.pop())
+//            NSNotificationCenter.defaultCenter().postNotificationName("newSongInPlaylist", object: nil)
         }
     }
     func downvotePendingSong(songIndex:Int) {
