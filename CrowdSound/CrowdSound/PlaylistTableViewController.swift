@@ -188,7 +188,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     // declared in updateTracklistObserver
     //  when playlist grows, will call this function to update the player's queue.
     func updatePlayerTracklist() {
-        println("in updatePlayerTracklist")
+        println("==========================in updatePlayerTracklist==================================")
 //        let playlistIndex = self.player?.currentTrackIndex
 //        let nextSongIndex = Int(playlistIndex!) + 1
 //        println("nextSongindex = \(nextSongIndex)")

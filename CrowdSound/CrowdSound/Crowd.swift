@@ -17,13 +17,16 @@ protocol updateTracklistObserver{
 class Crowd {
     var name : String       // crowd name
     var playlistDelegate:updateTracklistObserver? = nil
-    var playlist : Playlist {
-        didSet{                                                 // update player when playlist changed.
-            if let delegate = self.playlistDelegate {
-                delegate.updatePlayerTracklist()
-            }
-        }
-    }// playlist songs
+    var playlist : Playlist
+//        {
+//        didSet{
+//            // update player when playlist changed.
+//            println("=====================DELEGATE GOT CALLED=====================")
+//            if let delegate = self.playlistDelegate {
+//                delegate.updatePlayerTracklist()
+//            }
+//        }
+//    }// playlist songs
     var pending : Playlist  // pending songs
     var host : String       // host id
     var threshold : Int     // threshold to be upvoted
@@ -36,6 +39,16 @@ class Crowd {
     init() {
         name = ""
         playlist = Playlist()
+//        playlist.songs = []{
+//            didSet{
+//                // update player when playlist changed.
+//                println("=====================DELEGATE GOT CALLED=====================")
+//                if let delegate = self.playlistDelegate {
+//                    delegate.updatePlayerTracklist()
+//                }
+//            }
+//        }// playlist songs
+        
         pending = Playlist()
         host = ""
         threshold = 0
