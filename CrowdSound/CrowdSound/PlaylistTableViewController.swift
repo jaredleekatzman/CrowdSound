@@ -45,9 +45,14 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.addSubview(tableView)
         
         // TODO: add if user or host flow
+
+        // set the delegate
+        self.crowd?.playlist.playlistDelegate = self
         
         // Initializes and logs-in to the SPTAudioStreamingController
         self.handleNewSession()
+
+        
     }
     
 
@@ -72,6 +77,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     // user hit rewind
     @IBAction func rewind(sender: AnyObject) {
         println("in rewind")
+        if isLastSong {
+            isLastSong = false
+        }
         self.player?.skipPrevious({ (error: NSError!) -> Void in
             if error != nil {
                 NSLog("Error Rewinding Song: \(error)")
@@ -188,13 +196,20 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     // declared in updateTracklistObserver
     //  when playlist grows, will call this function to update the player's queue.
     func updatePlayerTracklist() {
-        println("==========================in updatePlayerTracklist==================================")
+        println("==========================in Delegate function==================================")
 //        let playlistIndex = self.player?.currentTrackIndex
 //        let nextSongIndex = Int(playlistIndex!) + 1
 //        println("nextSongindex = \(nextSongIndex)")
         
         let uris = self.crowd?.playlist.getURIs()
         let playlistIndex = self.player?.currentTrackIndex
+        
+        // deal with song being added after 
+        if Int(playlistIndex!) + 1 < uris?.count {
+            println("================WAS LAST SONG, IS NOT ANYMORE!=====================")
+            isLastSong = false
+        }
+
         
         self.player?.replaceURIs(uris, withCurrentTrack: Int32(playlistIndex!), callback: { (error: NSError!) -> Void in
             
@@ -203,9 +218,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             }
         
         })
-        
-        
-    
         self.tableView.reloadData()
         
         // if at last song

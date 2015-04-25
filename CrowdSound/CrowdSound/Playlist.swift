@@ -16,9 +16,12 @@ protocol updateTracklistObserver{
 
 class Playlist {
     var playlistDelegate:updateTracklistObserver? = nil
+    
     var songs : [Song] {
-        didSet{                                                 // update player when playlist changed.
+        didSet{
+            // update player when playlist changed.
             if let delegate = self.playlistDelegate {
+                println("====================== INSIDE THE IF=======================")
                 delegate.updatePlayerTracklist()
             }
         }
