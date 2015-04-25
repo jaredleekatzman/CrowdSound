@@ -8,9 +8,21 @@
 
 import Foundation
 
+// protocol to use when playlist grows in playlistTableViewController.
+protocol updateTracklistObserver{
+    // function call?
+    func updatePlayerTracklist()
+}
 
 class Playlist {
-    var songs : [Song]
+    var playlistDelegate:updateTracklistObserver? = nil
+    var songs : [Song] {
+        didSet{                                                 // update player when playlist changed.
+            if let delegate = self.playlistDelegate {
+                delegate.updatePlayerTracklist()
+            }
+        }
+    }// playlist songs
     
     init() {
         songs = []
