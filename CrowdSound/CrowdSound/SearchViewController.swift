@@ -13,6 +13,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     // table view for search results
     @IBOutlet weak var songTable: UITableView!
     var songSearchController = UISearchController()
+    var crowd : Crowd?
 
     // data source for songTable.
     //  reloads songTable whenever updated.
@@ -20,8 +21,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         didSet  {self.songTable.reloadData()}
     }
     
-    var crowd : Crowd?
-    var songSearchController = UISearchController()
     
 
     override func viewDidLoad() {
