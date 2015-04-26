@@ -89,17 +89,6 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
         return alertMsg
     }
     
-    // Creates the finalized crowd before changing screens
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier? == "finalizeCrowd" {
-            var secondScene = segue.destinationViewController as CrowdTabViewController
-            secondScene.myCrowd = createCrowd()
-            
-            // TODO: add crowd to database
-            // TODO: figure out how not to go all the way back to crowd preferences
-        }
-    }
-    
     // creates the final crowd from user input
     func createCrowd() -> Crowd {
         var crowd = Crowd()
@@ -226,6 +215,19 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
             
             self.renewTokenAndShowButton()
             return
+        }
+    }
+    
+    // NAVIGATION 
+    
+    // Creates the finalized crowd before changing screens
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier? == "finalizeCrowd" {
+            var secondScene = segue.destinationViewController as CrowdTabViewController
+            secondScene.myCrowd = createCrowd()
+            
+            // TODO: add crowd to database
+            // TODO: figure out how not to go all the way back to crowd preferences
         }
     }
 }

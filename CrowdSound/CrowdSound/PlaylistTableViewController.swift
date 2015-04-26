@@ -356,7 +356,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                 else {
                     NSLog("Found track with URI")
                     let track = obj as SPTTrack
-                    // TODO: ADD IF STATEMENTS CHECKING IF THIS IS NULL.
                     self.songLabel.text = track.name
                     self.artistLabel.text = track.artists[0].name
 

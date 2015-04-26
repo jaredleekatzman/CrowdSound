@@ -9,67 +9,42 @@
 import UIKit
 
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
 
+    // application launched - update spotify login information
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
         // Set up shared authentication information
         let auth = SPTAuth.defaultInstance()
         auth.clientID = kClientId
-        
         auth.requestedScopes = [SPTAuthStreamingScope]
-        
         auth.redirectURL = NSURL(string: kCallbackURL)
         auth.tokenSwapURL = NSURL(string: kTokenSwapServiceURL)
         auth.tokenRefreshURL = NSURL(string: kTokenRefreshServiceURL)
         auth.sessionUserDefaultsKey = kSessionUserDefaultsKey
         return true
-
-        // FB Login
-        // TODO: Uncomment!!! to figure out facebook
-//        NSLog("options = \(launchOptions)")
-//        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-        
-        
-        // Objective-C code
-//        SPTAuth *auth = [SPTAuth defaultInstance];
-//        auth.clientID = @kClientId
-//        ;
-//        auth.requestedScopes = @[SPTAuthStreamingScope];
-//        auth.redirectURL = [NSURL URLWithString:@kCallbackURL];
-//        #ifdef kTokenSwapServiceURL
-//        auth.tokenSwapURL = [NSURL URLWithString:@kTokenSwapServiceURL];
-//        #endif
-//        #ifdef kTokenRefreshServiceURL
-//        auth.tokenRefreshURL = [NSURL URLWithString:@kTokenRefreshServiceURL];
-//        #endif
-//        auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
-//        return YES;
         
     }
+    
+    // facebook/
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        // create string URL for multiple log ins
-        var urlString : String! = url.absoluteString!
-        if urlString == nil {
-            urlString = ""
-        }
-//        NSLog("urlString = \(urlString)")
-//        NSLog("url = \(url)")
+        
+        // check if URL found
+        var urlString : String! = url.absoluteString! ?? ""
 
-        if urlString.rangeOfString("facebook") != nil { // facebook login
-            NSLog("doing Facebook URL")
-            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-        } else if urlString.rangeOfString("spotify") != nil {   // spotify login
-            NSLog("doing Spotify URL")
+
+        // if facebook URL, return facebook login information
+        if urlString.rangeOfString("facebook") != nil {
+            return FBSDKApplicationDelegate.sharedInstance().application(application,
+                openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        } else if urlString.rangeOfString("spotify") != nil {   // if spotify URL, return spotify login information
             let auth = SPTAuth.defaultInstance()
             
+            // get authorization callback
             let authCallback = { (error : NSError?, session : SPTSession?) -> () in
                 if (error != nil) {
                     NSLog("*** Auth Error \(error)")
@@ -79,18 +54,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSNotificationCenter.defaultCenter().postNotificationName("sessionUpdated", object: self)
             }
             
+            // if URL is valid return true
             if auth.canHandleURL(url) {
                 auth.handleAuthCallbackWithTriggeredAuthURL(url, callback: authCallback)
                 return true
             }
             return false
-        } else {
-            NSLog("Shoudln't get here, not in either")
+        } else { // default value is true
             return true
         }
 
     }
 
+    // DEFAULT CODE AUTO GENERATED
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
