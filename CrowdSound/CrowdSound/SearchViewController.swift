@@ -9,53 +9,53 @@
 import UIKit
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
-    var crowd : Crowd?
-
+    
+    // table view for search results
     @IBOutlet weak var songTable: UITableView!
     
+    // data source for songTable.
+    //  reloads songTable whenever updated.
     var searchArray:[Song] = [Song](){
         didSet  {self.songTable.reloadData()}
     }
     
+    var crowd : Crowd?
     var songSearchController = UISearchController()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         let tbvc = self.tabBarController as CrowdTabViewController
         crowd = tbvc.myCrowd
-        // Do any additional setup after loading the view.
         
-        
-        // Configure countryTable
-        self.songTable.delegate = self
-        self.songTable.dataSource = self
+        // Configure songTable
+        self.songTable.delegate         = self
+        self.songTable.dataSource       = self
         self.definesPresentationContext = true
         
-        // Configure countrySearchController
+        // Configure songSearchController
         self.songSearchController = ({
-            // Two setups provided below:
-            
-            // Setup One: This setup present the results in the current view.
+
             let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
+            controller.searchResultsUpdater                 = self
             controller.hidesNavigationBarDuringPresentation = false
-            controller.dimsBackgroundDuringPresentation = false
+            controller.dimsBackgroundDuringPresentation     = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
-            controller.delegate = self
-            //self. = controller.searchBar
-            self.songTable.tableHeaderView = controller.searchBar
+            controller.delegate                             = self
+            self.songTable.tableHeaderView                  = controller.searchBar
             
             return controller
         })()
         
     }
 
+    // Dispose of any resources that can be recreated.
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // reset songTable to original state.
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         self.songTable.reloadData()
@@ -63,14 +63,13 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
 
     // MARK: - Navigation
     override func viewWillAppear(animated: Bool) {
-        println("Here")
-        self.songSearchController.active = false
+
+        self.songSearchController.active         = false
         self.songSearchController.searchBar.text = ""
     }
     
     override func viewWillDisappear(animated: Bool) {
         self.songSearchController.searchBar.setShowsCancelButton(false, animated: true)
-        println(self.songSearchController.active)
     }
     
     func willDismissSearchController(searchController: UISearchController) {
@@ -85,22 +84,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         println("3")
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    
+    // table has as many rows as search results.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if (self.songSearchController.active)
@@ -113,6 +101,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    // populate each row in songTable with name of song in corresponding element of searchResults
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell = self.songTable.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
@@ -125,37 +114,41 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
         else
         {
-            // TODO: worried about an error in this branch.
-            //cell.textLabel?.text! = self.countryArray[indexPath.row]
             return cell
         }
     }
     
+    // send song object of selected row to the pending playlist.
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        self.crowd?.pending.addSong(searchArray[indexPath.row])
-        var alertMsg = "Added song " + searchArray[indexPath.row].name + " to pending songs"
+        // create new song object to add to pending.
+        var newSong         = Song()
+        newSong.name        = searchArray[indexPath.row].name
+        newSong.spotifyURI  = searchArray[indexPath.row].spotifyURI
+        newSong.upvotes     = 1
         
-        // display alert if necessary
+        // add song.
+        self.crowd?.pending.addSong(newSong)
+        var alertMsg = "Added song " + newSong.name + " to pending songs"
+        
+        // alert user song has been added.
         var alert = UIAlertController(title: "Added song!", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    // TODO: if search not 'cancelled,' search bar is still open on other views (segue)
-    // TODO: when search is 'cancelled,' there is one song in the array when there should be none.
-    // TODO: crashes after typing a while in the search...?
-    // TODO: add new song for each added element (so no repeats in pending)
-    // TODO: add artist to search results. 
-    // TODO: cancel the search in the prepare for segue (otherwise black page error)
+    // TODO: if search not 'cancelled,' search bar is still open on other views
     
+    // search for spotify songs with searchbar text as query string; populate searchArray
+    //  and songTable accordingly.
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         self.searchArray.removeAll(keepCapacity: false)
         let searchString = searchController.searchBar.text
         
+        // send searchbar text to spotify.
         SPTRequest.performSearchWithQuery(searchString, queryType: SPTSearchQueryType.QueryTypeTrack, offset: 0, session: nil, callback: {(error: NSError!, result:AnyObject!) -> Void in
             
             if error != nil {
@@ -163,25 +156,26 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 return
             }
 
-            
-            let trackListPage = result as SPTListPage
-            let items = trackListPage.items
-            var resultsArray = [Song]()
+            // parse spotify search results into items.
+            let trackListPage   = result as SPTListPage
+            let items           = trackListPage.items
+            var resultsArray    = [Song]()
             if (items == nil) {
                 return
             }
+            
+            // create a new song for each result and add to resultsArray.
             for item in items {
                 var newSong = Song()
-                let partialTrack = item as SPTPartialTrack
-                newSong.name = partialTrack.name
-                println(newSong.name)
-                newSong.spotifyURI = partialTrack.playableUri
-                newSong.upvotes = 1
-                // TODO: add the artist name to the song!!
+                let partialTrack    = item as SPTPartialTrack
+                newSong.name        = partialTrack.name
+                newSong.spotifyURI  = partialTrack.playableUri
+                newSong.upvotes     = 1
                 resultsArray.append(newSong)
 
             }
             
+            // update search array, which updates songTable.
             self.searchArray = resultsArray
         })
     }
