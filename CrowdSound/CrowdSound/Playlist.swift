@@ -74,6 +74,7 @@ class Playlist {
         songs = sorted(songs) { $0.upvotes > $1.upvotes}
     }
     func downvoteSong(songIndex:Int) {
+        // TODO: check if out of bounds
         songs[songIndex].downvote()
         
         // Re-sort playlist

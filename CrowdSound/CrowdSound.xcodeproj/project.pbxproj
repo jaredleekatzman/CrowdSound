@@ -29,6 +29,7 @@
 		C3C31D1D1AE426790025470D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C31D171AE426790025470D /* FBSDKLoginKit.framework */; };
 		C3C31D1E1AE426790025470D /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C31D181AE426790025470D /* FBSDKMessengerShareKit.framework */; };
 		C3C31D1F1AE426790025470D /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C31D191AE426790025470D /* FBSDKShareKit.framework */; };
+		C3F0B7F91AED42F80016381D /* ConfigPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0B7F81AED42F80016381D /* ConfigPageTests.swift */; };
 		ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */; };
 		ED9CFDA41AE1A009005C1DF7 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9CFDA31AE1A009005C1DF7 /* PlaylistTableViewController.swift */; };
 		EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */; };
@@ -80,6 +81,7 @@
 		C3C31D171AE426790025470D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C3C31D181AE426790025470D /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
 		C3C31D191AE426790025470D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		C3F0B7F81AED42F80016381D /* ConfigPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigPageTests.swift; sourceTree = "<group>"; };
 		ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		ED9CFDA31AE1A009005C1DF7 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlaylistTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdTests.swift; path = CrowdSoundTests/CrowdTests.swift; sourceTree = SOURCE_ROOT; };
@@ -187,6 +189,7 @@
 				C31CB1671AAA48B700D229DC /* CrowdSoundTests.swift */,
 				C31CB1651AAA48B700D229DC /* Supporting Files */,
 				EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */,
+				C3F0B7F81AED42F80016381D /* ConfigPageTests.swift */,
 				EDBAB7A21ACC585100E7164C /* SongTests.swift */,
 			);
 			path = CrowdSoundTests;
@@ -329,6 +332,7 @@
 				EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */,
 				EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */,
 				EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */,
+				C3F0B7F91AED42F80016381D /* ConfigPageTests.swift in Sources */,
 				EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

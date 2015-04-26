@@ -45,6 +45,9 @@ class Song {
     }
     
     func downvote() {
-        self.upvotes--
+        // don't allow negative votes 
+        if (upvotes > 0) {
+            self.upvotes--
+        }
     }
 }

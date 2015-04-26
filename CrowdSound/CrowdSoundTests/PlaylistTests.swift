@@ -20,21 +20,7 @@ class PlaylistTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
     
-    func testPendingUpvote() {
-        let index = 3
-        let playlist = Playlist.defaultPlaylist()
-        let songVotes = playlist.songs[index].upvotes
-        playlist.upvoteSong(index)
-        XCTAssert(songVotes == playlist.songs[index].upvotes + 1, "increased song \(index) upvotes by 1")
-        
-    }
-
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
@@ -42,6 +28,19 @@ class PlaylistTests: XCTestCase {
         }
     }
     
+    func testInitialization() {
+        let playlist = Playlist()
+        XCTAssertEqual(playlist.songs.count, 0, "initialize with no songs")
+    }
+    
+    func testPendingUpvote() {
+        var playlist = Playlist()
+        playlist.songs = [Song()]
+        let songVotes = playlist.songs[0].upvotes
+        playlist.upvoteSong(0)
+        XCTAssert(songVotes + 1 == playlist.songs[0].upvotes, "increased song upvotes by 1")
+        
+    }
     
     func testPlaylistPop() {
         let playlist = Playlist.defaultPlaylist()
@@ -49,7 +48,6 @@ class PlaylistTests: XCTestCase {
         let nextSong = playlist.songs[1]
         XCTAssert(pendingSong === playlist.pop(), "pop returned correct song")
         XCTAssert(nextSong === playlist.top(), "pop removed the correct song")
-        
     }
 
 }

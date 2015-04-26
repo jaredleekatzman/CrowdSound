@@ -21,19 +21,39 @@ class SongTests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    
+    func testDefaultInit() {
+        let song = Song()
+        assert(song.name.isEmpty, "song name should be empty")
+        assert(song.artist.isEmpty, "song artist should be empty")
+        assert(song.upvotes == 0, "song upvotes should = 0")
+        assert(song.spotifyURI == NSURL(string: "nil"), "song url inits to nil")
     }
     
-    func testUpvote() {
+    func testInitWithValues() {
+        let song = Song(name: "defaultName", artist: "defaultArtist", uri: NSURL(string: "spotify:track:4iEOVEULZRvmzYSZY2ViKN")!)
+        assert(song.name == "defaultName", "song should have defaultName")
+        assert(song.artist == "defaultArtist", "song artist should defaultArtist")
+        assert(song.upvotes == 1, "song upvotes should = 1")
+        assert(song.spotifyURI == NSURL(string: "spotify:track:4iEOVEULZRvmzYSZY2ViKN"), "song url init worked")
+    }
+    
+    func testBasicUpvote() {
         let song = Song()
         let numUpvotes = song.upvotes
         song.upvote()
         assert(song.upvotes == numUpvotes + 1, "should have increased by one")
     }
-    func testDownvote() {
-        let song = Song()
+    
+    func testDownvoteBounds() {
+        var song = Song()
+        song.upvotes = 0
+        song.downvote()
+        assert(song.upvotes == 0, "should not downvote to negative number")
+    }
+    func testBasicDownvote() {
+        var song = Song()
+        song.upvotes = 1 
         let numUpvotes = song.upvotes
         song.downvote()
         assert(song.upvotes == numUpvotes - 1, "should have decreased by one")
