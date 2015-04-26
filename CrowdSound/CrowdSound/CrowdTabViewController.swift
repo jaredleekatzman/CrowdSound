@@ -9,7 +9,8 @@
 import UIKit
 
 class CrowdTabViewController: UITabBarController {
-        
+    
+    // Provides the Crowd and Player to the ViewControllers
     var myCrowd : Crowd?
     var player : SPTAudioStreamingController?
     
@@ -42,10 +43,10 @@ class CrowdTabViewController: UITabBarController {
         }
     }
     
+    // When Leaving a Crowd: stop the music player
     override func willMoveToParentViewController(parent: UIViewController?) {
         let auth = SPTAuth.defaultInstance()
         
-        // Checks if there is a player to stop when leaving crowd
         if player != nil {
             self.player?.stop({ (error:NSError!) -> Void in
                 NSLog("Stopped player")

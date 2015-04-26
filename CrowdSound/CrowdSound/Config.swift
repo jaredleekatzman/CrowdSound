@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 cs439. All rights reserved.
 //
 
+// Important Constants to conncet to server and token swap service
+
 import Foundation
 
 // Your client ID

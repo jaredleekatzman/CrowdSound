@@ -10,15 +10,14 @@ import UIKit
 
 class PendingTableViewController: UITableViewController {
     
+    // Crowd Data
     var crowd : Crowd?
-    var pending : Playlist?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let tbvc = self.tabBarController as CrowdTabViewController
         crowd = tbvc.myCrowd
-        pending = crowd!.pending
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -43,7 +42,7 @@ class PendingTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return pending!.songs.count
+        return crowd!.pending.songs.count
     }
     
     
@@ -51,7 +50,7 @@ class PendingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("pendingSongCell", forIndexPath: indexPath) as PendingSongCell
 
         // Configure the cell...
-        var currentSong = pending!.songs[indexPath.row]
+        var currentSong = self.crowd!.pending.songs[indexPath.row]
         cell.songLabel.text = currentSong.name
         cell.votesLabel.text = String(currentSong.upvotes)
         cell.upvoteBttn.tag = indexPath.row
@@ -60,60 +59,22 @@ class PendingTableViewController: UITableViewController {
         // Creates Button Action Listeners
         cell.upvoteBttn.addTarget(self, action: "upvote:", forControlEvents: UIControlEvents.TouchUpInside)
         cell.downvoteBttn.addTarget(self, action: "downvote:", forControlEvents: UIControlEvents.TouchUpInside)
-//        button.addTarget(delegate, action: "buttonClick:", forControlEvents: UIControlEvents.TouchUpInside)
-        
         
         return cell
     }
 
+    // When Upvote Button pressed: Upvote song at cell index
     func upvote(sender:UIButton!) {
-//        println("Upvoting!")
-//        pending?.upvoteSong(sender.tag)
         crowd?.upvotePendingSong(sender.tag)
-//        println("Upvoted \(pending?.songs[sender.tag].upvotes)!")
-        self.tableView.reloadData()
-    }
-    func downvote(sender:UIButton!) {
-//        pending?.downvoteSong(sender.tag)
-        crowd?.downvotePendingSong(sender.tag)
-        println("Downvoted \(pending?.songs[sender.tag].upvotes)!")
         self.tableView.reloadData()
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    // When Downvote Button Pressed: Downvote song at cell index
+    func downvote(sender:UIButton!) {
+        crowd?.downvotePendingSong(sender.tag)
+        self.tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+    
 
     /*
     // MARK: - Navigation
