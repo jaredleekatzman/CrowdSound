@@ -51,8 +51,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         // Initializes and logs-in to the SPTAudioStreamingController
         self.handleNewSession()
-
-        
     }
     
 
@@ -204,7 +202,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         let uris = self.crowd?.playlist.getURIs()
         let playlistIndex = self.player?.currentTrackIndex
         
-        // deal with song being added after 
+        // deal with song being added after
         if Int(playlistIndex!) + 1 < uris?.count {
             println("================WAS LAST SONG, IS NOT ANYMORE!=====================")
             isLastSong = false
@@ -358,8 +356,10 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                 else {
                     NSLog("Found track with URI")
                     let track = obj as SPTTrack
+                    // TODO: ADD IF STATEMENTS CHECKING IF THIS IS NULL.
                     self.songLabel.text = track.name
                     self.artistLabel.text = track.artists[0].name
+
                     
                     let imageURL = track.album.largestCover.imageURL
                     if (imageURL == nil) {
