@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    // crowd 
     var myCrowd = Crowd()
     
     // UI elements
@@ -20,105 +21,48 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var passwordProtectedLabel: UILabel!
     @IBOutlet weak var showPasswordBtn: UIButton!
-    
-    @IBAction func showPasswordPressed(sender: AnyObject) {
-        var alertMsg = "Password: " + myCrowd.password
-        var alert = UIAlertController(title: "Crowd Password", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
+
+    // label variables
+    let crowd_prefix = "Crowd Name: "
+    let host_prefix = "Host Name: "
+    let upvotes_prefix = "Upvotes: "
+    let password_protected_prefix = "Password Protected: "
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Settings"
-        NSLog("made it here")
         
-        var string = myCrowd.host
-        crowdNameLabel.text = "Crowd Name: " + myCrowd.name
-        hostNameLabel.text = "Host Name: " + myCrowd.host
-        upvotesLabel.text = "Upvotes: " + String(myCrowd.threshold)
+        // set the settings
+        self.navigationItem.title = "Settings"
+        loadSettingsIntoView()
+    }
+    
+    // loads crowd settings into UI
+    func loadSettingsIntoView() {
+        
+        // set crowd, host, and upvotes labels
+        crowdNameLabel.text = crowd_prefix + myCrowd.name
+        hostNameLabel.text = host_prefix + myCrowd.host
+        upvotesLabel.text = upvotes_prefix + String(myCrowd.threshold)
+        
+        // add label for privacy setting
         if (myCrowd.isPrivate) {
-            passwordProtectedLabel.text = "Password Protected: Yes"
+            passwordProtectedLabel.text = password_protected_prefix + "Yes"
             showPasswordBtn.enabled = true
         } else {
-            passwordProtectedLabel.text = "Password Protected: No"
+            passwordProtectedLabel.text = password_protected_prefix + "No"
             showPasswordBtn.enabled = false
         }
-
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // show crowd password when "show password" clicked in UI
+    @IBAction func showPasswordPressed(sender: AnyObject) {
+        
+        // create alert
+        var alertMsg = "Password: " + myCrowd.password
+        var alert = UIAlertController(title: "Crowd Password", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        
+        // display alert
+        self.presentViewController(alert, animated: true, completion: nil)
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Potentially incomplete method implementation.
-//        // Return the number of sections.
-//        return 0
-//    }
-//
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete method implementation.
-//        // Return the number of rows in the section.
-//        return 0
-//    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
