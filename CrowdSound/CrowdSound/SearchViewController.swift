@@ -29,8 +29,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Configure countryTable
         self.songTable.delegate = self
         self.songTable.dataSource = self
+
         
         // Configure countrySearchController
+        self.definesPresentationContext = true
+        
         self.songSearchController = ({
             // Two setups provided below:
             
@@ -48,8 +51,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             return controller
         })()
-        self.definesPresentationContext = true
         
+        self.view.addSubview(self.songSearchController.)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,16 +60,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-    }
 
     // MARK: - Navigation
-    override func viewWillAppear(animated: Bool) {
-        println("Here")
-        self.songSearchController.active = false
-        self.songSearchController.searchBar.text = ""
-    }
     
     override func viewWillDisappear(animated: Bool) {
         self.songSearchController.searchBar.setShowsCancelButton(false, animated: true)
