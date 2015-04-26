@@ -51,10 +51,7 @@ class CrowdTabViewController: UITabBarController {
             NSLog("WE GOT A PLAYER")
             self.player?.stop({ (error:NSError!) -> Void in
                 NSLog("stopped player")
-                self.myCrowd?.currentTrackIndex = 0
             })
-//            self.player?.logout({ (error:NSError!) -> Void in
-//            })
         }
         else {
             NSLog("WE DO NOT GOT A PLAYER")

@@ -20,11 +20,6 @@ class CrowdTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
     
     // Test Default Initializer
     func testInit() {
@@ -42,6 +37,7 @@ class CrowdTests: XCTestCase {
     // Test if Upvoting a song below threshold works
     func testUpvotingPendingSong() {
         var crowd = Crowd()
+        crowd.threshold = 20
         crowd.pending.addSong(Song())
         let songVotes = crowd.pending.songs[0].upvotes
         crowd.upvotePendingSong(0)
@@ -70,11 +66,13 @@ class CrowdTests: XCTestCase {
     // Test basic functionality of downvoting pending
     func testDownvotingPending() {
         var crowd = Crowd.defaultCrowd()
+        crowd.pending.songs[0].upvotes = 5
         let songVotes = crowd.pending.songs[0].upvotes
         crowd.downvotePendingSong(0)
         XCTAssertEqual(crowd.pending.songs[0].upvotes, songVotes - 1, "Downvoted first song")
     }
     
+    // Test
     func testDownvotingPendingSOOB() {
         let crowd = Crowd()
         crowd.downvotePendingSong(1)

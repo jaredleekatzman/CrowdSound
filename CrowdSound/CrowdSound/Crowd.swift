@@ -47,7 +47,7 @@ class Crowd {
     // Upvotes pending song at SONGINDEX. If upvotes exceed threshold move to PLAYLIST
     func upvotePendingSong(songIndex:Int) {
         pending.upvoteSong(songIndex)
-        if (pending.top().upvotes >= threshold) {
+        if (pending.top()?.upvotes >= threshold) {
             playlist.addSong(pending.pop())
         }
     }

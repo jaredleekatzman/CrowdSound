@@ -109,8 +109,11 @@ class Playlist {
     }
     
     // TOP() returns the first song in the playlist. If the playlist is empty return nothing
-    func top() -> Song {
-            return songs[0]
+    func top() -> Song? {
+        if self.isEmpty() {
+            return nil
+        }
+        return songs[0]
     }
     // POP() removes the first song in the playlist and returns it
     func pop() -> Song {

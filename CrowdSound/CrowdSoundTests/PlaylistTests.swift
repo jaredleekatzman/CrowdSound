@@ -144,5 +144,17 @@ class PlaylistTests: XCTestCase {
         playlist.pop()
         XCTAssert(nextSong === playlist.top(), "pop removed the correct song")
     }
-
+    
+    // Test if Playlist.TOP() returns correct song
+    func testTop() {
+        let playlist = Playlist.defaultPlaylist()
+        let song = playlist.songs[0]
+        XCTAssert(song === playlist.top(), "top returns correct songs")
+    }
+    
+    // Check that Top returns NIL for an empty playlist
+    func testTopEmptyPlaylist() {
+        let playlist = Playlist()
+        XCTAssertNil(playlist.top(), "Top should return nil on empty playlist")
+    }
 }
