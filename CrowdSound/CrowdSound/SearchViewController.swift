@@ -58,6 +58,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        self.songSearchController.active = false
+        self.songSearchController.searchBar.text = ""
         self.songTable.reloadData()
     }
 

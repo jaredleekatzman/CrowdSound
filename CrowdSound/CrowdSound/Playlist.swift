@@ -59,37 +59,55 @@ class Playlist {
         return self.songs.count
     }
     
+    // Returns the SpotifyURIs for each song in the playlist
     func getURIs() -> [NSURL] {
         return self.songs.map { a in a.spotifyURI }
     }
     
-    
+    // If SONGINDX is a valid, upvote song at SONGINDEX and sorts playlist in decreasing upvote order
+    // Otherwise do nothing
     func upvoteSong(songIndex:Int) {
-//        println("Upvoting: \(songs[songIndex])")
         
-        songs[songIndex].upvote()
+        if songIndex < self.count() {
+            songs[songIndex].upvote()
         
-        // Re-sort playlist
         // @todo: Make more efficient by using a sorting algorithm better for presorted lists
         songs = sorted(songs) { $0.upvotes > $1.upvotes}
+        }
+        else {
+            NSLog("upvoting song out of bounds")
+        }
     }
+    
+    // If SONGINDX is a valid, downvote song at SONGINDEX and sorts playlist in decreasing upvote order
+    // Otherwise do nothing
     func downvoteSong(songIndex:Int) {
-        // TODO: check if out of bounds
-        songs[songIndex].downvote()
         
-        // Re-sort playlist
-        // @todo: Make more efficient by using a sorting algorithm better for presorted lists
-        songs = sorted(songs) {$0.upvotes > $1.upvotes }
+        if songIndex < self.count() {
+            songs[songIndex].downvote()
+            
+            // @TODO: Write more efficient sorting algorithm for already sorted songs
+            songs = sorted(songs) {$0.upvotes > $1.upvotes }
+        }
+        else {
+            NSLog("downvoting song out of bounds")
+        }
+    
     }
+    
+    // Add SONG to the end of the playlist
     func addSong(song:Song) {
         songs.append(song)
     }
+    
+    // ISEMPTY() returns TRUE if the playlist has no .SONGS
     func isEmpty() -> Bool {
         if (songs.count > 0) {
             return false
         }
         return true
     }
+    
     // TOP() returns the first song in the playlist. If the playlist is empty return nothing
     func top() -> Song {
             return songs[0]
