@@ -12,28 +12,26 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var crowd : Crowd?
 
     @IBOutlet weak var songTable: UITableView!
-    
+    var songSearchController = UISearchController()
+
+    // Used by SearchController to filter search results
     var searchArray:[Song] = [Song](){
         didSet  {self.songTable.reloadData()}
     }
     
-    var songSearchController = UISearchController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get crowd
         let tbvc = self.tabBarController as CrowdTabViewController
         crowd = tbvc.myCrowd
-        // Do any additional setup after loading the view.
         
-        
-        // Configure countryTable
+        // Configure songTable
         self.songTable.delegate = self
         self.songTable.dataSource = self
-
         
-        // Configure countrySearchController
+        // Configure songSearchController
         self.definesPresentationContext = true
-        
         self.songSearchController = ({
             // Two setups provided below:
             
@@ -45,29 +43,19 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
             controller.delegate = self
-            controller.searchBar.backgroundColor = UIColor(white: 0, alpha: 0)
-            //self. = controller.searchBar
+            
             self.songTable.tableHeaderView = controller.searchBar
             
             return controller
         })()
         
-        self.view.addSubview(self.songSearchController.)
+        self.view.addSubview(self.songSearchController.view)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    // MARK: - Navigation
-    
-    override func viewWillDisappear(animated: Bool) {
-        self.songSearchController.searchBar.setShowsCancelButton(false, animated: true)
-        println("=== \(self.songSearchController.active)")
-    }
-    
     
     
     /*
@@ -79,10 +67,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - TableViewDelegate Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -103,15 +92,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if (self.songSearchController.active)
         {
             cell.textLabel?.text = self.searchArray[indexPath.row].name
-            return cell
         }
-            
-        else
-        {
-            // TODO: worried about an error in this branch.
-            //cell.textLabel?.text! = self.countryArray[indexPath.row]
-            return cell
-        }
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -121,14 +103,17 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.crowd?.pending.addSong(searchArray[indexPath.row])
         var alertMsg = "Added song " + searchArray[indexPath.row].name + " to pending songs"
         
-        // display alert if necessary
+        // Display alert if necessary
         var alert = UIAlertController(title: "Added song!", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
         
+        // Reset SongSearchController
         self.songSearchController.active = false
         self.songSearchController.searchBar.text = ""
     }
+    
+    // MARK: - SearchControllerDelegate Methods
     
     // TODO: if search not 'cancelled,' search bar is still open on other views (segue)
     // TODO: when search is 'cancelled,' there is one song in the array when there should be none.
@@ -142,32 +127,31 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.searchArray.removeAll(keepCapacity: false)
         let searchString = searchController.searchBar.text
         
+        // Lookup songs using Spotify
         SPTRequest.performSearchWithQuery(searchString, queryType: SPTSearchQueryType.QueryTypeTrack, offset: 0, session: nil, callback: {(error: NSError!, result:AnyObject!) -> Void in
             
-            if error != nil {
+            if error != nil && searchString != "" {
                 println("error performing query")
                 return
             }
-
-            
+            // Extract Search Results
             let trackListPage = result as SPTListPage
             let items = trackListPage.items
             var resultsArray = [Song]()
+            
             if (items == nil) {
                 return
             }
+            // Creates a Song object for each search result
             for item in items {
                 var newSong = Song()
                 let partialTrack = item as SPTPartialTrack
                 newSong.name = partialTrack.name
-                println(newSong.name)
                 newSong.spotifyURI = partialTrack.playableUri
                 newSong.upvotes = 1
-                // TODO: add the artist name to the song!!
                 resultsArray.append(newSong)
 
             }
-            
             self.searchArray = resultsArray
         })
     }
