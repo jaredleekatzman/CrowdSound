@@ -28,6 +28,8 @@ class CrowdTabViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Navigation
+    
     func settingsBtnClicked(sender:UIBarButtonItem!) {
         NSLog("clicked the settings btn!")
         self.performSegueWithIdentifier("GoToSettingsPage", sender: self)
@@ -40,30 +42,18 @@ class CrowdTabViewController: UITabBarController {
         }
     }
     
-
-    
     override func willMoveToParentViewController(parent: UIViewController?) {
-        NSLog("TAB BACK!!!!")
-        
         let auth = SPTAuth.defaultInstance()
         
+        // Checks if there is a player to stop when leaving crowd
         if player != nil {
-            NSLog("WE GOT A PLAYER")
             self.player?.stop({ (error:NSError!) -> Void in
-                NSLog("stopped player")
-                self.myCrowd?.currentTrackIndex = 0
+                NSLog("Stopped player")
             })
-//            self.player?.logout({ (error:NSError!) -> Void in
-//            })
-        }
-        else {
-            NSLog("WE DO NOT GOT A PLAYER")
-            
         }
     }
- 
+    
     /*
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

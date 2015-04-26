@@ -29,9 +29,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Configure countryTable
         self.songTable.delegate = self
         self.songTable.dataSource = self
-        self.definesPresentationContext = true
+
         
         // Configure countrySearchController
+        self.definesPresentationContext = true
+        
         self.songSearchController = ({
             // Two setups provided below:
             
@@ -43,12 +45,14 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
             controller.delegate = self
+            controller.searchBar.backgroundColor = UIColor(white: 0, alpha: 0)
             //self. = controller.searchBar
             self.songTable.tableHeaderView = controller.searchBar
             
             return controller
         })()
         
+        self.view.addSubview(self.songSearchController.)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,33 +60,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        self.songTable.reloadData()
-    }
 
     // MARK: - Navigation
-    override func viewWillAppear(animated: Bool) {
-        println("Here")
-        self.songSearchController.active = false
-        self.songSearchController.searchBar.text = ""
-    }
     
     override func viewWillDisappear(animated: Bool) {
         self.songSearchController.searchBar.setShowsCancelButton(false, animated: true)
-        println(self.songSearchController.active)
-    }
-    
-    func willDismissSearchController(searchController: UISearchController) {
-        println("1")
-    }
-    
-    func didPresentSearchController(searchController: UISearchController) {
-        println("2")
-    }
-    
-    func willPresentSearchController(searchController: UISearchController) {
-        println("3")
+        println("=== \(self.songSearchController.active)")
     }
     
     
@@ -142,6 +125,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         var alert = UIAlertController(title: "Added song!", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+        
+        self.songSearchController.active = false
+        self.songSearchController.searchBar.text = ""
     }
     
     // TODO: if search not 'cancelled,' search bar is still open on other views (segue)

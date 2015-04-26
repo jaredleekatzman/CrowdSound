@@ -17,29 +17,17 @@ class Crowd {
     var host : String       // host id
     var threshold : Int     // threshold to be upvoted
     var guests : [String]   // list of guests invited
-//    var player : SPTAudioStreamingController
-    var currentTrackIndex : Int
+
     var isPrivate: Bool     // if need password
     var password: String    // what the password is
     
     init() {
         name = ""
         playlist = Playlist()
-//        playlist.songs = []{
-//            didSet{
-//                // update player when playlist changed.
-//                println("=====================DELEGATE GOT CALLED=====================")
-//                if let delegate = self.playlistDelegate {
-//                    delegate.updatePlayerTracklist()
-//                }
-//            }
-//        }// playlist songs
-        
         pending = Playlist()
         host = ""
         threshold = 0
         guests = []
-        currentTrackIndex = -1
         isPrivate = false
         password = ""
     }
@@ -53,17 +41,18 @@ class Crowd {
         crowd.host = "Default Host"
         crowd.threshold = 7
         crowd.guests = ["Jack", "Jared", "Terin", "Eli", "TIM"]
-        crowd.currentTrackIndex = 0
         return crowd
     }
     
+    // Upvotes pending song at SONGINDEX. If upvotes exceed threshold move to PLAYLIST
     func upvotePendingSong(songIndex:Int) {
         pending.upvoteSong(songIndex)
-        if (pending.top().upvotes >= threshold) {
+        if (pending.top()?.upvotes >= threshold) {
             playlist.addSong(pending.pop())
-//            NSNotificationCenter.defaultCenter().postNotificationName("newSongInPlaylist", object: nil)
         }
     }
+    
+    // Downvotes pending song at SONGINDEX
     func downvotePendingSong(songIndex:Int) {
         pending.downvoteSong(songIndex)
     }
