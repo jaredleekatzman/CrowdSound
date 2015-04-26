@@ -118,7 +118,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     // TODO: if search not 'cancelled,' search bar is still open on other views (segue)
     // TODO: when search is 'cancelled,' there is one song in the array when there should be none.
     // TODO: crashes after typing a while in the search...?
-    // TODO: add new song for each added element (so no repeats in pending)
     // TODO: add artist to search results. 
     // TODO: cancel the search in the prepare for segue (otherwise black page error)
     
