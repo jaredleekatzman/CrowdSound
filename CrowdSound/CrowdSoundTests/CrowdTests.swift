@@ -25,12 +25,61 @@ class CrowdTests: XCTestCase {
         // This is an example of a functional test case.
         XCTAssert(true, "Pass")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    
+    // Test Default Initializer
+    func testInit() {
+        let crowd = Crowd()
+        XCTAssertEqual(crowd.name, "", "Crowd name is empty")
+        XCTAssertEqual(crowd.playlist.count(), 0, "Crowd Playlist is empty")
+        XCTAssertEqual(crowd.pending.count(), 0, "Crowd Pending is empty")
+        XCTAssertEqual(crowd.threshold, 0, "Crowd threshold is 0")
+        XCTAssertEqual(crowd.guests.count, 0, "Crowd guest list is empty")
+        XCTAssertEqual(crowd.host, "", "Crowd host is noone")
+        XCTAssertEqual(crowd.isPrivate, false, "Crowd is public")
+        XCTAssertEqual(crowd.password, "",  "Crowd does not have a password")
+    }
+    
+    // Test if Upvoting a song below threshold works
+    func testUpvotingPendingSong() {
+        var crowd = Crowd()
+        crowd.pending.addSong(Song())
+        let songVotes = crowd.pending.songs[0].upvotes
+        crowd.upvotePendingSong(0)
+        XCTAssertEqual(crowd.pending.songs[0].upvotes, songVotes + 1, "Upvoted first song")
+    }
+    
+    // Test if Upvoting a song past threshold correct moves the song between playlist
+    func testUpvotingSongThreshold() {
+        var crowd = Crowd()
+        let song1 = Song()
+        crowd.pending.addSong(song1)
+        crowd.threshold = 1
+        crowd.upvotePendingSong(0)
+        XCTAssertTrue(crowd.pending.isEmpty(), "Pending playlist should be empty")
+        XCTAssert(crowd.playlist.songs[0] === song1, "Song 1 moved to Playlist")
+    }
+    
+    // Test that no error after upvoting a Song Out Of Bounds (SOOB)
+    func testUpvotePendingSOOB() {
+        let crowd = Crowd()
+        crowd.upvotePendingSong(1)
+        // If error cannot get here
+        XCTAssert(true)
+    }
+    
+    // Test basic functionality of downvoting pending
+    func testDownvotingPending() {
+        var crowd = Crowd.defaultCrowd()
+        let songVotes = crowd.pending.songs[0].upvotes
+        crowd.downvotePendingSong(0)
+        XCTAssertEqual(crowd.pending.songs[0].upvotes, songVotes - 1, "Downvoted first song")
+    }
+    
+    func testDownvotingPendingSOOB() {
+        let crowd = Crowd()
+        crowd.downvotePendingSong(1)
+        // If error cannot get here
+        XCTAssert(true)
     }
 
 }
