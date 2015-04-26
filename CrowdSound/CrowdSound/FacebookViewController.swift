@@ -13,61 +13,53 @@ class FacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // if user logged in already, move to next screen
         if (FBSDKAccessToken.currentAccessToken() != nil) {
-            // User already logged in
-            NSLog("user already logged in, should move on!")
             self.performSegueWithIdentifier("GoToCrowdsList", sender: self)
-        } else {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.center = self.view.center
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.delegate = self
+        } else { // otherwise create UI for facebook login
+            createFacebookLoginUI()
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    // creates facebook UI/preferences for user login
+    func createFacebookLoginUI() {
+        let loginView : FBSDKLoginButton = FBSDKLoginButton()
+        self.view.addSubview(loginView)
+        loginView.center = self.view.center
+        loginView.readPermissions = ["public_profile", "email", "user_friends"]
+        loginView.delegate = self
     }
     
-    // facebook delegate methods 
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        NSLog("User logged in")
-
-        if ((error) != nil) {
-            NSLog("FBLogin: error was found")
-            // process error
-        } else if result.isCancelled {
+    // FACEBOOK DELEGATE METHODS 
+    
+    // login was completed
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult
+        result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        
+        // check result of login
+        if ((error) != nil) { // log in failed, make user log in again
+            NSLog("FBLogin: error was found: \(error)")
+        } else if result.isCancelled { // log in cancelled, make user log in again
             NSLog("FBLogin: result was cancelled!")
+        } else { // login complete, move on to next screen
             self.performSegueWithIdentifier("GoToCrowdsList", sender: self)
-        } else {
-            NSLog("user logged in, moving to next screen")
-            self.performSegueWithIdentifier("GoToCrowdsList", sender: self)
-            
-            // if you ask for multiple permissions at once, check if
-            // specific permissions missing 
-            if result.grantedPermissions.containsObject("email") {
-                // do work
-            }
         }
     }
     
+    // user logged out
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         NSLog("User logged out")
     }
     
-    // if want user data call this when they're logged in
+    // for delegate method: get user data
     func returnUserData() {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
-            if ((error) != nil)
-            {
+            if ((error) != nil) {
                 // Process error
                 NSLog("Error: \(error)")
-            }
-            else
-            {
+            } else {
                 NSLog("fetched user: \(result)")
                 let userName : NSString = result.valueForKey("name") as NSString
                 NSLog("User Name is: \(userName)")
@@ -76,16 +68,5 @@ class FacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         })
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
