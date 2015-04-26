@@ -13,23 +13,20 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     // UI Elements
     @IBOutlet var tableView: UITableView!
     @IBOutlet var playerView: UIView!
-    
     @IBOutlet var songLabel: UILabel!
     @IBOutlet var artistLabel: UILabel!
     @IBOutlet var playButton: UIButton!
     @IBOutlet var forwardButton: UIButton!
     @IBOutlet var reverseButton: UIButton!
-    
     @IBOutlet var albumView: UIImageView!
 
+    // class variables
     var crowd : Crowd?
     var playlist : Playlist?
-    
-    var playlistEnded = false
+    var player : SPTAudioStreamingController? // for spotify streaming
+
+    // check to see if currently playing last song
     var isLastSong = false
-    
-    
-    var player : SPTAudioStreamingController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +55,11 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     // user pressed play/pause
     @IBAction func playPause(sender: AnyObject) {
-        NSLog("in playPause")
         self.player?.setIsPlaying(!self.player!.isPlaying, callback: nil)
     }
     
     // user pressed fastForward
     @IBAction func fastForward(sender: AnyObject) {
-        println("in fastforward")
         self.player?.skipNext({ (error: NSError!) -> Void in
             if error != nil {
                 NSLog("Error Skipping Song: \(error)")
@@ -74,7 +69,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     // user hit rewind
     @IBAction func rewind(sender: AnyObject) {
-        println("in rewind")
         if isLastSong {
             isLastSong = false
         }
@@ -88,8 +82,8 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: - SPTAudioController methods
     
+    // spotify default: handle new session
     func handleNewSession() {
-        println("in handle new session")
         // Called when the controller is first loaded
         
         let tbvc = self.tabBarController as CrowdTabViewController
@@ -122,19 +116,16 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     // debugging: error in playing track
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
-        println("in audioStreming-didFailToPlayTrack")
         NSLog("Failed to play track: \(trackUri)")
     }
     
     // for debugging: changed playback status
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-        println("in audioStreaming-DidChangePlaybackStatus")
         NSLog("Is playing = \(isPlaying)")
     }
     
     // handle playing next song
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
-        print("in audioStreaming-DidChangeToTrack")
         
         // last song was just played -- reset playlist
         if isLastSong {
@@ -144,7 +135,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                     NSLog("error replacing uris: \(error)")
                 }
                 
-                // keep this here
+                // update information
                 self.updatePlayerArt()
                 self.player?.setIsPlaying(true, callback: nil)
                 self.isLastSong = false
@@ -155,9 +146,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     // handle song transition
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
-        println("in audioStreaming-didStopPlayingTrack")
-
-        println("in audioStreaming-didStopPlayingTrack")
         var index = self.player?.currentTrackIndex
         var uris = self.crowd?.playlist.getURIs()
         var urisLength = uris?.count
@@ -167,199 +155,91 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             return
         }
         
-        println("length of new URIs = \(uris)")
-        
-        // playing last song
+        // if playing last song, set variable
         if let urisLength = uris?.count {
             if Int(index!) >= urisLength - 1 {
                 isLastSong = true
             }
         }
-//
-//        // replace URIs in player
-//        self.player?.replaceURIs(uris, withCurrentTrack: Int32(index!), callback: { (error:NSError!) -> Void in
-//            if (error != nil) {
-//                NSLog("error replacing uris: \(error)")
-//            }
-//        })
-        
-        // TODO: alert users when playlist restarting?
-        
 
-        
-        // self.updatePlayerTracklist()
+        // update UI art
         self.updatePlayerArt()
     }
     
-    // declared in updateTracklistObserver
-    //  when playlist grows, will call this function to update the player's queue.
+    // when new song in playlist, this delegate fetches new data
     func updatePlayerTracklist() {
-        println("==========================in Delegate function==================================")
-//        let playlistIndex = self.player?.currentTrackIndex
-//        let nextSongIndex = Int(playlistIndex!) + 1
-//        println("nextSongindex = \(nextSongIndex)")
         
+        // gets URI informaiton from playlist and current position
         let uris = self.crowd?.playlist.getURIs()
         let playlistIndex = self.player?.currentTrackIndex
         
-        // deal with song being added after
+        // if was playing the last song, and added a song, set isLastSong to flase.
         if Int(playlistIndex!) + 1 < uris?.count {
-            println("================WAS LAST SONG, IS NOT ANYMORE!=====================")
             isLastSong = false
         }
 
-        
-        self.player?.replaceURIs(uris, withCurrentTrack: Int32(playlistIndex!), callback: { (error: NSError!) -> Void in
+        // replace URIs of player with new URIs
+        self.player?.replaceURIs(uris, withCurrentTrack: Int32(playlistIndex!),
+            callback: { (error: NSError!) -> Void in
             
             if error != nil {
                 println("error replacing uris in updatePlayerTracklist: \(error)")
             }
         
         })
+        // reload table UI
         self.tableView.reloadData()
-        
-        // if at last song
-//        if (self.crowd?.playlist.count() == nextSongIndex + 1) {
-//            isLastSong = true
-//        }
-//        else if (self.crowd?.playlist.count() > nextSongIndex) {
-//            if isLastSong {
-//                println("resetting last song")
-//                isLastSong = false
-//            }
-//            
-//            var uris = self.crowd?.playlist.getURIs()
-//            var urisLength = uris?.count
-////            var index = self.player?.currentTrackIndex
-//
-//            println("length of new URIs = \(uris)")
-//            
-//
-//            // replace URIs in player
-//            self.player?.replaceURIs(uris, withCurrentTrack: Int32(playlistIndex!), callback: { (error:NSError!) -> Void in
-//                if (error != nil) {
-//                    NSLog("error replacing uris: \(error)")
-//                }
-//            })
-//            
-//        }
-//            var index = self.player?.currentTrackIndex
-//        var uris = self.crowd?.playlist.getURIs()
-//        var urisLength = uris?.count
-        
-//        // if error in player
-//        if (index == nil) {
-//            return
-//        }
-        
-//        println("length of new URIs = \(uris)")
-//        
-//        // playing last song
-//        if let urisLength = uris?.count {
-//            if Int(index!) >= urisLength - 1 {
-//                isLastSong = true
-//            }
-//        }
-//        
-//        // replace URIs in player
-//        self.player?.replaceURIs(uris, withCurrentTrack: Int32(index!), callback: { (error:NSError!) -> Void in
-//            if (error != nil) {
-//                NSLog("error replacing uris: \(error)")
-//            }
-//        })
-        
 
     }
     
     // skipped to next track
     func audioStreamingDidSkipToNextTrack(audioStreaming: SPTAudioStreamingController!) {
-        println("in audioStreaming-didSkipToNextTrack")
+        NSLog("skipping to next track")
     }
     
-    
-    // MARK: - Table view data source
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Return number of sections
-        return 1
+    // enable player buttons
+    func enableButtons() {
+        self.forwardButton.enabled = true
+        self.playButton.enabled = true
+        self.reverseButton.enabled = true
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.tableView.reloadData()
-        self.updatePlayerArt()
+    // disable player buttons
+    func disableButtons() {
+        self.forwardButton.enabled = false
+        self.playButton.enabled = false
+        self.reverseButton.enabled = false
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        NSLog("Back pressed")
-        if parent == nil {
-            NSLog("Back 0")
-        }
-        if let bool = parent?.isEqual(self.parentViewController) {
-            if !bool {
-                NSLog("Back 1")
-            }
-        }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Return the number of rows in the section.
-        return playlist!.count()
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        // configure the cell
-        let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
-        let song = playlist!.songs[indexPath.row]
-        cell.textLabel?.text = song.name
-        return cell
-    }
-    
-    // TODO: when reload data, if size increases & isLastSong == true, set isLastSong = false
-
+    // uses the song URI to get name, artist, album art about the next song to be played
     func updatePlayerArt() {
-        println("IN UPDATE-PLAYER-ART")
         
-//        let playlistIndex = self.player?.currentTrackIndex
-//        let oldSize = Int(playlistIndex!) + 1
-//        println("oldPlaylistSize = \(oldSize)")
-//        self.tableView.reloadData()
-//        
-//        if (isLastSong && self.crowd?.playlist.count() > oldSize) {
-//            println("WE SHOULD FUCKING CHANGE THIS")
-//            isLastSong = false
-//        }
-        
-        // if after reloading data we are on the last song, and our new size > old size
-        
-//        self.tableView.reloadData()
-
+        // if the playlist has songs
         if (playlist!.count() > 0) {
-            self.forwardButton.enabled = true
-            self.playButton.enabled = true
-            var index = self.player?.currentTrackIndex
+            enableButtons() // enable controls 
             
+            // keep track of current song information
+            var index = self.player?.currentTrackIndex
             let currentSong = self.playlist!.songs[Int(index!)]
             songLabel.text = currentSong.name
             
-            
+            // use URI to find information
             SPTTrack.trackWithURI(currentSong.spotifyURI, session: SPTAuth.defaultInstance().session, callback: { (error:NSError!, obj: AnyObject!) -> Void in
-                if error != nil {
+                
+                
+                if error != nil {   // error with the URI lookup
                     NSLog("no session")
                     return
                 }
                 else {
+                    // find song title and artists name
                     NSLog("Found track with URI")
                     let track = obj as SPTTrack
                     self.songLabel.text = track.name
                     self.artistLabel.text = track.artists[0].name
-
                     
+                    
+                    // get the image URL
                     let imageURL = track.album.largestCover.imageURL
                     if (imageURL == nil) {
                         NSLog("No Album Art")
@@ -391,60 +271,56 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         }
         else {
             // No songs in the playlist: Disable Controls
-            self.forwardButton.enabled = false
-            self.playButton.enabled = false
+            disableButtons()
             
+            // reset the UI
             songLabel.text = ""
             artistLabel.text = ""
             albumView.image = nil
         }
     }
     
-
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return NO if you do not want the specified item to be editable.
-    return true
+    // MARK: - Table view data source - Defaulted
+    
+    // when view appears, reload basic data.
+    override func viewDidAppear(animated: Bool) {
+        self.tableView.reloadData()
+        self.updatePlayerArt()
     }
-    */
     
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-    // Delete the row from the data source
-    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
-    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // Return number of sections
+        return 1
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    */
     
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            NSLog("Back 0")
+        }
+        if let bool = parent?.isEqual(self.parentViewController) {
+            if !bool {
+                NSLog("Back 1")
+            }
+        }
     }
-    */
     
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return NO if you do not want the item to be re-orderable.
-    return true
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Return the number of rows in the section.
+        return playlist!.count()
     }
-    */
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    // configure cells with artist name and song name
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // configure the cell
+        let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
+        let song = playlist!.songs[indexPath.row]
+        cell.textLabel?.text = song.name
+        return cell
     }
-    */
-    
 }

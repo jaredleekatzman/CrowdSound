@@ -748,6 +748,7 @@
                         <outlet property="forwardButton" destination="uep-6X-FOO" id="6hX-Tm-u6A"/>
                         <outlet property="playButton" destination="a4I-64-rDC" id="b5h-xQ-zQf"/>
                         <outlet property="playerView" destination="A7M-Ti-6L5" id="AD8-fo-T71"/>
+                        <outlet property="reverseButton" destination="G7e-4W-qVv" id="ZYr-cf-eBO"/>
                         <outlet property="songLabel" destination="ndY-YR-XQO" id="S8t-yp-TaE"/>
                         <outlet property="tableView" destination="EGP-HS-q8R" id="h8N-OH-Pwr"/>
                     </connections>
