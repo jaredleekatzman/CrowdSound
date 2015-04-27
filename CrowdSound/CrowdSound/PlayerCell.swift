@@ -10,6 +10,8 @@ import UIKit
 
 class PlayerCell: UITableViewCell {
 
+    //
+    
     @IBOutlet var songLabel: UILabel!
     @IBOutlet var artistLabel: UILabel!
     

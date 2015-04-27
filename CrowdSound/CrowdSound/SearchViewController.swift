@@ -12,19 +12,22 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     // table view for search results
     @IBOutlet weak var songTable: UITableView!
-    
+    var songSearchController = UISearchController()
+    var crowd : Crowd?
+
     // data source for songTable.
     //  reloads songTable whenever updated.
     var searchArray:[Song] = [Song](){
         didSet  {self.songTable.reloadData()}
     }
     
-    var crowd : Crowd?
-    var songSearchController = UISearchController()
     
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // Get crowd
         let tbvc = self.tabBarController as CrowdTabViewController
         crowd = tbvc.myCrowd
         
@@ -47,7 +50,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             
             return controller
         })()
-        
+    
     }
 
     // Dispose of any resources that can be recreated.
@@ -55,39 +58,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         super.didReceiveMemoryWarning()
     }
     
-    // reset songTable to original state.
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        self.songTable.reloadData()
-    }
-
+    /*
     // MARK: - Navigation
-    override func viewWillAppear(animated: Bool) {
 
-        self.songSearchController.active         = false
-        self.songSearchController.searchBar.text = ""
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        self.songSearchController.searchBar.setShowsCancelButton(false, animated: true)
-    }
-    
-    func willDismissSearchController(searchController: UISearchController) {
-        println("1")
-    }
-    
-    func didPresentSearchController(searchController: UISearchController) {
-        println("2")
-    }
-    
-    func willPresentSearchController(searchController: UISearchController) {
-        println("3")
-    }
-    
+    */
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+
     // table has as many rows as search results.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -109,13 +93,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if (self.songSearchController.active)
         {
             cell.textLabel?.text = self.searchArray[indexPath.row].name
-            return cell
         }
-            
-        else
-        {
-            return cell
-        }
+        return cell
     }
     
     // send song object of selected row to the pending playlist.
@@ -133,12 +112,25 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.crowd?.pending.addSong(newSong)
         var alertMsg = "Added song " + newSong.name + " to pending songs"
         
+        // Display alert if necessary
         // alert user song has been added.
         var alert = UIAlertController(title: "Added song!", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+        
+        // Reset SongSearchController
+        self.songSearchController.active = false
+        self.songSearchController.searchBar.text = ""
     }
     
+
+    // MARK: - SearchControllerDelegate Methods
+    
+    // TODO: if search not 'cancelled,' search bar is still open on other views (segue)
+    // TODO: when search is 'cancelled,' there is one song in the array when there should be none.
+    // TODO: crashes after typing a while in the search...?
+    // TODO: add artist to search results. 
+    // TODO: cancel the search in the prepare for segue (otherwise black page error)
     // TODO: if search not 'cancelled,' search bar is still open on other views
     
     // search for spotify songs with searchbar text as query string; populate searchArray
@@ -148,10 +140,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.searchArray.removeAll(keepCapacity: false)
         let searchString = searchController.searchBar.text
         
-        // send searchbar text to spotify.
+        // Send searchbar text to spotify.
         SPTRequest.performSearchWithQuery(searchString, queryType: SPTSearchQueryType.QueryTypeTrack, offset: 0, session: nil, callback: {(error: NSError!, result:AnyObject!) -> Void in
             
-            if error != nil {
+            if error != nil && searchString != "" {
                 println("error performing query")
                 return
             }

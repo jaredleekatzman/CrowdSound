@@ -10,6 +10,7 @@ import UIKit
 
 class PendingSongCell: UITableViewCell {
 
+    // PendingSongCell used in PendingTableViewController to manage Upvotes and Downvotes
     @IBOutlet weak var votesLabel: UILabel!
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var downvoteBttn: UIButton!
