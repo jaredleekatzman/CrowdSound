@@ -143,7 +143,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Send searchbar text to spotify.
         SPTRequest.performSearchWithQuery(searchString, queryType: SPTSearchQueryType.QueryTypeTrack, offset: 0, session: nil, callback: {(error: NSError!, result:AnyObject!) -> Void in
             
-            if error != nil && searchString != "" {
+            if error != nil {
                 println("error performing query")
                 return
             }

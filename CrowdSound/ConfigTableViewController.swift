@@ -173,7 +173,7 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
         self.authViewController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
         self.authViewController?.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         self.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-        self.definesPresentationContext = true;
+        self.definesPresentationContext = false;
         
         // show spotify login page
         self.presentViewController(self.authViewController!, animated: false, completion: nil)
