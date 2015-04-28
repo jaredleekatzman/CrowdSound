@@ -20,6 +20,7 @@ class Crowd {
 
     var isPrivate: Bool     // if need password
     var password: String    // what the password is
+    var uid: String
     
     init() {
         name = ""
@@ -30,6 +31,19 @@ class Crowd {
         guests = []
         isPrivate = false
         password = ""
+        uid = NSUUID().UUIDString
+    }
+    
+    init(givenName: String, givenHost: String) {
+        name = givenName
+        host = givenHost
+        playlist = Playlist()
+        pending = Playlist()
+        threshold = 0
+        guests = []
+        isPrivate = false
+        password = ""
+        uid = givenName + givenHost + NSUUID().UUIDString
     }
     
     // for testing - create default crowd 
@@ -41,6 +55,7 @@ class Crowd {
         crowd.host = "Default Host"
         crowd.threshold = 7
         crowd.guests = ["Jack", "Jared", "Terin", "Eli", "TIM"]
+        crowd.uid = NSUUID().UUIDString
         return crowd
     }
     
