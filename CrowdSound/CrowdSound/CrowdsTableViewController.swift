@@ -161,9 +161,8 @@ class CrowdsTableViewController: UITableViewController {
     
     // show the password alert view
     func showPasswordInputView() {
-        var alertMsg = "Crowd is private. Please input password:"
         var passwordAlert = UIAlertView()
-        passwordAlert.title = "Crowd is Private, please enter password:"
+        passwordAlert.title = "Crowd is private, please enter password:"
         passwordAlert.addButtonWithTitle("Cancel")
         passwordAlert.addButtonWithTitle("Done")
         passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
