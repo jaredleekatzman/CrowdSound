@@ -54,11 +54,9 @@ class PendingTableViewController: UITableViewController {
         cell.songLabel.text = currentSong.name
         cell.votesLabel.text = String(currentSong.upvotes)
         cell.upvoteBttn.tag = indexPath.row
-        cell.downvoteBttn.tag = indexPath.row
         
         // Creates Button Action Listeners
         cell.upvoteBttn.addTarget(self, action: "upvote:", forControlEvents: UIControlEvents.TouchUpInside)
-        cell.downvoteBttn.addTarget(self, action: "downvote:", forControlEvents: UIControlEvents.TouchUpInside)
         
         return cell
     }

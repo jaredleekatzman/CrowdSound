@@ -416,7 +416,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="31" id="xPX-iN-1ah"/>
                                             </constraints>
-                                            <state key="normal" title="^">
+                                            <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -425,7 +425,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="31" id="YRI-sX-O6r"/>
                                             </constraints>
-                                            <state key="normal" title="v">
+                                            <state key="normal" title="^">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -456,9 +456,8 @@
                                     <accessibilityTraits key="traits" none="YES" updatesFrequently="YES"/>
                                 </accessibility>
                                 <connections>
-                                    <outlet property="downvoteBttn" destination="rc8-gK-yDH" id="d7q-uM-faL"/>
                                     <outlet property="songLabel" destination="g98-MV-EZk" id="9Bp-m9-wwR"/>
-                                    <outlet property="upvoteBttn" destination="bRO-fK-Abj" id="AYU-eP-m0S"/>
+                                    <outlet property="upvoteBttn" destination="rc8-gK-yDH" id="kKu-n1-cAY"/>
                                     <outlet property="votesLabel" destination="eW2-5d-HRI" id="RDd-bf-9Ah"/>
                                 </connections>
                             </tableViewCell>
