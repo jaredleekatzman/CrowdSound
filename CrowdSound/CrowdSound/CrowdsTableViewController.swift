@@ -8,12 +8,18 @@
 
 import UIKit
 
-class CrowdsTableViewController: UITableViewController {
+class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating, UIAlertViewDelegate {
 
     @IBOutlet var configButton: UIBarButtonItem!
     
     var crowds = [Crowd]()
     var correctPassword = false
+
+    var searchArray:[String] = [String](){
+        didSet  {self.tableView.reloadData()}
+    }
+    
+    var crowdSearchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +28,23 @@ class CrowdsTableViewController: UITableViewController {
             "sessionUpdated", object: nil)
 
         createDummyCrowds()
+        
+        // Configure countrySearchController
+        self.crowdSearchController = ({
+
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.hidesNavigationBarDuringPresentation = false
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.searchBarStyle = .Minimal
+            controller.searchBar.sizeToFit()
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
     }
+    
+
     
     // for testing: create dummy crowds
     func createDummyCrowds() {
@@ -102,6 +124,9 @@ class CrowdsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
+        if (self.crowdSearchController.active) {
+            return self.searchArray.count
+        }
         return crowds.count
     }
 
@@ -110,11 +135,30 @@ class CrowdsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("crowdCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        var currentCrowd = crowds[indexPath.row]
-        cell.textLabel?.text = currentCrowd.name
-
+        if (self.crowdSearchController.active) {
+            cell.textLabel?.text = self.searchArray[indexPath.row]
+        } else {
+            var currentCrowd = crowds[indexPath.row]
+            cell.textLabel?.text = currentCrowd.name
+        }
+        
         return cell
     }
+    
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        self.searchArray.removeAll(keepCapacity: false)
+        
+        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
+        var array = (crowds.map{a in a.name} as NSArray).filteredArrayUsingPredicate(searchPredicate!)
+        self.searchArray = array as [String]
+        
+    }
+    
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//    }
+
     
     // MARK: - NAVIGATION
 
@@ -127,11 +171,10 @@ class CrowdsTableViewController: UITableViewController {
             
             // Pass the selected object to the new view controller.
             if let indexPath = self.tableView.indexPathForSelectedRow() {
+                self.crowdSearchController.active = false
                 let selectedCrowd = crowds[indexPath.row]
-                if selectedCrowd.isPrivate {
-                    // Show alert message with need for privacy!
-                }
                 secondScene.myCrowd = selectedCrowd
+                //self.crowdSearchController.active = false
             }
         }
     }
@@ -162,6 +205,7 @@ class CrowdsTableViewController: UITableViewController {
     // show the password alert view
     func showPasswordInputView() {
         var passwordAlert = UIAlertView()
+        passwordAlert.becomeFirstResponder()
         passwordAlert.title = "Crowd is private, please enter password:"
         passwordAlert.addButtonWithTitle("Cancel")
         passwordAlert.addButtonWithTitle("Done")
@@ -173,6 +217,11 @@ class CrowdsTableViewController: UITableViewController {
     // deals with button clicks for password alert view.
     func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         switch buttonIndex {
+        case 0: // user hit cancel
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            }
+            break
         case 1:
             checkPassword(View) // Done clicked
             break
@@ -180,6 +229,12 @@ class CrowdsTableViewController: UITableViewController {
             println("default")
             break
         }
+    }
+    
+    // make the textfield in the alertView the foxus
+    // TODO: this doesn't work. see if simulator issue.
+    func didPresentAlertView(alertView: UIAlertView) {
+        alertView.textFieldAtIndex(0)?.becomeFirstResponder()
     }
     
     // checks user input with crowd password, else shows alert
