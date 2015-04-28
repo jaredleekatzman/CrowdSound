@@ -42,8 +42,6 @@ class FacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else if result.isCancelled { // log in cancelled, make user log in again
             NSLog("FBLogin: result was cancelled!")
         } else { // login complete, move on to next screen
-            User.currentUser.name = "Terin"
-            User.currentUser.id = "12345"
             self.performSegueWithIdentifier("GoToCrowdsList", sender: self)
         }
     }

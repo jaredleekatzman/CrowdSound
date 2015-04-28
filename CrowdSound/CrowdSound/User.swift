@@ -13,7 +13,6 @@ private let _currentUser = User()
 class User {
     
     var name : String = ""
-    var id : String = ""
     var upvotedSongs = [String: [String]]()
     var uid = NSUUID().UUIDString
     
@@ -27,5 +26,27 @@ class User {
         }
     }
     
+    // tests if song has already been upvoted 
+    func canUpvote(crowdUID: String, songUID: String) -> Bool {
+        // return if invalid UID 
+        if crowdUID.isEmpty || songUID.isEmpty {
+            return false
+        }
+        if let songs = upvotedSongs[crowdUID] { // has crowd
+            if contains(songs, songUID) {       // has specific song
+                return false
+            }
+        }
+        return true
+    }
     
+    // upvotes a current song
+    func upvoteSong(crowdUID: String, songUID: String) {
+        if var songs = upvotedSongs[crowdUID] {
+            songs.append(songUID)
+            upvotedSongs[crowdUID] = songs
+        } else {
+            upvotedSongs[crowdUID] = [songUID]
+        }
+    }
 }
