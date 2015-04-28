@@ -28,10 +28,9 @@ class PendingTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        // code connecting
+        // WebSockets
         self.addHandlers()
         self.socket.connect()
-//        self.socket.emit("test");
     }
     
     func addHandlers() {
