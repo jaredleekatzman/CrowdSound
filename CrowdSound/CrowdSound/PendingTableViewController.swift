@@ -45,6 +45,10 @@ class PendingTableViewController: UITableViewController {
         return crowd!.pending.songs.count
     }
     
+    // transform upvote button if already pressed
+    func upvoteButtonAlreadyPressed(button: UIButton!)  {
+        button.enabled = false
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pendingSongCell", forIndexPath: indexPath) as PendingSongCell
@@ -58,13 +62,21 @@ class PendingTableViewController: UITableViewController {
         // Creates Button Action Listeners
         cell.upvoteBttn.addTarget(self, action: "upvote:", forControlEvents: UIControlEvents.TouchUpInside)
         
+        // transforms button if upvote already clicked 
+        if let songUID = crowd?.pending.getSongUID(indexPath.row) {
+            let crowdUID = crowd?.uid ?? ""
+            if !User.currentUser.canUpvote(crowdUID, songUID: songUID) {
+                upvoteButtonAlreadyPressed(cell.upvoteBttn)
+            }
+        }
+        
         return cell
     }
 
     // When Upvote Button pressed: Upvote song at cell index
     func upvote(sender:UIButton!) {
         var songIndex: Int = sender.tag
-
+        
         // if valid songUID
         if let songUID = crowd?.pending.getSongUID(songIndex) {
             let crowdUID = crowd?.uid ?? ""
@@ -73,8 +85,10 @@ class PendingTableViewController: UITableViewController {
                 User.currentUser.upvoteSong(crowdUID, songUID: songUID)
                 crowd?.pending.upvoteSong(songIndex)
                 self.tableView.reloadData()
+                upvoteButtonAlreadyPressed(sender)
             }
         }
+
     }
     
     // When Downvote Button Pressed: Downvote song at cell index
