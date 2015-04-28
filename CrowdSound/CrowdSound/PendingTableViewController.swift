@@ -31,9 +31,13 @@ class PendingTableViewController: UITableViewController {
         // code connecting
         self.addHandlers()
         self.socket.connect()
+//        self.socket.emit("test");
     }
     
     func addHandlers() {
+        // Using a shorthand parameter name for closures
+        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+        
         self.socket.on("voted") {[weak self] data, ack in
             print("voted!")
             return
@@ -83,7 +87,9 @@ class PendingTableViewController: UITableViewController {
         self.tableView.reloadData()
         
         //send vote over socket
-        self.socket.emit("upVote")
+        print("upvote")
+        self.socket.emit("upVote", 2)
+        self.socket.emit("fromClient")
     }
     
     // When Downvote Button Pressed: Downvote song at cell index
@@ -92,7 +98,9 @@ class PendingTableViewController: UITableViewController {
         self.tableView.reloadData()
         
         //send vote over socket
-        self.socket.emit("downVote")
+        print("downvote")
+        self.socket.emit("downVote", 2)
+        self.socket.emit("fromClient")
     }
     
 

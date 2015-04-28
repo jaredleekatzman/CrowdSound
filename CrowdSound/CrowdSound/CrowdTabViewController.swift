@@ -10,9 +10,6 @@ import UIKit
 
 class CrowdTabViewController: UITabBarController {
     
-    // define socket.io in class
-    let socket = SocketIOClient(socketURL: "localhost:8080")
-    
     // Provides the Crowd and Player to the ViewControllers
     var myCrowd : Crowd?
     var player : SPTAudioStreamingController?
@@ -26,16 +23,6 @@ class CrowdTabViewController: UITabBarController {
         self.navigationItem.rightBarButtonItem = settingsBtn
         self.selectedIndex = 1
         
-        // code for socket.io
-        self.addHandlers()
-        self.socket.connect()
-    }
-    
-    func addHandlers() {
-        self.socket.on("test") {[weak self] data, ack in
-            print("yo socket connected")
-            return
-        }
     }
 
     override func didReceiveMemoryWarning() {
