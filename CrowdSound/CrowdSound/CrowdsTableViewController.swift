@@ -136,29 +136,30 @@ class CrowdsTableViewController: UITableViewController {
         }
     }
     
-
+    // MARK: - PASSWORD FUNCTIONS
+    
+    // determines if segue should show
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
 
-        // only perform showCrowd if input correct password
         if identifier == "showCrowd" {
-            if correctPassword {
+            if correctPassword { // if correct password, do segue
                 return true
             }
+            
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let selectedCrowd = crowds[indexPath.row]
                 if !selectedCrowd.isPrivate {   // if not private, always return true
                     return true
-                } else { // otherwise wait for correct response
+                } else {                        // otherwise wait for correct response
                     showPasswordInputView()
                     return false
                 }
             }
         }
-        
         return true
     }
     
-    // show the password input
+    // show the password alert view
     func showPasswordInputView() {
         var alertMsg = "Crowd is private. Please input password:"
         var passwordAlert = UIAlertView()
@@ -170,19 +171,19 @@ class CrowdsTableViewController: UITableViewController {
         passwordAlert.show()
     }
     
+    // deals with button clicks for password alert view.
     func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         switch buttonIndex {
         case 1:
-            checkPassword(View)
-//            correctPassword = true
-//            performSegueWithIdentifier("showCrowd", sender: self)
+            checkPassword(View) // Done clicked
             break
-        default:
+        default:                // Cancel clicked
             println("default")
             break
         }
     }
     
+    // checks user input with crowd password, else shows alert
     func checkPassword(view: UIAlertView!) {
         let userInput = view.textFieldAtIndex(0)?.text
         if let indexPath = self.tableView.indexPathForSelectedRow() {
@@ -197,20 +198,23 @@ class CrowdsTableViewController: UITableViewController {
         correctPassword = false
     }
     
+    // shows alert message when user inputs incorrect password
     func showPasswordIncorrectAlert() {
+        
+        // display alert about incorrect password
         var alert = UIAlertController(title: "Incorrect Password",
             message: "The password you entered was incorrect", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction(title: "Ok", style:
-            UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style:UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
         
+        // deselect the selected row
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     
+
     override func viewWillDisappear(animated: Bool) {
-        correctPassword = false
+        correctPassword = false // remove password memory
     }
 }
