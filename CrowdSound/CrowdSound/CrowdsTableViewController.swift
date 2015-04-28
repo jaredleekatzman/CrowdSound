@@ -148,10 +148,15 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         self.searchArray.removeAll(keepCapacity: false)
-        
-        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
-        var array = (crowds.map{a in a.name} as NSArray).filteredArrayUsingPredicate(searchPredicate!)
-        self.searchArray = array as [String]
+        var crowdNames = crowds.map{a in a.name} as NSArray
+        if searchController.searchBar.text == "" {
+            self.searchArray = crowdNames as [String]
+        } else {
+            let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
+            var array = crowdNames.filteredArrayUsingPredicate(searchPredicate!)
+            self.searchArray = array as [String]
+        }
+
         
     }
     
