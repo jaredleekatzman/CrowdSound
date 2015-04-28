@@ -13,6 +13,7 @@ class CrowdsTableViewController: UITableViewController {
     @IBOutlet var configButton: UIBarButtonItem!
     
     var crowds = [Crowd]()
+    var correctPassword = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,8 @@ class CrowdsTableViewController: UITableViewController {
     func createDummyCrowds() {
         var springFling = Crowd.defaultCrowd()
         springFling.name = "Spring Fling Playlist"
+        springFling.isPrivate = true
+        springFling.password = "spring fling"
         crowds.append(springFling)
         
         var defaultCrowd = Crowd.defaultCrowd()
@@ -125,8 +128,89 @@ class CrowdsTableViewController: UITableViewController {
             // Pass the selected object to the new view controller.
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let selectedCrowd = crowds[indexPath.row]
+                if selectedCrowd.isPrivate {
+                    // Show alert message with need for privacy!
+                }
                 secondScene.myCrowd = selectedCrowd
             }
         }
+    }
+    
+
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+
+        // only perform showCrowd if input correct password
+        if identifier == "showCrowd" {
+            if correctPassword {
+                return true
+            }
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let selectedCrowd = crowds[indexPath.row]
+                if !selectedCrowd.isPrivate {   // if not private, always return true
+                    return true
+                } else { // otherwise wait for correct response
+                    showPasswordInputView()
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
+    // show the password input
+    func showPasswordInputView() {
+        var alertMsg = "Crowd is private. Please input password:"
+        var passwordAlert = UIAlertView()
+        passwordAlert.title = "Crowd is Private, please enter password:"
+        passwordAlert.addButtonWithTitle("Cancel")
+        passwordAlert.addButtonWithTitle("Done")
+        passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
+        passwordAlert.delegate = self
+        passwordAlert.show()
+    }
+    
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex {
+        case 1:
+            checkPassword(View)
+//            correctPassword = true
+//            performSegueWithIdentifier("showCrowd", sender: self)
+            break
+        default:
+            println("default")
+            break
+        }
+    }
+    
+    func checkPassword(view: UIAlertView!) {
+        let userInput = view.textFieldAtIndex(0)?.text
+        if let indexPath = self.tableView.indexPathForSelectedRow() {
+            let selectedCrowd = crowds[indexPath.row]
+            if selectedCrowd.password == userInput {
+                correctPassword = true
+                performSegueWithIdentifier("showCrowd", sender: self)
+            } else {
+                showPasswordIncorrectAlert()
+            }
+        }
+        correctPassword = false
+    }
+    
+    func showPasswordIncorrectAlert() {
+        var alert = UIAlertController(title: "Incorrect Password",
+            message: "The password you entered was incorrect", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style:
+            UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow() {
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        correctPassword = false
     }
 }
