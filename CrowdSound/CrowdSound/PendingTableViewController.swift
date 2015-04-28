@@ -52,6 +52,7 @@ class PendingTableViewController: UITableViewController {
         // Configure the cell...
         var currentSong = self.crowd!.pending.songs[indexPath.row]
         cell.songLabel.text = currentSong.name
+        
         cell.votesLabel.text = String(currentSong.upvotes)
         cell.upvoteBttn.tag = indexPath.row
         cell.downvoteBttn.tag = indexPath.row
@@ -73,6 +74,10 @@ class PendingTableViewController: UITableViewController {
     func downvote(sender:UIButton!) {
         crowd?.downvotePendingSong(sender.tag)
         self.tableView.reloadData()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
 
