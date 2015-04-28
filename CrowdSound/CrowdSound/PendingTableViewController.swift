@@ -65,8 +65,18 @@ class PendingTableViewController: UITableViewController {
 
     // When Upvote Button pressed: Upvote song at cell index
     func upvote(sender:UIButton!) {
-        crowd?.upvotePendingSong(sender.tag)
-        self.tableView.reloadData()
+        var songIndex: Int = sender.tag
+
+        // if valid songUID
+        if let songUID = crowd?.pending.getSongUID(songIndex) {
+            let crowdUID = crowd?.uid ?? ""
+            // if user can upvote the song, upvote it!
+            if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
+                User.currentUser.upvoteSong(crowdUID, songUID: songUID)
+                crowd?.pending.upvoteSong(songIndex)
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // When Downvote Button Pressed: Downvote song at cell index
