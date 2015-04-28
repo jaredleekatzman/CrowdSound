@@ -191,7 +191,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
             endingLineNumber = "175"
-            landmarkName = "audioStreaming(_:didStopPlayingTrack:)"
+            landmarkName = "updatePlayerTracklist()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -28,3 +28,8 @@ let kTokenRefreshServiceURL = "http://localhost:1234/refresh"
 
 
 let kSessionUserDefaultsKey = "SpotifySession"
+
+
+// MARK: - Server Constants 
+
+let serverURL = "54.152.114.46"
