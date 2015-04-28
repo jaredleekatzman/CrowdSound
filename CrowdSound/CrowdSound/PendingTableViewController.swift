@@ -85,7 +85,6 @@ class PendingTableViewController: UITableViewController {
                 User.currentUser.upvoteSong(crowdUID, songUID: songUID)
                 crowd?.pending.upvoteSong(songIndex)
                 self.tableView.reloadData()
-                upvoteButtonAlreadyPressed(sender)
             }
         }
 
