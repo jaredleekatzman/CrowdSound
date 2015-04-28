@@ -11,7 +11,8 @@ import UIKit
 class PendingTableViewController: UITableViewController {
     
     // define socket.io in class
-    let socket = SocketIOClient(socketURL: serverURL)
+//    let socket = SocketIOClient(sock etURL: localURL)
+    var socket : SocketIOClient?
     
     // Crowd Data
     var crowd : Crowd?
@@ -28,17 +29,25 @@ class PendingTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        // code connecting
+        /* socket code */
+//        socket.nsp = "/my-namespace"
+//        print("\(crowd?.name)")
+        
+//        init(socketURL: String, opts:NSDictionary? = nil)
+//        var opts = ["nsp": "/nsp"]
+//        socket = SocketIOClient(socketURL: "localhost:8080", opts: opts)
+        socket = SocketIOClient(socketURL: "localhost:8080")
+//        socket = init(socketURL: "localhost:8080", opts:NSDictionary? = nil)
         self.addHandlers()
-        self.socket.connect()
+        self.socket!.connect()
 //        self.socket.emit("test");
     }
     
     func addHandlers() {
         // Using a shorthand parameter name for closures
-        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+        self.socket!.onAny {println("Got event: \($0.event), with items: \($0.items)")}
         
-        self.socket.on("voted") {[weak self] data, ack in
+        self.socket!.on("voted") {[weak self] data, ack in
             print("voted!")
             return
         }
@@ -88,8 +97,8 @@ class PendingTableViewController: UITableViewController {
         
         //send vote over socket
         print("upvote")
-        self.socket.emit("upVote", 2)
-        self.socket.emit("fromClient")
+        socket!.emit("upVote")
+        socket!.emit("fromClient")
     }
     
     // When Downvote Button Pressed: Downvote song at cell index
@@ -99,8 +108,8 @@ class PendingTableViewController: UITableViewController {
         
         //send vote over socket
         print("downvote")
-        self.socket.emit("downVote", 2)
-        self.socket.emit("fromClient")
+        self.socket!.emit("downVote")
+        self.socket!.emit("fromClient")
     }
     
 

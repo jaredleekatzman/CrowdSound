@@ -33,3 +33,4 @@ let kSessionUserDefaultsKey = "SpotifySession"
 // MARK: - Server Constants 
 
 let serverURL = "54.152.114.46"
+let localURL = "localhost:8080"
