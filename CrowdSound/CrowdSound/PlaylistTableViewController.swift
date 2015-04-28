@@ -239,6 +239,25 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         cell.textLabel?.text = song.name
         return cell
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        println("Got here")
+        let uris = self.crowd?.playlist.getURIs()
+        
+        // replace URIs of player with new URIs
+        self.player?.playURIsFromIndex(Int32(indexPath.row), callback: { (error: NSError!) -> Void in
+            if error != nil {
+                NSLog("error playing track \(indexPath.row)")
+            }
+        })
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        // reload table UI
+        self.updatePlayerArt()
+        println("Current index \(self.player?.currentTrackIndex)")
+        
+    }
     
     // TODO: when reload data, if size increases & isLastSong == true, set isLastSong = false
     
