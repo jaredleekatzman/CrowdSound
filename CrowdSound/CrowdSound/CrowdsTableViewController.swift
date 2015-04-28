@@ -13,6 +13,7 @@ class CrowdsTableViewController: UITableViewController {
     @IBOutlet var configButton: UIBarButtonItem!
     
     var crowds = [Crowd]()
+    var correctPassword = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,8 @@ class CrowdsTableViewController: UITableViewController {
     func createDummyCrowds() {
         var springFling = Crowd.defaultCrowd()
         springFling.name = "Spring Fling Playlist"
+        springFling.isPrivate = true
+        springFling.password = "spring fling"
         crowds.append(springFling)
         
         var defaultCrowd = Crowd.defaultCrowd()
@@ -125,8 +128,93 @@ class CrowdsTableViewController: UITableViewController {
             // Pass the selected object to the new view controller.
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let selectedCrowd = crowds[indexPath.row]
+                if selectedCrowd.isPrivate {
+                    // Show alert message with need for privacy!
+                }
                 secondScene.myCrowd = selectedCrowd
             }
         }
+    }
+    
+    // MARK: - PASSWORD FUNCTIONS
+    
+    // determines if segue should show
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+
+        if identifier == "showCrowd" {
+            if correctPassword { // if correct password, do segue
+                return true
+            }
+            
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let selectedCrowd = crowds[indexPath.row]
+                if !selectedCrowd.isPrivate {   // if not private, always return true
+                    return true
+                } else {                        // otherwise wait for correct response
+                    showPasswordInputView()
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    // show the password alert view
+    func showPasswordInputView() {
+        var alertMsg = "Crowd is private. Please input password:"
+        var passwordAlert = UIAlertView()
+        passwordAlert.title = "Crowd is Private, please enter password:"
+        passwordAlert.addButtonWithTitle("Cancel")
+        passwordAlert.addButtonWithTitle("Done")
+        passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
+        passwordAlert.delegate = self
+        passwordAlert.show()
+    }
+    
+    // deals with button clicks for password alert view.
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex {
+        case 1:
+            checkPassword(View) // Done clicked
+            break
+        default:                // Cancel clicked
+            println("default")
+            break
+        }
+    }
+    
+    // checks user input with crowd password, else shows alert
+    func checkPassword(view: UIAlertView!) {
+        let userInput = view.textFieldAtIndex(0)?.text
+        if let indexPath = self.tableView.indexPathForSelectedRow() {
+            let selectedCrowd = crowds[indexPath.row]
+            if selectedCrowd.password == userInput {
+                correctPassword = true
+                performSegueWithIdentifier("showCrowd", sender: self)
+            } else {
+                showPasswordIncorrectAlert()
+            }
+        }
+        correctPassword = false
+    }
+    
+    // shows alert message when user inputs incorrect password
+    func showPasswordIncorrectAlert() {
+        
+        // display alert about incorrect password
+        var alert = UIAlertController(title: "Incorrect Password",
+            message: "The password you entered was incorrect", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style:UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        // deselect the selected row
+        if let indexPath = self.tableView.indexPathForSelectedRow() {
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+
+    override func viewWillDisappear(animated: Bool) {
+        correctPassword = false // remove password memory
     }
 }
