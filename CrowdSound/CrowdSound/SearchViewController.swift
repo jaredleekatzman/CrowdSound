@@ -14,7 +14,26 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var songTable: UITableView!
     var songSearchController = UISearchController()
     var crowd : Crowd?
+    
+    // define socket.io in class
+    let socket = SocketIOClient(socketURL: "localhost:8080")
 
+    func addHandlers() {
+        
+        //chat messages because why not:
+        self.socket.on("chat message") {[weak self] data, ack in
+            print("I got a message!!")
+            return
+        }
+        // Using a shorthand parameter name for closures
+        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+        
+        self.socket.on("voted") {[weak self] data, ack in
+            print("voted!")
+            return
+        }
+    }
+    
     // data source for songTable.
     //  reloads songTable whenever updated.
     var searchArray:[Song] = [Song](){
@@ -57,6 +76,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             self.definesPresentationContext = true
             return controller
         })()
+        
+        // WebSockets
+        self.addHandlers()
+        self.socket.connect()
     
     }
 
@@ -118,6 +141,15 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         // add song.
         self.crowd?.pending.addSong(newSong)
+        
+        // send song to database
+        if let dict = JSONSerializer.serializeNewSongToPending(crowd!.uid, song: newSong) {
+            //if let dict = JSONSerializer.serializeUpvote(crowdUID, songID: songUID) {
+            println("adding song to pending!")
+            self.socket.emit("newPending", dict)
+        }
+        
+        
         var alertMsg = "Added song " + newSong.name + " to pending songs"
         
         // Display alert if necessary

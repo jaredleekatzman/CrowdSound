@@ -13,6 +13,9 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
     // authView for spotify login.
     var authViewController : SPTAuthViewController?
     
+    // define socket.io in class
+    let socket = SocketIOClient(socketURL: "localhost:8080")
+    
     // UI elements
     @IBOutlet weak var crowdNameText: UITextField!
     @IBOutlet weak var hostNameText: UITextField!
@@ -33,6 +36,26 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "sessionUpdateNotification:", name: "sessionUpdated", object: nil)
         updateLoginButton()
+        
+        // socket methods
+        self.addHandlers()
+        self.socket.connect()
+    }
+    
+    func addHandlers() {
+        
+        //chat messages because why not:
+        self.socket.on("chat message") {[weak self] data, ack in
+            print("I got a message!!")
+            return
+        }
+        // Using a shorthand parameter name for closures
+        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+        
+        self.socket.on("voted") {[weak self] data, ack in
+            print("voted!")
+            return
+        }
     }
     
     // USER INTERFACE FUNCTIONS
@@ -224,7 +247,13 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier? == "finalizeCrowd" {
             var secondScene = segue.destinationViewController as CrowdTabViewController
-            secondScene.myCrowd = createCrowd()
+            var crowd = createCrowd()
+            secondScene.myCrowd = crowd
+            
+            if let dict = JSONSerializer.serializeNewCrowd(crowd) {
+                println("sending new crowd!")
+                self.socket.emit("newCrowd", dict)
+            }
             
             // TODO: add crowd to database
             // TODO: figure out how not to go all the way back to crowd preferences
