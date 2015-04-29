@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PendingTableViewController: UITableViewController {
+class PendingTableViewController: UITableViewController, updateCrowdsList {
     
     
     // Crowd Data
@@ -16,6 +16,8 @@ class PendingTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        User.currentUser.userDelegate = self
 
         if let tbvc = self.tabBarController as? CrowdTabViewController {
             crowd = tbvc.myCrowd
@@ -78,6 +80,12 @@ class PendingTableViewController: UITableViewController {
                 User.currentUser.upvoteSong(crowdUID, songUID: songUID)
                 self.tableView.reloadData()
                 
+                
+                if let dict = JSONSerializer.serializeVote(crowdUID, songID: songUID) {
+                    println("sending upvote!")
+                    println("json object = \(JSONSerializer.toJSON(dict))")
+                    Socket.currentSocket.socketIO.emit("upVote", dict)
+                }
                 
                 //send vote over socket
                 print("upvote")
@@ -174,6 +182,11 @@ class PendingTableViewController: UITableViewController {
         print("downvote")
 //        self.socket.emit("downVote", 2)
 //        self.socket.emit("fromClient")
+    }
+    
+    func updateCrowds() {
+        println("should reload")
+        tableView.reloadData()
     }
     
     

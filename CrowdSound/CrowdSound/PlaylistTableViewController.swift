@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, SPTAuthViewDelegate,  SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, updateTracklistObserver {
+class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, SPTAuthViewDelegate,  SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, updateTracklistObserver, updateCrowdsList {
     
     // UI Elements
     @IBOutlet var tableView: UITableView!
@@ -50,6 +50,8 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         // TODO: add if user or host flow
         // set the delegate
         self.crowd?.playlist.playlistDelegate = self
+        User.currentUser.userDelegate = self
+
         
         // Initializes and logs-in to the SPTAudioStreamingController
         self.handleNewSession()
@@ -468,6 +470,11 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateCrowds() {
+        println("should reload playlist") 
+        tableView.reloadData()
     }
     
 }
