@@ -16,24 +16,24 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var crowd : Crowd?
     
     // define socket.io in class
-    let socket = SocketIOClient(socketURL: "localhost:8080")
-
-    func addHandlers() {
-        
-        //chat messages because why not:
-        self.socket.on("chat message") {[weak self] data, ack in
-            print("I got a message!!")
-            return
-        }
-        // Using a shorthand parameter name for closures
-        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
-        
-        self.socket.on("voted") {[weak self] data, ack in
-            print("voted!")
-            return
-        }
-    }
-    
+//    let socket = SocketIOClient(socketURL: "localhost:8080")
+//
+//    func addHandlers() {
+//        
+//        //chat messages because why not:
+//        self.socket.on("chat message") {[weak self] data, ack in
+//            print("I got a message!!")
+//            return
+//        }
+//        // Using a shorthand parameter name for closures
+//        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+//        
+//        self.socket.on("voted") {[weak self] data, ack in
+//            print("voted!")
+//            return
+//        }
+//    }
+//    
     // data source for songTable.
     //  reloads songTable whenever updated.
     var searchArray:[Song] = [Song](){
@@ -78,8 +78,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         })()
         
         // WebSockets
-        self.addHandlers()
-        self.socket.connect()
+//        self.addHandlers()
+//        self.socket.connect()
     
     }
 
@@ -146,7 +146,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if let dict = JSONSerializer.serializeNewSongToPending(crowd!.uid, song: newSong) {
             //if let dict = JSONSerializer.serializeUpvote(crowdUID, songID: songUID) {
             println("adding song to pending!")
-            self.socket.emit("newPending", dict)
+//            self.socket.emit("newPending", dict)
+            Socket.currentSocket.socketIO.emit("newPending", dict)
         }
         
         

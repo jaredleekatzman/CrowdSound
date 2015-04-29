@@ -15,6 +15,7 @@ class User {
     var name : String = ""
     var upvotedSongs = [String: [String]]()
     var uid = NSUUID().UUIDString
+    var crowds : [Crowd] = []
     
     // create a singleton of the current user
     class var currentUser: User {

@@ -14,7 +14,7 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
     var authViewController : SPTAuthViewController?
     
     // define socket.io in class
-    let socket = SocketIOClient(socketURL: "localhost:8080")
+//    let socket = SocketIOClient(socketURL: "localhost:8080")
     
     // UI elements
     @IBOutlet weak var crowdNameText: UITextField!
@@ -38,26 +38,26 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
         updateLoginButton()
         
         // socket methods
-        self.addHandlers()
-        self.socket.connect()
+//        self.addHandlers()
+//        self.socket.connect()
     }
     
-    func addHandlers() {
-        
-        //chat messages because why not:
-        self.socket.on("chat message") {[weak self] data, ack in
-            print("I got a message!!")
-            return
-        }
-        // Using a shorthand parameter name for closures
-        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
-        
-        self.socket.on("voted") {[weak self] data, ack in
-            print("voted!")
-            return
-        }
-    }
-    
+//    func addHandlers() {
+//        
+//        //chat messages because why not:
+//        self.socket.on("chat message") {[weak self] data, ack in
+//            print("I got a message!!")
+//            return
+//        }
+//        // Using a shorthand parameter name for closures
+//        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+//        
+//        self.socket.on("voted") {[weak self] data, ack in
+//            print("voted!")
+//            return
+//        }
+//    }
+//    
     // USER INTERFACE FUNCTIONS
     
     // get value from upvote slider
@@ -252,7 +252,7 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
             
             if let dict = JSONSerializer.serializeNewCrowd(crowd) {
                 println("sending new crowd!")
-                self.socket.emit("newCrowd", dict)
+                Socket.currentSocket.socketIO.emit("newCrowd", dict)
             }
             
             // TODO: add crowd to database
