@@ -126,7 +126,7 @@ class PendingTableViewController: UITableViewController {
         if let songUID = crowd?.pending.getSongUID(songIndex) {
             let crowdUID = crowd?.uid ?? ""
             if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
-                cell.upvoteBttn.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal)
+                cell.upvoteBttn.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal) 
             }
             else {
                 cell.upvoteBttn.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
