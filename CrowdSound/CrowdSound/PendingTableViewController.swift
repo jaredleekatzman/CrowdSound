@@ -115,7 +115,8 @@ class PendingTableViewController: UITableViewController {
                 if let dict = JSONSerializer.serializeUpvote("crowdID", songID: "songID") { 
                 //if let dict = JSONSerializer.serializeUpvote(crowdUID, songID: songUID) {
                     println("sending upvote!")
-                    self.socket.emit("upVote", JSONSerializer.toJSON(dict)!)
+                    println("json object = \(JSONSerializer.toJSON(dict))")
+                    self.socket.emit("upVote", JSONSerializer.toJSON(dict))
                 }
 
 //                self.socket.emit("chat message", "this is a chat from the phone")
