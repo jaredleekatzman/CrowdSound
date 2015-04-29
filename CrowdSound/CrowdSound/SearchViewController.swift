@@ -34,6 +34,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         self.songTable.delegate         = self
         self.songTable.dataSource       = self
         
+        // UI Code: Set 'Bounce Area' background to be black
+        let topView = UIView(frame: CGRectMake(0, -480, 500, 480))
+        topView.backgroundColor = UIColor.blackColor()
+        self.songTable.addSubview(topView)
+        
         
         // Configure songSearchController
         self.songSearchController = ({
