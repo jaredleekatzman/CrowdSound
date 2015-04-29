@@ -10,6 +10,9 @@ import UIKit
 
 class PendingTableViewController: UITableViewController {
     
+    // define socket.io in class
+    let socket = SocketIOClient(socketURL: "54.152.114.46/")
+    
     // Crowd Data
     var crowd : Crowd?
     
@@ -24,6 +27,26 @@ class PendingTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // WebSockets
+        self.addHandlers()
+        self.socket.connect()
+    }
+    
+    func addHandlers() {
+        
+        //chat messages because why not:
+        self.socket.on("chat message") {[weak self] data, ack in
+            print("I got a message!!")
+            return
+        }
+        // Using a shorthand parameter name for closures
+        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+        
+        self.socket.on("voted") {[weak self] data, ack in
+            print("voted!")
+            return
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,15 +108,24 @@ class PendingTableViewController: UITableViewController {
                 User.currentUser.upvoteSong(crowdUID, songUID: songUID)
                 crowd?.pending.upvoteSong(songIndex)
                 self.tableView.reloadData()
+
+                //send vote over socket
+                print("upvote")
+                self.socket.emit("chat message", "this is a chat from the phone")
+                self.socket.emit("fromClient")
             }
         }
-
     }
     
     // When Downvote Button Pressed: Downvote song at cell index
     func downvote(sender:UIButton!) {
         crowd?.downvotePendingSong(sender.tag)
         self.tableView.reloadData()
+        
+        //send vote over socket
+        print("downvote")
+        self.socket.emit("downVote", 2)
+        self.socket.emit("fromClient")
     }
     
 
