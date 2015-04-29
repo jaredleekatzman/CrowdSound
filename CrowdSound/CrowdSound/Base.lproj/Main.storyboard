@@ -700,10 +700,6 @@
                                                     <action selector="playPause:" destination="Q7L-hJ-irK" eventType="touchUpInside" id="jO8-Ea-4gI"/>
                                                 </connections>
                                             </button>
-                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Tea-0C-ea4">
-                                                <rect key="frame" x="0.0" y="64" width="600" height="2"/>
-                                                <color key="tintColor" red="0.99607843139999996" green="0.90588235289999997" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </progressView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-4W-qVv">
                                                 <rect key="frame" x="202" y="17" width="60" height="30"/>
                                                 <constraints>
@@ -727,12 +723,9 @@
                                             <constraint firstAttribute="bottom" secondItem="a4I-64-rDC" secondAttribute="bottom" constant="4" id="I1d-tx-Pnh"/>
                                             <constraint firstItem="G7e-4W-qVv" firstAttribute="top" secondItem="Gb3-bi-7fp" secondAttribute="top" constant="17" id="ItJ-ir-ACA"/>
                                             <constraint firstItem="G7e-4W-qVv" firstAttribute="top" secondItem="uep-6X-FOO" secondAttribute="top" id="R3Z-is-oCw"/>
-                                            <constraint firstItem="Tea-0C-ea4" firstAttribute="centerX" secondItem="a4I-64-rDC" secondAttribute="centerX" id="b2t-L7-Us9"/>
-                                            <constraint firstItem="Tea-0C-ea4" firstAttribute="leading" secondItem="Gb3-bi-7fp" secondAttribute="leading" id="k2S-Yn-4c0"/>
                                             <constraint firstAttribute="width" secondItem="Gb3-bi-7fp" secondAttribute="height" multiplier="100:11" id="qaE-in-uND"/>
                                             <constraint firstItem="uep-6X-FOO" firstAttribute="leading" secondItem="a4I-64-rDC" secondAttribute="trailing" constant="8" symbolic="YES" id="uIw-b1-gUz"/>
                                             <constraint firstItem="a4I-64-rDC" firstAttribute="centerY" secondItem="G7e-4W-qVv" secondAttribute="centerY" id="xOy-jN-BXo"/>
-                                            <constraint firstAttribute="bottom" secondItem="Tea-0C-ea4" secondAttribute="bottom" id="zPe-uU-s28"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -791,6 +784,10 @@
                                             </mask>
                                         </variation>
                                     </view>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Tea-0C-ea4">
+                                        <rect key="frame" x="0.0" y="226" width="600" height="2"/>
+                                        <color key="tintColor" red="0.99607843139999996" green="0.90588235289999997" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="0.75" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -798,16 +795,21 @@
                                     <constraint firstItem="Gb3-bi-7fp" firstAttribute="leading" secondItem="pOp-mF-PLi" secondAttribute="leading" id="6Ou-He-X0f"/>
                                     <constraint firstItem="pOp-mF-PLi" firstAttribute="centerX" secondItem="Gb3-bi-7fp" secondAttribute="centerX" id="AhK-HO-CWT"/>
                                     <constraint firstItem="Gb3-bi-7fp" firstAttribute="leading" secondItem="A7M-Ti-6L5" secondAttribute="leading" id="BBI-HX-JwE"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tea-0C-ea4" secondAttribute="bottom" id="BjP-do-wi9"/>
+                                    <constraint firstItem="Tea-0C-ea4" firstAttribute="leading" secondItem="Gb3-bi-7fp" secondAttribute="leading" id="CiR-Js-eUK"/>
                                     <constraint firstAttribute="bottom" secondItem="pOp-mF-PLi" secondAttribute="bottom" constant="187" id="D1g-cz-guX"/>
                                     <constraint firstItem="S56-og-Dpd" firstAttribute="top" secondItem="pOp-mF-PLi" secondAttribute="top" id="EQj-7v-X7j"/>
                                     <constraint firstItem="pOp-mF-PLi" firstAttribute="trailing" secondItem="Gb3-bi-7fp" secondAttribute="trailing" id="Ew2-rl-4nE"/>
                                     <constraint firstItem="pOp-mF-PLi" firstAttribute="trailing" secondItem="S56-og-Dpd" secondAttribute="trailing" id="FMG-03-Q8n"/>
                                     <constraint firstItem="pOp-mF-PLi" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="top" id="IfO-h1-76B"/>
+                                    <constraint firstItem="Tea-0C-ea4" firstAttribute="leading" secondItem="A7M-Ti-6L5" secondAttribute="leading" id="JFM-BA-7un"/>
                                     <constraint firstItem="S56-og-Dpd" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="top" id="NLu-sc-Nct"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tea-0C-ea4" secondAttribute="trailing" id="Nc9-sZ-Wqt"/>
                                     <constraint firstItem="pOp-mF-PLi" firstAttribute="centerX" secondItem="S56-og-Dpd" secondAttribute="centerX" id="PCQ-cE-tsr"/>
                                     <constraint firstItem="Gb3-bi-7fp" firstAttribute="trailing" secondItem="S56-og-Dpd" secondAttribute="trailing" id="PNa-Rk-2nI"/>
                                     <constraint firstItem="Gb3-bi-7fp" firstAttribute="centerX" secondItem="S56-og-Dpd" secondAttribute="centerX" id="RBK-jj-fHM"/>
                                     <constraint firstAttribute="centerX" secondItem="S56-og-Dpd" secondAttribute="centerX" id="UXI-Bx-MXb"/>
+                                    <constraint firstItem="Tea-0C-ea4" firstAttribute="bottom" secondItem="S56-og-Dpd" secondAttribute="bottom" id="XE7-s2-W69"/>
                                     <constraint firstItem="Gb3-bi-7fp" firstAttribute="leading" secondItem="S56-og-Dpd" secondAttribute="leading" id="ZAz-qZ-GM2"/>
                                     <constraint firstItem="S56-og-Dpd" firstAttribute="leading" secondItem="A7M-Ti-6L5" secondAttribute="leading" id="aNm-6J-S6g"/>
                                     <constraint firstAttribute="bottom" secondItem="Gb3-bi-7fp" secondAttribute="bottom" id="bLD-2U-CvX"/>
@@ -815,6 +817,7 @@
                                     <constraint firstItem="pOp-mF-PLi" firstAttribute="leading" secondItem="S56-og-Dpd" secondAttribute="leading" id="efv-DD-rJu"/>
                                     <constraint firstAttribute="centerY" secondItem="S56-og-Dpd" secondAttribute="centerY" id="iJN-4n-oGH"/>
                                     <constraint firstItem="S56-og-Dpd" firstAttribute="trailing" secondItem="Gb3-bi-7fp" secondAttribute="trailing" id="kRc-Dl-jUb"/>
+                                    <constraint firstItem="Tea-0C-ea4" firstAttribute="trailing" secondItem="Gb3-bi-7fp" secondAttribute="trailing" id="lEX-zu-tKX"/>
                                     <constraint firstItem="pOp-mF-PLi" firstAttribute="leading" secondItem="S56-og-Dpd" secondAttribute="leading" id="pD5-Zj-Phk"/>
                                     <constraint firstItem="Gb3-bi-7fp" firstAttribute="bottom" secondItem="S56-og-Dpd" secondAttribute="bottom" id="rFJ-6R-Qp9"/>
                                     <constraint firstAttribute="trailing" secondItem="Gb3-bi-7fp" secondAttribute="trailing" id="sIt-ff-QQ1"/>
@@ -830,6 +833,9 @@
                                         <exclude reference="BBI-HX-JwE"/>
                                         <exclude reference="rFJ-6R-Qp9"/>
                                         <exclude reference="sIt-ff-QQ1"/>
+                                        <exclude reference="CiR-Js-eUK"/>
+                                        <exclude reference="XE7-s2-W69"/>
+                                        <exclude reference="lEX-zu-tKX"/>
                                     </mask>
                                 </variation>
                             </view>
