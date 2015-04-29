@@ -81,20 +81,25 @@ class PendingTableViewController: UITableViewController {
                 
                 //send vote over socket
                 print("upvote")
-//                self.socket.emit("chat message", "this is a chat from the phone")
-//                self.socket.emit("fromClient")
+
             }
             // User has already upvoted
             else {
+                
+                // TODO: uncomment if we want downvote
+                /*if let dict = JSONSerializer.serializeVote(crowdUID, songID: songUID) {
+                    Socket.currentSocket.socketIO.emit("downVote", dict)
+                }
+    
                 button.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal)
                 crowd?.downvotePendingSong(songIndex)
-//                User.currentUser.downvoteSong(crowdUID, songUID: songUID)
-                self.tableView.reloadData()
+                User.currentUser.downvoteSong(crowdUID, songUID: songUID)
+                self.tableView.reloadData()*/
                 
+                
+
                 //send vote over socket
                 print("downvote")
-//                self.socket.emit("downVote", 1)
-//                self.socket.emit("fromClient")
             }
         }
     }
@@ -151,7 +156,7 @@ class PendingTableViewController: UITableViewController {
 
                 //send vote over socket
                 print("upvote")
-                if let dict = JSONSerializer.serializeUpvote(crowdUID, songID: songUID) {
+                if let dict = JSONSerializer.serializeVote(crowdUID, songID: songUID) {
                     println("sending upvote!")
                     println("json object = \(JSONSerializer.toJSON(dict))")
                     Socket.currentSocket.socketIO.emit("upVote", dict)
