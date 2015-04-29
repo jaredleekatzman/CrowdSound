@@ -32,21 +32,21 @@ class Socket {
         
         //chat messages because why not:
         socketIO.on("updated playlists") {[weak self] data, ack in
+            println("I got a PLAYLIST UPDATE!!")
             let json = JSON(data!)
             JSONDeserializer.deserializePlaylist(json)
-            print("I got a PLAYLIST UPDATE!!")
             return
         }
         
         socketIO.on("updated pendings") {[weak self] data, ack in
+            println("I got a PENDING UPDATE!!")
             let json = JSON(data!)
             JSONDeserializer.deserializePending(json)
-            print("I got a PENDING UPDATE!!")
             return
         }
         
         socketIO.on("updated crowds") {[weak self] data, ack in
-            print("I got a Crowd UPDATE!!")
+            println("I got a Crowd UPDATE!!")
             let json = JSON(data!)
             JSONDeserializer.deserializeCrowdsList(json)
             return
@@ -55,12 +55,12 @@ class Socket {
 
 
         // Using a shorthand parameter name for closures
-        socketIO.onAny {println("Got event: \($0.event), with items: \($0.items)")}
-        
-        socketIO.on("voted") {[weak self] data, ack in
-            print("voted!")
-            return
-        }
+//        socketIO.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+//        
+//        socketIO.on("voted") {[weak self] data, ack in
+//            print("voted!")
+//            return
+//        }
     }
     
 }

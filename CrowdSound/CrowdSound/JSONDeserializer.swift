@@ -16,6 +16,7 @@ class JSONDeserializer {
                 var pending = makePlaylist(subJSON)
                 for (crowd: Crowd) in User.currentUser.crowds {
                     if crowd.uid == crowdUID {
+                        println("updated crowd \(crowd.name) with new pending!!")
                         crowd.pending.songs = pending
                     }
                 }
@@ -29,6 +30,7 @@ class JSONDeserializer {
                 var playlist = makePlaylist(subJSON)
                 for (crowd: Crowd) in User.currentUser.crowds {
                     if crowd.uid == crowdUID {
+                        println("updated crowd \(crowd.name) with new playlist!!")
                         crowd.playlist.songs = playlist
                     }
                 }
@@ -53,7 +55,13 @@ class JSONDeserializer {
             if let spotifyURL = NSURL(string: songJSON["spotifyURI"].stringValue) {
                 song.spotifyURI = spotifyURL
             }
-            println("song deserialized = \(song)") 
+            
+            // skip if null 
+            if (song.artist.isEmpty || song.name.isEmpty) {
+                continue
+            }
+            println("song deserialized, name = \(song.name), artist = \(song.artist), spot URI = \(song.spotifyURI)")
+
             songs.append(song)
         }
         return songs
@@ -76,7 +84,7 @@ class JSONDeserializer {
                 crowd.password = crowdJSON["password"].stringValue
                 crowd.threshold = crowdJSON["threshold"].intValue
                 crowds.append(crowd)
-                println("crowd deserialized = \(crowd)")
+                println("crowd deserialized = \(crowd.name), host = \(crowd.host), threshold = \(crowd.threshold)")
             }
             
             User.currentUser.crowds = crowds
