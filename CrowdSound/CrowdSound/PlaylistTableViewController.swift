@@ -124,6 +124,11 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     // for debugging: changed playback status
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
         NSLog("Is playing = \(isPlaying)")
+        if self.player!.isPlaying {
+            playButton.setImage(UIImage(named: "pauseButton"), forState: UIControlState.Normal)
+        } else {
+            playButton.setImage(UIImage(named: "playButton"), forState: UIControlState.Normal)
+        }
     }
     
     // handle playing next song
@@ -370,27 +375,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         return ret!
         
     }
-    
-//    - (UIImage *)applyBlurOnImage: (UIImage *)imageToBlur
-//    withRadius: (CGFloat)blurRadius {
-//    
-//    CIImage *originalImage = [CIImage imageWithCGImage: imageToBlur.CGImage];
-//    CIFilter *filter = [CIFilter filterWithName: @"CIGaussianBlur"
-//    keysAndValues: kCIInputImageKey, originalImage,
-//    @"inputRadius", @(blurRadius), nil];
-//    
-//    CIImage *outputImage = filter.outputImage;
-//    CIContext *context = [CIContext contextWithOptions:nil];
-//    
-//    CGImageRef outImage = [context createCGImage: outputImage
-//    fromRect: [outputImage extent]];
-//    
-//    UIImage *ret = [UIImage imageWithCGImage: outImage];
-//    
-//    CGImageRelease(outImage);
-//    
-//    return ret;
-//    }
     
     // MARK: - Table view data source - Defaulted
     
