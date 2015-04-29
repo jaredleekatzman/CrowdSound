@@ -77,8 +77,9 @@ class PendingTableViewController: UITableViewController {
             if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
                 // User can Upvote!
                 button.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
-                button.enabled = false
+//                button.enabled = false
                 crowd?.upvotePendingSong(songIndex)
+                User.currentUser.upvoteSong(crowdUID, songUID: songUID)
                 self.tableView.reloadData()
                 
                 
@@ -91,6 +92,7 @@ class PendingTableViewController: UITableViewController {
             else {
                 button.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal)
                 crowd?.downvotePendingSong(songIndex)
+                User.currentUser.downvoteSong(crowdUID, songUID: songUID)
                 self.tableView.reloadData()
                 
                 //send vote over socket
@@ -117,18 +119,23 @@ class PendingTableViewController: UITableViewController {
         
         cell.votesLabel.text = String(currentSong.upvotes)
         cell.upvoteBttn.tag = indexPath.row
+
+        
+        let songIndex = indexPath.row
+        
+        if let songUID = crowd?.pending.getSongUID(songIndex) {
+            let crowdUID = crowd?.uid ?? ""
+            if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
+                cell.upvoteBttn.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal)
+            }
+            else {
+                cell.upvoteBttn.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
+            }
+        }
         
         // Creates Button Action Listeners
         cell.upvoteBttn.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-//        // transforms button if upvote already clicked 
-//        if let songUID = crowd?.pending.getSongUID(indexPath.row) {
-//            let crowdUID = crowd?.uid ?? ""
-//            if !User.currentUser.canUpvote(crowdUID, songUID: songUID) {
-//                upvoteButtonAlreadyPressed(cell.upvoteBttn)
-//
-//            }
-//        }
+
         
         return cell
     }

@@ -42,11 +42,24 @@ class User {
     
     // upvotes a current song
     func upvoteSong(crowdUID: String, songUID: String) {
+        // If crowd dictionary exists
         if var songs = upvotedSongs[crowdUID] {
             songs.append(songUID)
             upvotedSongs[crowdUID] = songs
-        } else {
+        }
+        else { // Create the list
             upvotedSongs[crowdUID] = [songUID]
+        }
+    }
+    
+    // downvotes a current song
+    func downvoteSong(crowdUID: String, songUID: String) {
+        if var songs = upvotedSongs[crowdUID] {
+            songs = songs.filter { $0 != songUID }
+            upvotedSongs[crowdUID] = songs
+        }
+        else {    // Should never get here?
+            upvotedSongs[crowdUID] = []
         }
     }
 }
