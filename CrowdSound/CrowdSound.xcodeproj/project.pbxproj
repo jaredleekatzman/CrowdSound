@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C313CC3C1AF002570073BB27 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313CC3B1AF002570073BB27 /* UserTests.swift */; };
-		C313CC3D1AF002E70073BB27 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
 		8D8930901AEF004B00A66F2D /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D89308F1AEF004B00A66F2D /* SRWebSocket.m */; };
 		8D8930921AEF014700A66F2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8930911AEF014700A66F2D /* libicucore.dylib */; };
 		8D8930941AEF015B00A66F2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8930931AEF015B00A66F2D /* CFNetwork.framework */; };
@@ -25,6 +23,8 @@
 		8D8930C81AEF077800A66F2D /* SocketParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BD1AEF077800A66F2D /* SocketParser.swift */; };
 		8D8930C91AEF077800A66F2D /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BE1AEF077800A66F2D /* SwiftRegex.swift */; };
 		8D8930CA1AEF077800A66F2D /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BF1AEF077800A66F2D /* WebSocket.swift */; };
+		C313CC3C1AF002570073BB27 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313CC3B1AF002570073BB27 /* UserTests.swift */; };
+		C313CC3D1AF002E70073BB27 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
 		C31CB1521AAA48B700D229DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1511AAA48B700D229DC /* AppDelegate.swift */; };
 		C31CB1571AAA48B700D229DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31CB1551AAA48B700D229DC /* Main.storyboard */; };
 		C31CB1591AAA48B700D229DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31CB1581AAA48B700D229DC /* Images.xcassets */; };
@@ -38,6 +38,7 @@
 		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
 		C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */; };
 		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
+		C3617F1D1AF08446005CBEA0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */; };
 		C366E0511AEF430900A285CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
 		C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */; };
 		C39B51981AE2ECA7008946E1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */; };
@@ -74,7 +75,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C313CC3B1AF002570073BB27 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		8D89308D1AEF004B00A66F2D /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
 		8D89308E1AEF004B00A66F2D /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		8D89308F1AEF004B00A66F2D /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
@@ -93,6 +93,7 @@
 		8D8930BD1AEF077800A66F2D /* SocketParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketParser.swift; sourceTree = "<group>"; };
 		8D8930BE1AEF077800A66F2D /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		8D8930BF1AEF077800A66F2D /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		C313CC3B1AF002570073BB27 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		C31CB14C1AAA48B700D229DC /* CrowdSound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31CB1501AAA48B700D229DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C31CB1511AAA48B700D229DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
 		C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigTableViewController.swift; path = ../ConfigTableViewController.swift; sourceTree = "<group>"; };
 		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
+		C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C366E0501AEF430900A285CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				C31CB1711AAA4FAC00D229DC /* Crowd.swift */,
 				C366E0501AEF430900A285CA /* User.swift */,
 				C31CB1731AAA4FE800D229DC /* Playlist.swift */,
+				C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */,
 				C31CB1751AAA4FF600D229DC /* Song.swift */,
 				EDF0C2B11AD49D4400221DFD /* CrowdSound-Bridging-Header.h */,
 				EDF0C2B51AD49E5500221DFD /* Config.swift */,
@@ -401,6 +404,7 @@
 				8D8930C41AEF077800A66F2D /* SocketEventHandler.swift in Sources */,
 				8D8930C81AEF077800A66F2D /* SocketParser.swift in Sources */,
 				C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */,
+				C3617F1D1AF08446005CBEA0 /* SwiftyJSON.swift in Sources */,
 				8D8930C71AEF077800A66F2D /* SocketPacket.swift in Sources */,
 				C31CB1741AAA4FE800D229DC /* Playlist.swift in Sources */,
 			);
