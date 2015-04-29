@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrowdSound/CrowdsTableViewController.swift"
-            timestampString = "451968780.847089"
+            timestampString = "451995010.467614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "numberOfSectionsInTableView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,7 +438,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrowdSound/SearchViewController.swift"
@@ -451,48 +451,99 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CrowdSound.SearchViewController.(updateSearchResultsForSearchController (CrowdSound.SearchViewController) -&gt; (ObjectiveC.UISearchController) -&gt; ()).(closure #1)"
-                  moduleName = "CrowdSound"
-                  urlString = "file:///Users/jaredkatzman/Documents/Classes/Junior%20Year/Spring%20Semester/CPSC%20439/CrowdSound/CrowdSound-iOS/CrowdSound/CrowdSound/SearchViewController.swift"
-                  timestampString = "451986637.697814"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "172"
-                  endingLineNumber = "172"
-                  offsetFromSymbolStart = "3837">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "CrowdSound.SearchViewController.(updateSearchResultsForSearchController (CrowdSound.SearchViewController) -&gt; (ObjectiveC.UISearchController) -&gt; ()).(closure #1).(closure #1)"
                   moduleName = "CrowdSound"
                   urlString = "file:///Users/jaredkatzman/Documents/Classes/Junior%20Year/Spring%20Semester/CPSC%20439/CrowdSound/CrowdSound-iOS/CrowdSound/CrowdSound/SearchViewController.swift"
-                  timestampString = "451986637.698029"
+                  timestampString = "451994402.29735"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "172"
-                  endingLineNumber = "172"
-                  offsetFromSymbolStart = "23">
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "reabstraction thunk helper from @callee_owned (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;, @owned Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;) -&gt; (@unowned ()) to @callee_unowned @objc_block (@unowned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSError&gt;, @unowned Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;) -&gt; (@unowned ())"
                   moduleName = "CrowdSound"
                   urlString = "file:///Users/jaredkatzman/Documents/Classes/Junior%20Year/Spring%20Semester/CPSC%20439/CrowdSound/CrowdSound-iOS/CrowdSound/CrowdSound/SearchViewController.swift"
-                  timestampString = "451986637.698208"
+                  timestampString = "451994402.297575"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "172"
-                  endingLineNumber = "172"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
                   offsetFromSymbolStart = "4">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrowdSoundTests/CrowdTableViewControllerSpec.swift"
+            timestampString = "451992779.820888"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "spec()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "*0x10719a8ad">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "swift_dynamicCastClassUnconditional"
+                  moduleName = "libswiftCore.dylib"
+                  offsetFromSymbolStart = "77">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrowdSound/PendingTableViewController.swift"
+            timestampString = "451996826.968034"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrowdSound/PendingTableViewController.swift"
+            timestampString = "451996828.128073"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

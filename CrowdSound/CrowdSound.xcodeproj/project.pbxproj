@@ -51,6 +51,9 @@
 		C3C31D1F1AE426790025470D /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C31D191AE426790025470D /* FBSDKShareKit.framework */; };
 		C3F0B7F91AED42F80016381D /* ConfigPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F0B7F81AED42F80016381D /* ConfigPageTests.swift */; };
 		ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */; };
+		ED4957B01AF0E2F200E7C244 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */; };
+		ED4957B11AF0E30A00E7C244 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */; };
+		ED4957B41AF0E92F00E7C244 /* PendingTableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4957B31AF0E92F00E7C244 /* PendingTableViewControllerSpec.swift */; };
 		ED9CFDA41AE1A009005C1DF7 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9CFDA31AE1A009005C1DF7 /* PlaylistTableViewController.swift */; };
 		EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */; };
 		EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1711AAA4FAC00D229DC /* Crowd.swift */; };
@@ -58,6 +61,9 @@
 		EDBAB79F1ACC567100E7164C /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1731AAA4FE800D229DC /* Playlist.swift */; };
 		EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */; };
 		EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A21ACC585100E7164C /* SongTests.swift */; };
+		EDBC07511AF0DBF700E7BBFA /* CrowdTableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBC07501AF0DBF700E7BBFA /* CrowdTableViewControllerSpec.swift */; };
+		EDBC07581AF0DD0900E7BBFA /* CrowdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */; };
+		EDBC07611AF0E0D100E7BBFA /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
 		EDCBFA6C1AD4A59D00C5CF96 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */; };
 		EDE753EB1AF0C80B00A7B05C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE753E01AF0C7F200A7B05C /* Quick.framework */; };
 		EDF0C2B01AD49CAD00221DFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */; };
@@ -167,10 +173,12 @@
 		C3C31D191AE426790025470D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		C3F0B7F81AED42F80016381D /* ConfigPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigPageTests.swift; sourceTree = "<group>"; };
 		ED170F7D1AD5B32A00BD3D96 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		ED4957B31AF0E92F00E7C244 /* PendingTableViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingTableViewControllerSpec.swift; sourceTree = "<group>"; };
 		ED9CFDA31AE1A009005C1DF7 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlaylistTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrowdTests.swift; path = CrowdSoundTests/CrowdTests.swift; sourceTree = SOURCE_ROOT; };
 		EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTests.swift; sourceTree = "<group>"; };
 		EDBAB7A21ACC585100E7164C /* SongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTests.swift; sourceTree = "<group>"; };
+		EDBC07501AF0DBF700E7BBFA /* CrowdTableViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTableViewControllerSpec.swift; sourceTree = "<group>"; };
 		EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = "../Quick-0.2.3/Quick.xcodeproj"; sourceTree = "<group>"; };
 		EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -204,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDE753EB1AF0C80B00A7B05C /* Quick.framework in Frameworks */,
+				ED4957B01AF0E2F200E7C244 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +320,8 @@
 				EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */,
 				C3F0B7F81AED42F80016381D /* ConfigPageTests.swift */,
 				EDBAB7A21ACC585100E7164C /* SongTests.swift */,
+				EDBC07501AF0DBF700E7BBFA /* CrowdTableViewControllerSpec.swift */,
+				ED4957B31AF0E92F00E7C244 /* PendingTableViewControllerSpec.swift */,
 			);
 			path = CrowdSoundTests;
 			sourceTree = "<group>";
@@ -525,15 +536,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDBAB79E1ACC566D00E7164C /* Song.swift in Sources */,
+				EDBC07511AF0DBF700E7BBFA /* CrowdTableViewControllerSpec.swift in Sources */,
+				EDBC07611AF0E0D100E7BBFA /* CrowdTabViewController.swift in Sources */,
 				C31CB1681AAA48B700D229DC /* CrowdSoundTests.swift in Sources */,
 				EDBAB79F1ACC567100E7164C /* Playlist.swift in Sources */,
+				ED4957B41AF0E92F00E7C244 /* PendingTableViewControllerSpec.swift in Sources */,
 				EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */,
+				ED4957B11AF0E30A00E7C244 /* SettingsTableViewController.swift in Sources */,
 				EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */,
 				EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */,
 				C313CC3C1AF002570073BB27 /* UserTests.swift in Sources */,
 				C3F0B7F91AED42F80016381D /* ConfigPageTests.swift in Sources */,
 				C313CC3D1AF002E70073BB27 /* User.swift in Sources */,
 				EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */,
+				EDBC07581AF0DD0900E7BBFA /* CrowdsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,10 +704,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble-swift-1.1/build/Debug-iphoneos",
-					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor/Nimble-swift-1.1/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Nimble/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug",
-					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Nimble-0.3.0/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Nimble-0.3.0/build/Debug-iphoneos",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -700,6 +717,7 @@
 				INFOPLIST_FILE = CrowdSoundTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CrowdSound/CrowdSound-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSound.app/CrowdSound";
 			};
 			name = Debug;
@@ -711,14 +729,16 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble-swift-1.1/build/Debug-iphoneos",
-					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor/Nimble-swift-1.1/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Nimble/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug",
-					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Nimble-0.3.0/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Nimble-0.3.0/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = CrowdSoundTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CrowdSound/CrowdSound-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSound.app/CrowdSound";
 			};
 			name = Release;

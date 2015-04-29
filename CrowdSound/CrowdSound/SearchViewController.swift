@@ -180,7 +180,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                         newSong.artist = artist
                         println(newSong.artist)
                     }
-                    if let imageURL = track.album.largestCover.imageURL {
+                    if let imageURL = track.album.largestCover?.imageURL {
                         newSong.spotifyAlbumArtURL = imageURL
                     }
                     

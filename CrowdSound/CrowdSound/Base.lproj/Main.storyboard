@@ -10,7 +10,7 @@
         <!--Crowds-->
         <scene sceneID="9sL-g7-79A">
             <objects>
-                <tableViewController id="5uS-XK-Xde" customClass="CrowdsTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CrowdsTableViewControllerID" id="5uS-XK-Xde" customClass="CrowdsTableViewController" customModule="CrowdSound" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BCr-nO-wOa">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
         <!--Config Table View Controller-->
         <scene sceneID="Qik-Np-kRh">
             <objects>
-                <tableViewController id="1qs-Dg-Q2g" customClass="ConfigTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="1qs-Dg-Q2g" customClass="ConfigTableViewController" customModule="CrowdSound" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gEJ-Uw-Ih0">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,7 +429,7 @@
         <!--Pending-->
         <scene sceneID="coq-yd-xVd">
             <objects>
-                <tableViewController id="ao9-aO-b7Q" customClass="PendingTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ao9-aO-b7Q" customClass="PendingTableViewController" customModule="CrowdSound" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DNQ-9t-eUt">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -541,7 +541,7 @@
         <!--Settings Table View Controller-->
         <scene sceneID="G8i-VM-6Ez">
             <objects>
-                <tableViewController id="nQI-uB-hx7" customClass="SettingsTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="nQI-uB-hx7" customClass="SettingsTableViewController" customModule="CrowdSound" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="sut-Zw-PH4">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -969,7 +969,7 @@
         <!--Crowd Tab View Controller-->
         <scene sceneID="gYI-yg-GLw">
             <objects>
-                <tabBarController id="2Vd-7u-S6Q" customClass="CrowdTabViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="2Vd-7u-S6Q" customClass="CrowdTabViewController" customModule="CrowdSound" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="X9f-Bp-XsZ">
@@ -994,7 +994,7 @@
         <!--Facebook View Controller-->
         <scene sceneID="eDG-RL-xcD">
             <objects>
-                <viewController id="pro-dg-h63" customClass="FacebookViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pro-dg-h63" customClass="FacebookViewController" customModule="CrowdSound" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OIB-tD-D4i"/>
                         <viewControllerLayoutGuide type="bottom" id="b6l-sb-LXl"/>
