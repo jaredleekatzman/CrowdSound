@@ -210,7 +210,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             
             // find proper crowd.
-            if (self.crowdSearchController.active && self.crowdSearchController.searchBar.text != "") {
+            if (self.crowdSearchController.active) {
                 selectedCrowd = searchArray[indexPath.row]
                 
                 // reset search defaults.
