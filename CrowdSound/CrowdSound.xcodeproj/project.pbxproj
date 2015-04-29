@@ -37,7 +37,6 @@
 		C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */; };
 		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
 		C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */; };
-		C337425E1AF0C393004D6A44 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C337425D1AF0C393004D6A44 /* Quick.framework */; };
 		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
 		C3617F1D1AF08446005CBEA0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */; };
 		C366E0511AEF430900A285CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
@@ -60,6 +59,7 @@
 		EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */; };
 		EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBAB7A21ACC585100E7164C /* SongTests.swift */; };
 		EDCBFA6C1AD4A59D00C5CF96 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */; };
+		EDE753EB1AF0C80B00A7B05C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE753E01AF0C7F200A7B05C /* Quick.framework */; };
 		EDF0C2B01AD49CAD00221DFD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */; };
 		EDF0C2B61AD49E5500221DFD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF0C2B51AD49E5500221DFD /* Config.swift */; };
 		EDF2377C1AC9FD67001B007C /* PendingSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */; };
@@ -72,6 +72,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = C31CB14B1AAA48B700D229DC;
 			remoteInfo = CrowdSound;
+		};
+		EDE753DF1AF0C7F200A7B05C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B8E1943873100289F44;
+			remoteInfo = "Quick-OSX";
+		};
+		EDE753E11AF0C7F200A7B05C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B991943873100289F44;
+			remoteInfo = "Quick-OSXTests";
+		};
+		EDE753E31AF0C7F200A7B05C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5663E81A4C8D8500193C88;
+			remoteInfo = "QuickFocused-OSXTests";
+		};
+		EDE753E51AF0C7F200A7B05C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D117C19473F2100F6D13D;
+			remoteInfo = "Quick-iOS";
+		};
+		EDE753E71AF0C7F200A7B05C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D118619473F2100F6D13D;
+			remoteInfo = "Quick-iOSTests";
+		};
+		EDE753E91AF0C7F200A7B05C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA9876B21A4C70EB0004AA17;
+			remoteInfo = "QuickFocused-iOSTests";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -111,7 +153,6 @@
 		C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdsTableViewController.swift; sourceTree = "<group>"; };
 		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
 		C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigTableViewController.swift; path = ../ConfigTableViewController.swift; sourceTree = "<group>"; };
-		C337425D1AF0C393004D6A44 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug/Quick.framework"; sourceTree = "<group>"; };
 		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
 		C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C366E0501AEF430900A285CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -131,6 +172,7 @@
 		EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTests.swift; sourceTree = "<group>"; };
 		EDBAB7A21ACC585100E7164C /* SongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTests.swift; sourceTree = "<group>"; };
 		EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = "../Quick-0.2.3/Quick.xcodeproj"; sourceTree = "<group>"; };
 		EDF0C2AF1AD49CAD00221DFD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EDF0C2B11AD49D4400221DFD /* CrowdSound-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrowdSound-Bridging-Header.h"; sourceTree = "<group>"; };
 		EDF0C2B51AD49E5500221DFD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -161,7 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C337425E1AF0C393004D6A44 /* Quick.framework in Frameworks */,
+				EDE753EB1AF0C80B00A7B05C /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +231,6 @@
 		C31CB1431AAA48B700D229DC = {
 			isa = PBXGroup;
 			children = (
-				C337425D1AF0C393004D6A44 /* Quick.framework */,
 				8D8930971AEF017100A66F2D /* Security.framework */,
 				8D8930951AEF016B00A66F2D /* Foundation.framework */,
 				8D8930931AEF015B00A66F2D /* CFNetwork.framework */,
@@ -205,6 +246,7 @@
 				C31CB14E1AAA48B700D229DC /* CrowdSound */,
 				C31CB1641AAA48B700D229DC /* CrowdSoundTests */,
 				C31CB14D1AAA48B700D229DC /* Products */,
+				EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -281,6 +323,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EDE753D71AF0C7F200A7B05C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDE753E01AF0C7F200A7B05C /* Quick.framework */,
+				EDE753E21AF0C7F200A7B05C /* Quick-OSXTests.xctest */,
+				EDE753E41AF0C7F200A7B05C /* QuickFocused-OSXTests.xctest */,
+				EDE753E61AF0C7F200A7B05C /* Quick.framework */,
+				EDE753E81AF0C7F200A7B05C /* Quick-iOSTests.xctest */,
+				EDE753EA1AF0C7F200A7B05C /* QuickFocused-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,6 +403,12 @@
 			mainGroup = C31CB1431AAA48B700D229DC;
 			productRefGroup = C31CB14D1AAA48B700D229DC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EDE753D71AF0C7F200A7B05C /* Products */;
+					ProjectRef = EDE753D61AF0C7F200A7B05C /* Quick.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C31CB14B1AAA48B700D229DC /* CrowdSound */,
@@ -355,6 +416,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EDE753E01AF0C7F200A7B05C /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = EDE753DF1AF0C7F200A7B05C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EDE753E21AF0C7F200A7B05C /* Quick-OSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick-OSXTests.xctest";
+			remoteRef = EDE753E11AF0C7F200A7B05C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EDE753E41AF0C7F200A7B05C /* QuickFocused-OSXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickFocused-OSXTests.xctest";
+			remoteRef = EDE753E31AF0C7F200A7B05C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EDE753E61AF0C7F200A7B05C /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = EDE753E51AF0C7F200A7B05C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EDE753E81AF0C7F200A7B05C /* Quick-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick-iOSTests.xctest";
+			remoteRef = EDE753E71AF0C7F200A7B05C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EDE753EA1AF0C7F200A7B05C /* QuickFocused-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickFocused-iOSTests.xctest";
+			remoteRef = EDE753E91AF0C7F200A7B05C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C31CB14A1AAA48B700D229DC /* Resources */ = {
