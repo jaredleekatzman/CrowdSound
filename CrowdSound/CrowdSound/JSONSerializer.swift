@@ -10,6 +10,16 @@ import Foundation
 
 class JSONSerializer {
     
+    class func toJSON(dict: [String: AnyObject]) -> NSString? {
+        // return error if necessary
+        var error:NSError?
+        let data = NSJSONSerialization.dataWithJSONObject(dict, options:NSJSONWritingOptions(0), error: &error)
+        return NSString(data: data!, encoding: NSUTF8StringEncoding)!
+    
+    
+    }
+    
+    
     class func serializeUpvote(crowdID: String, songID: String) -> [String: AnyObject]? {
         
         let dict = [
