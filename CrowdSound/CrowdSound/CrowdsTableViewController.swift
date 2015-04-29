@@ -49,6 +49,12 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
             
             return controller
         })()
+        
+        // UI Code: Set 'Bounce Area' background to be black
+        let topView = UIView(frame: CGRectMake(0, -480, 500, 480))
+        topView.backgroundColor = UIColor.blackColor()
+        self.tableView.addSubview(topView)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
