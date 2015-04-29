@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C313CC3C1AF002570073BB27 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C313CC3B1AF002570073BB27 /* UserTests.swift */; };
+		C313CC3D1AF002E70073BB27 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
+		8D8930901AEF004B00A66F2D /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D89308F1AEF004B00A66F2D /* SRWebSocket.m */; };
+		8D8930921AEF014700A66F2D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8930911AEF014700A66F2D /* libicucore.dylib */; };
+		8D8930941AEF015B00A66F2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8930931AEF015B00A66F2D /* CFNetwork.framework */; };
+		8D8930961AEF016B00A66F2D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8930951AEF016B00A66F2D /* Foundation.framework */; };
+		8D8930981AEF017100A66F2D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8930971AEF017100A66F2D /* Security.framework */; };
+		8D8930C01AEF077800A66F2D /* SocketAckMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930B51AEF077800A66F2D /* SocketAckMap.swift */; };
+		8D8930C11AEF077800A66F2D /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930B61AEF077800A66F2D /* SocketAnyEvent.swift */; };
+		8D8930C21AEF077800A66F2D /* SocketEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930B71AEF077800A66F2D /* SocketEngine.swift */; };
+		8D8930C31AEF077800A66F2D /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930B81AEF077800A66F2D /* SocketEngineClient.swift */; };
+		8D8930C41AEF077800A66F2D /* SocketEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930B91AEF077800A66F2D /* SocketEventHandler.swift */; };
+		8D8930C51AEF077800A66F2D /* SocketFixUTF8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BA1AEF077800A66F2D /* SocketFixUTF8.swift */; };
+		8D8930C61AEF077800A66F2D /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BB1AEF077800A66F2D /* SocketIOClient.swift */; };
+		8D8930C71AEF077800A66F2D /* SocketPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BC1AEF077800A66F2D /* SocketPacket.swift */; };
+		8D8930C81AEF077800A66F2D /* SocketParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BD1AEF077800A66F2D /* SocketParser.swift */; };
+		8D8930C91AEF077800A66F2D /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BE1AEF077800A66F2D /* SwiftRegex.swift */; };
+		8D8930CA1AEF077800A66F2D /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8930BF1AEF077800A66F2D /* WebSocket.swift */; };
 		C31CB1521AAA48B700D229DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1511AAA48B700D229DC /* AppDelegate.swift */; };
 		C31CB1571AAA48B700D229DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31CB1551AAA48B700D229DC /* Main.storyboard */; };
 		C31CB1591AAA48B700D229DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31CB1581AAA48B700D229DC /* Images.xcassets */; };
@@ -20,6 +38,7 @@
 		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
 		C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */; };
 		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
+		C366E0511AEF430900A285CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
 		C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */; };
 		C39B51981AE2ECA7008946E1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */; };
 		C3B99D171AE40CF9001A03C0 /* FacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B99D161AE40CF9001A03C0 /* FacebookViewController.swift */; };
@@ -55,6 +74,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C313CC3B1AF002570073BB27 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		8D89308D1AEF004B00A66F2D /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		8D89308E1AEF004B00A66F2D /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		8D89308F1AEF004B00A66F2D /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		8D8930911AEF014700A66F2D /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		8D8930931AEF015B00A66F2D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8D8930951AEF016B00A66F2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8D8930971AEF017100A66F2D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8D8930B51AEF077800A66F2D /* SocketAckMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckMap.swift; sourceTree = "<group>"; };
+		8D8930B61AEF077800A66F2D /* SocketAnyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAnyEvent.swift; sourceTree = "<group>"; };
+		8D8930B71AEF077800A66F2D /* SocketEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngine.swift; sourceTree = "<group>"; };
+		8D8930B81AEF077800A66F2D /* SocketEngineClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEngineClient.swift; sourceTree = "<group>"; };
+		8D8930B91AEF077800A66F2D /* SocketEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketEventHandler.swift; sourceTree = "<group>"; };
+		8D8930BA1AEF077800A66F2D /* SocketFixUTF8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketFixUTF8.swift; sourceTree = "<group>"; };
+		8D8930BB1AEF077800A66F2D /* SocketIOClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClient.swift; sourceTree = "<group>"; };
+		8D8930BC1AEF077800A66F2D /* SocketPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketPacket.swift; sourceTree = "<group>"; };
+		8D8930BD1AEF077800A66F2D /* SocketParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketParser.swift; sourceTree = "<group>"; };
+		8D8930BE1AEF077800A66F2D /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
+		8D8930BF1AEF077800A66F2D /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		C31CB14C1AAA48B700D229DC /* CrowdSound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31CB1501AAA48B700D229DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C31CB1511AAA48B700D229DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +110,7 @@
 		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
 		C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigTableViewController.swift; path = ../ConfigTableViewController.swift; sourceTree = "<group>"; };
 		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
+		C366E0501AEF430900A285CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C3B99D161AE40CF9001A03C0 /* FacebookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +138,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D8930981AEF017100A66F2D /* Security.framework in Frameworks */,
+				8D8930961AEF016B00A66F2D /* Foundation.framework in Frameworks */,
+				8D8930941AEF015B00A66F2D /* CFNetwork.framework in Frameworks */,
+				8D8930921AEF014700A66F2D /* libicucore.dylib in Frameworks */,
 				C3C31D1F1AE426790025470D /* FBSDKShareKit.framework in Frameworks */,
 				C3C31D1C1AE426790025470D /* FBSDKCoreKit.framework in Frameworks */,
 				C3C31D1A1AE426790025470D /* Bolts.framework in Frameworks */,
@@ -120,9 +163,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D8930B41AEF077800A66F2D /* SwiftIO */ = {
+			isa = PBXGroup;
+			children = (
+				8D8930B51AEF077800A66F2D /* SocketAckMap.swift */,
+				8D8930B61AEF077800A66F2D /* SocketAnyEvent.swift */,
+				8D8930B71AEF077800A66F2D /* SocketEngine.swift */,
+				8D8930B81AEF077800A66F2D /* SocketEngineClient.swift */,
+				8D8930B91AEF077800A66F2D /* SocketEventHandler.swift */,
+				8D8930BA1AEF077800A66F2D /* SocketFixUTF8.swift */,
+				8D8930BB1AEF077800A66F2D /* SocketIOClient.swift */,
+				8D8930BC1AEF077800A66F2D /* SocketPacket.swift */,
+				8D8930BD1AEF077800A66F2D /* SocketParser.swift */,
+				8D8930BE1AEF077800A66F2D /* SwiftRegex.swift */,
+				8D8930BF1AEF077800A66F2D /* WebSocket.swift */,
+			);
+			path = SwiftIO;
+			sourceTree = "<group>";
+		};
 		C31CB1431AAA48B700D229DC = {
 			isa = PBXGroup;
 			children = (
+				8D8930971AEF017100A66F2D /* Security.framework */,
+				8D8930951AEF016B00A66F2D /* Foundation.framework */,
+				8D8930931AEF015B00A66F2D /* CFNetwork.framework */,
+				8D8930911AEF014700A66F2D /* libicucore.dylib */,
 				C3C31D141AE426790025470D /* Bolts.framework */,
 				C3C31D151AE426790025470D /* FBAudienceNetwork.framework */,
 				C3C31D161AE426790025470D /* FBSDKCoreKit.framework */,
@@ -149,6 +214,10 @@
 		C31CB14E1AAA48B700D229DC /* CrowdSound */ = {
 			isa = PBXGroup;
 			children = (
+				8D8930B41AEF077800A66F2D /* SwiftIO */,
+				8D89308D1AEF004B00A66F2D /* SocketRocket-Prefix.pch */,
+				8D89308E1AEF004B00A66F2D /* SRWebSocket.h */,
+				8D89308F1AEF004B00A66F2D /* SRWebSocket.m */,
 				C31CB1511AAA48B700D229DC /* AppDelegate.swift */,
 				C3B99D161AE40CF9001A03C0 /* FacebookViewController.swift */,
 				C31CB1551AAA48B700D229DC /* Main.storyboard */,
@@ -164,6 +233,7 @@
 				C31CB15A1AAA48B700D229DC /* LaunchScreen.xib */,
 				C31CB14F1AAA48B700D229DC /* Supporting Files */,
 				C31CB1711AAA4FAC00D229DC /* Crowd.swift */,
+				C366E0501AEF430900A285CA /* User.swift */,
 				C31CB1731AAA4FE800D229DC /* Playlist.swift */,
 				C31CB1751AAA4FF600D229DC /* Song.swift */,
 				EDF0C2B11AD49D4400221DFD /* CrowdSound-Bridging-Header.h */,
@@ -187,6 +257,7 @@
 			children = (
 				EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */,
 				C31CB1671AAA48B700D229DC /* CrowdSoundTests.swift */,
+				C313CC3B1AF002570073BB27 /* UserTests.swift */,
 				C31CB1651AAA48B700D229DC /* Supporting Files */,
 				EDBAB7A01ACC57E000E7164C /* PlaylistTests.swift */,
 				C3F0B7F81AED42F80016381D /* ConfigPageTests.swift */,
@@ -306,18 +377,31 @@
 			files = (
 				C3B99D171AE40CF9001A03C0 /* FacebookViewController.swift in Sources */,
 				EDF2377C1AC9FD67001B007C /* PendingSongCell.swift in Sources */,
+				8D8930C21AEF077800A66F2D /* SocketEngine.swift in Sources */,
+				8D8930C11AEF077800A66F2D /* SocketAnyEvent.swift in Sources */,
 				C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */,
 				C31CB17A1AAA513B00D229DC /* PendingTableViewController.swift in Sources */,
+				C366E0511AEF430900A285CA /* User.swift in Sources */,
+				8D8930901AEF004B00A66F2D /* SRWebSocket.m in Sources */,
 				C31CB1761AAA4FF600D229DC /* Song.swift in Sources */,
+				8D8930C01AEF077800A66F2D /* SocketAckMap.swift in Sources */,
+				8D8930C61AEF077800A66F2D /* SocketIOClient.swift in Sources */,
 				ED170F7E1AD5B32A00BD3D96 /* PlayerCell.swift in Sources */,
 				C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */,
 				C31CB1521AAA48B700D229DC /* AppDelegate.swift in Sources */,
 				C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */,
+				8D8930C51AEF077800A66F2D /* SocketFixUTF8.swift in Sources */,
+				8D8930C31AEF077800A66F2D /* SocketEngineClient.swift in Sources */,
+				8D8930CA1AEF077800A66F2D /* WebSocket.swift in Sources */,
 				ED9CFDA41AE1A009005C1DF7 /* PlaylistTableViewController.swift in Sources */,
 				EDF0C2B61AD49E5500221DFD /* Config.swift in Sources */,
 				C39B51981AE2ECA7008946E1 /* SettingsTableViewController.swift in Sources */,
+				8D8930C91AEF077800A66F2D /* SwiftRegex.swift in Sources */,
 				C31CB1721AAA4FAC00D229DC /* Crowd.swift in Sources */,
+				8D8930C41AEF077800A66F2D /* SocketEventHandler.swift in Sources */,
+				8D8930C81AEF077800A66F2D /* SocketParser.swift in Sources */,
 				C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */,
+				8D8930C71AEF077800A66F2D /* SocketPacket.swift in Sources */,
 				C31CB1741AAA4FE800D229DC /* Playlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,7 +416,9 @@
 				EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */,
 				EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */,
 				EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */,
+				C313CC3C1AF002570073BB27 /* UserTests.swift in Sources */,
 				C3F0B7F91AED42F80016381D /* ConfigPageTests.swift in Sources */,
+				C313CC3D1AF002E70073BB27 /* User.swift in Sources */,
 				EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

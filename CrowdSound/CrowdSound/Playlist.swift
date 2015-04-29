@@ -64,11 +64,27 @@ class Playlist {
         return self.songs.map { a in a.spotifyURI }
     }
     
+    func validSong(songIndex: Int) -> Bool {
+        if songIndex < self.count() {
+            return true
+        }
+        return false
+    }
+    
+    func getSongUID(songIndex: Int) -> String? {
+        if validSong(songIndex) {
+            if !songs[songIndex].uid.isEmpty {
+                return songs[songIndex].uid
+            }
+        }
+        return nil
+    }
+    
     // If SONGINDX is a valid, upvote song at SONGINDEX and sorts playlist in decreasing upvote order
     // Otherwise do nothing
     func upvoteSong(songIndex:Int) {
         
-        if songIndex < self.count() {
+        if validSong(songIndex) {
             songs[songIndex].upvote()
         
         // @todo: Make more efficient by using a sorting algorithm better for presorted lists
