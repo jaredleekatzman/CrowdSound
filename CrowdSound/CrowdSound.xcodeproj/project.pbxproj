@@ -41,6 +41,7 @@
 		C3617F1D1AF08446005CBEA0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */; };
 		C3617FF01AF09862005CBEA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3617FEF1AF09861005CBEA0 /* Quick.framework */; };
 		C3617FF41AF09C23005CBEA0 /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617FF31AF09C23005CBEA0 /* JSONSerializer.swift */; };
+		C3617FF61AF0A7FB005CBEA0 /* JSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617FF51AF0A7FB005CBEA0 /* JSONDeserializer.swift */; };
 		C366E0511AEF430900A285CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
 		C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */; };
 		C39B51981AE2ECA7008946E1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */; };
@@ -116,6 +117,7 @@
 		C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C3617FEF1AF09861005CBEA0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug/Quick.framework"; sourceTree = "<group>"; };
 		C3617FF31AF09C23005CBEA0 /* JSONSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
+		C3617FF51AF0A7FB005CBEA0 /* JSONDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDeserializer.swift; sourceTree = "<group>"; };
 		C366E0501AEF430900A285CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				C31CB14F1AAA48B700D229DC /* Supporting Files */,
 				C31CB1711AAA4FAC00D229DC /* Crowd.swift */,
 				C3617FF31AF09C23005CBEA0 /* JSONSerializer.swift */,
+				C3617FF51AF0A7FB005CBEA0 /* JSONDeserializer.swift */,
 				C366E0501AEF430900A285CA /* User.swift */,
 				C31CB1731AAA4FE800D229DC /* Playlist.swift */,
 				C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */,
@@ -405,6 +408,7 @@
 				8D8930CA1AEF077800A66F2D /* WebSocket.swift in Sources */,
 				ED9CFDA41AE1A009005C1DF7 /* PlaylistTableViewController.swift in Sources */,
 				EDF0C2B61AD49E5500221DFD /* Config.swift in Sources */,
+				C3617FF61AF0A7FB005CBEA0 /* JSONDeserializer.swift in Sources */,
 				C39B51981AE2ECA7008946E1 /* SettingsTableViewController.swift in Sources */,
 				8D8930C91AEF077800A66F2D /* SwiftRegex.swift in Sources */,
 				C31CB1721AAA4FAC00D229DC /* Crowd.swift in Sources */,
