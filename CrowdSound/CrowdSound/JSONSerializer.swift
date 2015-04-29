@@ -20,7 +20,7 @@ class JSONSerializer {
     }
     
     
-    class func serializeUpvote(crowdID: String, songID: String) -> [String: AnyObject]? {
+    class func serializeVote(crowdID: String, songID: String) -> [String: AnyObject]? {
         
         let dict = [
             "crowd_uid": NSString(string: crowdID),

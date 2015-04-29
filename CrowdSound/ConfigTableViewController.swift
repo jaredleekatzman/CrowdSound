@@ -36,7 +36,7 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "sessionUpdateNotification:", name: "sessionUpdated", object: nil)
         updateLoginButton()
-        
+
         // socket methods
 //        self.addHandlers()
 //        self.socket.connect()

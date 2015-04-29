@@ -31,7 +31,7 @@ class Song {
         self.artist = artist
         self.spotifyURI = uri
         self.upvotes = 1
-        self.uid = name + artist + NSUUID().UUIDString
+        self.uid = NSUUID().UUIDString
         self.spotifyAlbumArtURL = albumArt
     }
     
