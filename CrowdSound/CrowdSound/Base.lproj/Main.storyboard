@@ -371,7 +371,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="R3z-hJ-SNN" firstAttribute="bottom" secondItem="hF7-vX-5g6" secondAttribute="top" id="II2-K9-TA8"/>
                             <constraint firstItem="R3z-hJ-SNN" firstAttribute="leading" secondItem="HFQ-yQ-GYh" secondAttribute="leading" id="NMS-Gb-0ic"/>
@@ -388,7 +388,7 @@
             </objects>
             <point key="canvasLocation" x="28" y="1842"/>
         </scene>
-        <!--Queue-->
+        <!--Pending-->
         <scene sceneID="coq-yd-xVd">
             <objects>
                 <tableViewController id="ao9-aO-b7Q" customClass="PendingTableViewController" customModule="CrowdSound" customModuleProvider="target" sceneMemberID="viewController">
@@ -476,7 +476,7 @@
                             <outlet property="delegate" destination="ao9-aO-b7Q" id="7Hy-BU-zXY"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Queue" id="wNU-qT-8wT"/>
+                    <tabBarItem key="tabBarItem" title="Pending" image="musicIcon" id="wNU-qT-8wT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dx-fA-ecO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -752,10 +752,8 @@
                             <constraint firstItem="EGP-HS-q8R" firstAttribute="top" secondItem="A7M-Ti-6L5" secondAttribute="bottom" constant="8" symbolic="YES" id="pTO-e6-4cU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Playlist" id="QVn-JF-Vlb"/>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="C5l-bq-ieM"/>
-                    </toolbarItems>
+                    <tabBarItem key="tabBarItem" title="Playlist" image="littleman" id="QVn-JF-Vlb"/>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="albumView" destination="S56-og-Dpd" id="Ea7-Z5-HaT"/>
@@ -783,7 +781,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.99607843139999996" green="0.90588235289999997" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.99607843139999996" green="0.90588235289999997" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="8PV-Cn-jpA" kind="relationship" relationship="viewControllers" id="7gy-LO-rUi"/>
@@ -871,6 +871,8 @@
     <resources>
         <image name="barBG" width="754" height="131"/>
         <image name="front_iPhone6_dark" width="750" height="1334"/>
+        <image name="littleman" width="22" height="22"/>
+        <image name="musicIcon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xmd-06-mqX"/>

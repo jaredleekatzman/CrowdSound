@@ -326,7 +326,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                         let blurred = self.applyBlurOnImage(image!, withRadius: 20.0)
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
                             self.backgroundImage.image = blurred
-                            NSLog("Blurred Background")
+//                            NSLog("Blurred Background")
                         })
                         
                     })
