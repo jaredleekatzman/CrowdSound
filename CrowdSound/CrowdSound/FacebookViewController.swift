@@ -24,6 +24,7 @@ class FacebookViewController: UIViewController, FBSDKLoginButtonDelegate {
     // creates facebook UI/preferences for user login
     func createFacebookLoginUI() {
         let loginView : FBSDKLoginButton = FBSDKLoginButton()
+        
         self.view.addSubview(loginView)
         loginView.center = self.view.center
         loginView.readPermissions = ["public_profile", "email", "user_friends"]

@@ -112,7 +112,7 @@ class CrowdsTableViewController: UITableViewController {
         // Configure the cell...
         var currentCrowd = crowds[indexPath.row]
         cell.textLabel?.text = currentCrowd.name
-
+        cell.textLabel?.textColor = UIColor.whiteColor()
         return cell
     }
     
