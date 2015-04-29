@@ -269,9 +269,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
         let song = crowd!.playlist.songs[indexPath.row]
         cell.textLabel?.text = song.name
+        cell.detailTextLabel?.text = song.artist
         
         if (indexPath.row == Int(self.player!.currentTrackIndex)) {
-//            cell.textLabel?.textColor = UIColor(red: 254.0, green: 230.0, blue: 88.0, alpha: 1.0)
             cell.textLabel?.textColor = UIColor.yellowColor()
             
         } else {

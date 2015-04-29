@@ -68,9 +68,41 @@ class PendingTableViewController: UITableViewController {
         return crowd!.pending.songs.count
     }
     
+    func buttonPressed(button: UIButton!) {
+        let songIndex = button.tag
+        
+        if let songUID = crowd?.pending.getSongUID(songIndex) {
+            let crowdUID = crowd?.uid ?? ""
+            if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
+                // User can Upvote!
+                crowd?.pending.upvoteSong(songIndex)
+                button.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
+                button.enabled = false
+                self.tableView.reloadData()
+                
+                //send vote over socket
+                print("upvote")
+                self.socket.emit("chat message", "this is a chat from the phone")
+                self.socket.emit("fromClient")
+            }
+            // User has already upvoted
+            else {
+                crowd?.pending.downvoteSong(songIndex)
+                button.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal)
+                self.tableView.reloadData()
+                
+                //send vote over socket
+                print("downvote")
+                self.socket.emit("downVote", 1)
+                self.socket.emit("fromClient")
+            }
+        }
+    }
+    
     // transform upvote button if already pressed
     func upvoteButtonAlreadyPressed(button: UIButton!)  {
         button.enabled = false
+        button.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -79,20 +111,22 @@ class PendingTableViewController: UITableViewController {
         // Configure the cell...
         var currentSong = self.crowd!.pending.songs[indexPath.row]
         cell.songLabel.text = currentSong.name
+        cell.artistLabel.text = currentSong.artist
         
         cell.votesLabel.text = String(currentSong.upvotes)
         cell.upvoteBttn.tag = indexPath.row
         
         // Creates Button Action Listeners
-        cell.upvoteBttn.addTarget(self, action: "upvote:", forControlEvents: UIControlEvents.TouchUpInside)
+        cell.upvoteBttn.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        // transforms button if upvote already clicked 
-        if let songUID = crowd?.pending.getSongUID(indexPath.row) {
-            let crowdUID = crowd?.uid ?? ""
-            if !User.currentUser.canUpvote(crowdUID, songUID: songUID) {
-                upvoteButtonAlreadyPressed(cell.upvoteBttn)
-            }
-        }
+//        // transforms button if upvote already clicked 
+//        if let songUID = crowd?.pending.getSongUID(indexPath.row) {
+//            let crowdUID = crowd?.uid ?? ""
+//            if !User.currentUser.canUpvote(crowdUID, songUID: songUID) {
+//                upvoteButtonAlreadyPressed(cell.upvoteBttn)
+//
+//            }
+//        }
         
         return cell
     }
