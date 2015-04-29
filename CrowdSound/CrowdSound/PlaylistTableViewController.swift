@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, updateTracklistObserver {
+class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, SPTAuthViewDelegate,  SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, updateTracklistObserver {
     
     // UI Elements
     @IBOutlet var tableView: UITableView!
@@ -106,10 +106,23 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.player = tbvc.player
         
+        // User not Logged in
+        if auth.session == nil || !auth.session.isValid() {
+            var alert = UIAlertView()
+            alert.becomeFirstResponder()
+            alert.title = "Please login to Spotify to play music"
+            alert.addButtonWithTitle("Login")
+            alert.addButtonWithTitle("Cancel")
+            alert.alertViewStyle = UIAlertViewStyle.Default
+            alert.delegate = self
+            alert.show()
+        }
+        
         // Log-in with the player
         self.player?.loginWithSession(auth.session, callback: { (error : NSError?) -> () in
             if (error != nil) {
                 NSLog("*** Enabaling playback got error: \(error)")
+                
                 return
             }
             
@@ -124,6 +137,45 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         })
         
     }
+    
+    // MARK: - AlertViewDelegate methods
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex {
+        case 0:
+            openLoginPage()
+            break
+        case 1:
+            break
+        default:
+            break
+        }
+    }
+    
+    func openLoginPage() {
+        // create spotify login layout
+        let auth = SPTAuthViewController.authenticationViewController()
+        auth.delegate = self;
+        auth.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        auth.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        auth.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        auth.definesPresentationContext = false;
+        
+        // show spotify login page
+        self.presentViewController(auth, animated: false, completion: nil)
+    }
+    
+    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didFailToLogin error: NSError!) {
+        return
+    }
+    
+    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
+        handleNewSession()
+    }
+    
+    func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
+        return
+    }
+
     
     // debugging: error in playing track
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
@@ -269,6 +321,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
         let song = crowd!.playlist.songs[indexPath.row]
         cell.textLabel?.text = song.name
+        cell.detailTextLabel?.text = song.artist
         
         if (indexPath.row == Int(self.player!.currentTrackIndex)) {
             cell.textLabel?.textColor = UIColor.yellowColor()

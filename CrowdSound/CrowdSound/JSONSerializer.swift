@@ -59,7 +59,7 @@ class JSONSerializer {
             "song_name": NSString(string: song.name), 
             "song_artist" : NSString(string: song.artist),
             "song_uri": NSString(string: song.spotifyURI.absoluteString!),
-            "song_albumArtURI": NSString(string: song.spotifyAlbumArtURL.absoluteString!)
+            "song_albumArtURI": NSString(string: song.spotifyAlbumArtURL!.absoluteString!)
         ]
         
         if NSJSONSerialization.isValidJSONObject(dict) {

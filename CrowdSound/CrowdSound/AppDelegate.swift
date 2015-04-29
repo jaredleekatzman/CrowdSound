@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         auth.tokenSwapURL = NSURL(string: kTokenSwapServiceURL)
         auth.tokenRefreshURL = NSURL(string: kTokenRefreshServiceURL)
         auth.sessionUserDefaultsKey = kSessionUserDefaultsKey
+        
         return true
         
     }

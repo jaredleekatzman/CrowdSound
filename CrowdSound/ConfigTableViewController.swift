@@ -93,9 +93,9 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
         if (crowdNameText.text.isEmpty) {
             alertMsg += "Crowd must have a name. "
         }
-        if (hostNameText.text.isEmpty) {
-            alertMsg += "Host must have a name. "
-        }
+//        if (hostNameText.text.isEmpty) {
+//            alertMsg += "Host must have a name. "
+//        }
         if (!isLoggedIntoSpotify()) {
             alertMsg += "You must log into spotify. "
         }
@@ -116,7 +116,7 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
     func createCrowd() -> Crowd {
         var crowd = Crowd()
         crowd.name = crowdNameText.text
-        crowd.host = hostNameText.text
+        crowd.host = User.currentUser.uid
         crowd.threshold = Int(upvotesSlider.value)
         crowd.isPrivate = passwordProtectedSwitch.on
         crowd.password = passwordText.text

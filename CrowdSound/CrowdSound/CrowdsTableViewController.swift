@@ -33,6 +33,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
 //        createDummyCrowds()
         User.currentUser.userDelegate = self
 
+
         
         // Configure countrySearchController
         self.crowdSearchController = ({
@@ -131,7 +132,6 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         User.currentUser.crowds = crowds
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

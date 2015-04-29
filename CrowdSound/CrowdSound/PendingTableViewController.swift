@@ -10,8 +10,6 @@ import UIKit
 
 class PendingTableViewController: UITableViewController {
     
-    // define socket.io in class
-//    let socket = SocketIOClient(socketURL: "localhost:8080")
     
     // Crowd Data
     var crowd : Crowd?
@@ -19,8 +17,9 @@ class PendingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tbvc = self.tabBarController as CrowdTabViewController
-        crowd = tbvc.myCrowd
+        if let tbvc = self.tabBarController as? CrowdTabViewController {
+            crowd = tbvc.myCrowd
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,8 +28,6 @@ class PendingTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // WebSockets
-//        self.addHandlers()
-//        self.socket.connect()
     }
 //    
 //    func addHandlers() {
@@ -68,9 +65,44 @@ class PendingTableViewController: UITableViewController {
         return crowd!.pending.songs.count
     }
     
+    func buttonPressed(button: UIButton!) {
+        let songIndex = button.tag
+        
+        if let songUID = crowd?.pending.getSongUID(songIndex) {
+            let crowdUID = crowd?.uid ?? ""
+            if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
+                // User can Upvote!
+                button.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
+//                button.enabled = false
+                crowd?.upvotePendingSong(songIndex)
+                User.currentUser.upvoteSong(crowdUID, songUID: songUID)
+                self.tableView.reloadData()
+                
+                
+                //send vote over socket
+                print("upvote")
+//                self.socket.emit("chat message", "this is a chat from the phone")
+//                self.socket.emit("fromClient")
+            }
+            // User has already upvoted
+            else {
+                button.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal)
+                crowd?.downvotePendingSong(songIndex)
+//                User.currentUser.downvoteSong(crowdUID, songUID: songUID)
+                self.tableView.reloadData()
+                
+                //send vote over socket
+                print("downvote")
+//                self.socket.emit("downVote", 1)
+//                self.socket.emit("fromClient")
+            }
+        }
+    }
+    
     // transform upvote button if already pressed
     func upvoteButtonAlreadyPressed(button: UIButton!)  {
         button.enabled = false
+        button.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -79,20 +111,27 @@ class PendingTableViewController: UITableViewController {
         // Configure the cell...
         var currentSong = self.crowd!.pending.songs[indexPath.row]
         cell.songLabel.text = currentSong.name
+        cell.artistLabel.text = currentSong.artist
         
         cell.votesLabel.text = String(currentSong.upvotes)
         cell.upvoteBttn.tag = indexPath.row
+
         
-        // Creates Button Action Listeners
-        cell.upvoteBttn.addTarget(self, action: "upvote:", forControlEvents: UIControlEvents.TouchUpInside)
+        let songIndex = indexPath.row
         
-        // transforms button if upvote already clicked 
-        if let songUID = crowd?.pending.getSongUID(indexPath.row) {
+        if let songUID = crowd?.pending.getSongUID(songIndex) {
             let crowdUID = crowd?.uid ?? ""
-            if !User.currentUser.canUpvote(crowdUID, songUID: songUID) {
-                upvoteButtonAlreadyPressed(cell.upvoteBttn)
+            if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
+                cell.upvoteBttn.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal) 
+            }
+            else {
+                cell.upvoteBttn.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
             }
         }
+        
+        // Creates Button Action Listeners
+        cell.upvoteBttn.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+
         
         return cell
     }
@@ -132,9 +171,6 @@ class PendingTableViewController: UITableViewController {
 //        self.socket.emit("fromClient")
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
     
 
     /*

@@ -62,10 +62,12 @@ class User {
         if crowdUID.isEmpty || songUID.isEmpty {
             return
         }
+
         if var songs = upvotedSongs[crowdUID] {
             songs.append(songUID)
             upvotedSongs[crowdUID] = songs
-        } else {
+        }
+        else { // Create the list
             upvotedSongs[crowdUID] = [songUID]
         }
     }
@@ -73,5 +75,15 @@ class User {
     // add a crowd to the crowds 
     func addCrowdToCrowds(crowd:Crowd) {
         crowds.append(crowd)
+    }
+    // downvotes a current song
+    func downvoteSong(crowdUID: String, songUID: String) {
+        if var songs = upvotedSongs[crowdUID] {
+            songs = songs.filter { $0 != songUID }
+            upvotedSongs[crowdUID] = songs
+        }
+        else {    // Should never get here?
+            upvotedSongs[crowdUID] = []
+        }
     }
 }
