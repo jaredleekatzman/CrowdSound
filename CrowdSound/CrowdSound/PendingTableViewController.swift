@@ -19,8 +19,9 @@ class PendingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tbvc = self.tabBarController as CrowdTabViewController
-        crowd = tbvc.myCrowd
+        if let tbvc = self.tabBarController as? CrowdTabViewController {
+            crowd = tbvc.myCrowd
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -163,9 +164,6 @@ class PendingTableViewController: UITableViewController {
 //        self.socket.emit("fromClient")
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
     
 
     /*

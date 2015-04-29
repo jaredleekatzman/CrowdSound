@@ -12,7 +12,7 @@ class Song {
     var name : String
     var artist : String
     var spotifyURI : NSURL
-    var spotifyAlbumArtURL : NSURL
+    var spotifyAlbumArtURL : NSURL?
     var upvotes : Int
     var uid : String
     
@@ -21,12 +21,12 @@ class Song {
         self.name = ""
         self.artist = ""
         self.upvotes = 0
-        self.spotifyURI = NSURL(string: "nil")!
-        self.spotifyAlbumArtURL = NSURL(string: "nil")!
+        self.spotifyURI = NSURL()
+        self.spotifyAlbumArtURL = nil
         self.uid = NSUUID().UUIDString
     }
 
-    init(name : String, artist : String, uri: NSURL, albumArt : NSURL = NSURL()) {
+    init(name : String, artist : String, uri: NSURL, albumArt : NSURL? = nil) {
         self.name = name
         self.artist = artist
         self.spotifyURI = uri

@@ -13,29 +13,47 @@ import XCTest
 class PendingTableViewControllerSpec: QuickSpec {
     override func spec() {
         var viewController : PendingTableViewController!
+        
         beforeEach {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            viewControlller = storyboard.instantiateViewControllerWithIdentifier("PendingTableViewControllerID") as PendingTableViewController
-            //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //            viewController = storyboard.instantiateViewControllerWithIdentifier("CrowdsTableViewControllerID") as CrowdsTableViewController
-            //
-            viewController = PendingTableViewController()
+                     viewController = PendingTableViewController()
             
             // Set up fixtures
-            // Details:
-            //
+                    viewController.crowd = Crowd.defaultCrowd()
         }
         
         describe("viewDidLoad()") {
-            context("TabBarController has no crowd") {
-                it("should not have a crowd") {
-                    let _ = viewController.view
-                    
-                    XCTAssertNil(viewController.crowd)
-                }
+            beforeEach {
+                let _ = viewController.view
             }
             
+            it("should display pending songs") {
+                XCTAssertEqual(viewController.crowd!.pending.count(), viewController.tableView.numberOfRowsInSection(0))
+            }
+            
+            
         }
+        
+//        describe("upvote button") {
+//            beforeEach {
+//                let _ = viewController.view
+//                viewController.beginAppearanceTransition(true, animated: false)
+//                viewController.endAppearanceTransition()
+//            }
+//            
+//            it("increments upvotes of a song when clicked") {
+//                let ind = 0
+//                let path = NSIndexPath(forRow: ind, inSection: 0)
+//                let cell = viewController.tableView.cellForRowAtIndexPath(path) as PendingSongCell
+//                
+//                let numVotes = viewController.crowd?.pending.songs[ind].upvotes
+//                
+//                cell.upvoteBttn.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+//                
+//                XCTAssertEqual(numVotes! + 1, viewController.crowd!.pending.songs[ind].upvotes)
+//                
+//                
+//            }
+//        }
     
         
         

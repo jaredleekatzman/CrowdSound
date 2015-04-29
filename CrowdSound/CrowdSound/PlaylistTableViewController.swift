@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, updateTracklistObserver {
+class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, SPTAuthViewDelegate,  SPTAudioStreamingDelegate, SPTAudioStreamingPlaybackDelegate, updateTracklistObserver {
     
     // UI Elements
     @IBOutlet var tableView: UITableView!
@@ -110,6 +110,16 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         self.player?.loginWithSession(auth.session, callback: { (error : NSError?) -> () in
             if (error != nil) {
                 NSLog("*** Enabaling playback got error: \(error)")
+                
+                var alert = UIAlertView()
+                alert.becomeFirstResponder()
+                alert.title = "Please login to Spotify to play music"
+                alert.addButtonWithTitle("Login")
+                alert.addButtonWithTitle("Cancel")
+                alert.alertViewStyle = UIAlertViewStyle.Default
+                alert.delegate = self
+                alert.show()
+                
                 return
             }
             
@@ -124,6 +134,45 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         })
         
     }
+    
+    // MARK: - AlertViewDelegate methods
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex {
+        case 1:
+            break
+        case 0:
+            openLoginPage()
+            break
+        default:
+            break
+        }
+    }
+    
+    func openLoginPage() {
+        // create spotify login layout
+        let auth = SPTAuthViewController.authenticationViewController()
+        auth.delegate = self;
+        auth.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        auth.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        auth.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        auth.definesPresentationContext = false;
+        
+        // show spotify login page
+        self.presentViewController(auth, animated: false, completion: nil)
+    }
+    
+    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didFailToLogin error: NSError!) {
+        return
+    }
+    
+    func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
+        handleNewSession()
+    }
+    
+    func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
+        return
+    }
+
     
     // debugging: error in playing track
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didFailToPlayTrack trackUri: NSURL!) {
