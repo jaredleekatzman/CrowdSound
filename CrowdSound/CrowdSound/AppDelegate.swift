@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // application launched - update spotify login information
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // UI: Change Status Bar Color
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         // Set up shared authentication information
         let auth = SPTAuth.defaultInstance()

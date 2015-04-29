@@ -33,7 +33,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // Configure songTable
         self.songTable.delegate         = self
         self.songTable.dataSource       = self
-        self.definesPresentationContext = true
+        
         
         // Configure songSearchController
         self.songSearchController = ({
@@ -45,8 +45,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
             controller.delegate                             = self
-            self.songTable.tableHeaderView                  = controller.searchBar
+            controller.searchBar.barStyle                   = UIBarStyle.Black
+            controller.searchBar.tintColor                  = self.view.tintColor
             
+            self.songTable.tableHeaderView                  = controller.searchBar
+            self.definesPresentationContext = true
             return controller
         })()
     
@@ -92,6 +95,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if (self.songSearchController.active)
         {
             cell.textLabel?.text = self.searchArray[indexPath.row].name
+            cell.textLabel?.textColor = UIColor.whiteColor()
         }
         return cell
     }

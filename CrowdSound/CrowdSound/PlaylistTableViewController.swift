@@ -19,6 +19,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var forwardButton: UIButton!
     @IBOutlet var reverseButton: UIButton!
     @IBOutlet var albumView: UIImageView!
+    @IBOutlet var backgroundImage: UIImageView!
 
     // Crowd Data
     var crowd : Crowd?
@@ -237,6 +238,14 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistSongCell", forIndexPath: indexPath) as UITableViewCell
         let song = crowd!.playlist.songs[indexPath.row]
         cell.textLabel?.text = song.name
+        
+        if (indexPath.row == Int(self.player!.currentTrackIndex)) {
+//            cell.textLabel?.textColor = UIColor(red: 254.0, green: 230.0, blue: 88.0, alpha: 1.0)
+            cell.textLabel?.textColor = UIColor.yellowColor()
+            
+        } else {
+            cell.textLabel?.textColor = UIColor.whiteColor()
+        }
         return cell
     }
 
@@ -288,7 +297,8 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                     let imageURL = track.album.largestCover.imageURL
                     if (imageURL == nil) {
                         NSLog("No Album Art")
-                        self.albumView.image = nil;
+                        self.albumView.image = nil
+                        self.backgroundImage.image = nil
                         return
                     }
                     
@@ -310,6 +320,15 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                                 return
                             }
                         })
+                        
+                        // Blur Image for Background
+                        // Test: if image is nil
+                        let blurred = self.applyBlurOnImage(image!, withRadius: 20.0)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.backgroundImage.image = blurred
+//                            NSLog("Blurred Background")
+                        })
+                        
                     })
                 }
             })
@@ -323,8 +342,55 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             artistLabel.text = ""
             albumView.image = nil
         }
+        
+        // Scroll the Table View to the position of the current playing song
+        let ind = Int(self.player?.currentTrackIndex ?? 0)
+        let path = NSIndexPath(forItem: ind, inSection: 0)
+        self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+//        self.tableView.selectRowAtIndexPath(NSIndexPath(forItem: Int(index), ), animated: false, scrollPosition: UITableViewScrollPosition.Bottom)
+        
+//        var cell = self.tableView.cellForRowAtIndexPath(path)
+//        cell?.textLabel?.textColor = UIColor.redColor()
+//        cell?.textLabel?.textColor = UIColor(red: 254, green: 230, blue: 88, alpha: 1)
+        self.tableView.reloadData()
     }
     
+    // Translated from Spotify Demo Project: Simple Audio Playback
+    func applyBlurOnImage(imageToBlur : UIImage, withRadius blurRadius: CGFloat) -> UIImage {
+        
+        let originalImage = CIImage(CGImage: imageToBlur.CGImage)
+        let filter = CIFilter(name: "CIGaussianBlur", withInputParameters: [kCIInputImageKey : originalImage, "inputRadius" : blurRadius])
+        
+        let outputImage = filter.outputImage
+        let context = CIContext(options: nil)
+        
+        let outImage = context.createCGImage(outputImage, fromRect: outputImage.extent())
+        let ret = UIImage(CGImage: outImage)
+        
+        return ret!
+        
+    }
+    
+//    - (UIImage *)applyBlurOnImage: (UIImage *)imageToBlur
+//    withRadius: (CGFloat)blurRadius {
+//    
+//    CIImage *originalImage = [CIImage imageWithCGImage: imageToBlur.CGImage];
+//    CIFilter *filter = [CIFilter filterWithName: @"CIGaussianBlur"
+//    keysAndValues: kCIInputImageKey, originalImage,
+//    @"inputRadius", @(blurRadius), nil];
+//    
+//    CIImage *outputImage = filter.outputImage;
+//    CIContext *context = [CIContext contextWithOptions:nil];
+//    
+//    CGImageRef outImage = [context createCGImage: outputImage
+//    fromRect: [outputImage extent]];
+//    
+//    UIImage *ret = [UIImage imageWithCGImage: outImage];
+//    
+//    CGImageRelease(outImage);
+//    
+//    return ret;
+//    }
     
     // MARK: - Table view data source - Defaulted
     
@@ -343,4 +409,5 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }

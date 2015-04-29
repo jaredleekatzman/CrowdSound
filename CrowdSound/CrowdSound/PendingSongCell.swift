@@ -18,6 +18,9 @@ class PendingSongCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        songLabel.textColor = UIColor(red: 239, green: 237, blue: 227, alpha: 1.0)
+        
+        votesLabel.textColor = UIColor(red: 239, green: 237, blue: 227, alpha: 1.0)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

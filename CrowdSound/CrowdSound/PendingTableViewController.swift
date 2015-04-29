@@ -79,6 +79,7 @@ class PendingTableViewController: UITableViewController {
         // Configure the cell...
         var currentSong = self.crowd!.pending.songs[indexPath.row]
         cell.songLabel.text = currentSong.name
+        
         cell.votesLabel.text = String(currentSong.upvotes)
         cell.upvoteBttn.tag = indexPath.row
         
@@ -126,6 +127,10 @@ class PendingTableViewController: UITableViewController {
         print("downvote")
         self.socket.emit("downVote", 2)
         self.socket.emit("fromClient")
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
 

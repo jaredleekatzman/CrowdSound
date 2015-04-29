@@ -146,7 +146,8 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
             var currentCrowd = crowds[indexPath.row]
             cell.textLabel?.text = currentCrowd.name
         }
-        
+        cell.textLabel?.textColor = UIColor.whiteColor()
+
         return cell
     }
     

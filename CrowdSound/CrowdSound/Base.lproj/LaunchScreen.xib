@@ -16,7 +16,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_iPhone6" translatesAutoresizingMaskIntoConstraints="NO" id="iQE-1V-gne">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_iPhone6_dark" translatesAutoresizingMaskIntoConstraints="NO" id="iQE-1V-gne">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
             </subviews>
@@ -36,6 +36,6 @@
         </view>
     </objects>
     <resources>
-        <image name="splash_iPhone6" width="750" height="1334"/>
+        <image name="splash_iPhone6_dark" width="750" height="1334"/>
     </resources>
 </document>

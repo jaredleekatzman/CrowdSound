@@ -23,6 +23,7 @@ class CrowdTabViewController: UITabBarController {
         self.navigationItem.rightBarButtonItem = settingsBtn
         self.selectedIndex = 1
         
+        self.tabBar.tintColor = UIColor.yellowColor()
     }
 
     override func didReceiveMemoryWarning() {
