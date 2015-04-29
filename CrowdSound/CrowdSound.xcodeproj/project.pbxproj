@@ -37,6 +37,7 @@
 		C31CB1801AAA518300D229DC /* CrowdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */; };
 		C31CB1821AAA57EB00D229DC /* CrowdTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */; };
 		C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */; };
+		C337425E1AF0C393004D6A44 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C337425D1AF0C393004D6A44 /* Quick.framework */; };
 		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
 		C3617F1D1AF08446005CBEA0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */; };
 		C366E0511AEF430900A285CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
@@ -110,6 +111,7 @@
 		C31CB17F1AAA518300D229DC /* CrowdsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdsTableViewController.swift; sourceTree = "<group>"; };
 		C31CB1811AAA57EB00D229DC /* CrowdTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdTabViewController.swift; sourceTree = "<group>"; };
 		C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigTableViewController.swift; path = ../ConfigTableViewController.swift; sourceTree = "<group>"; };
+		C337425D1AF0C393004D6A44 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug/Quick.framework"; sourceTree = "<group>"; };
 		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
 		C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C366E0501AEF430900A285CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C337425E1AF0C393004D6A44 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +189,7 @@
 		C31CB1431AAA48B700D229DC = {
 			isa = PBXGroup;
 			children = (
+				C337425D1AF0C393004D6A44 /* Quick.framework */,
 				8D8930971AEF017100A66F2D /* Security.framework */,
 				8D8930951AEF016B00A66F2D /* Foundation.framework */,
 				8D8930931AEF015B00A66F2D /* CFNetwork.framework */,
@@ -581,6 +585,7 @@
 					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble-swift-1.1/build/Debug-iphoneos",
 					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug",
+					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Nimble-0.3.0/build/Debug-iphoneos",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -603,6 +608,7 @@
 					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble-swift-1.1/build/Debug-iphoneos",
 					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Vendor/Nimble/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug",
+					"/Users/terinpatelwilson/Desktop/CrowdSound/CrowdSound-iOS/Nimble-0.3.0/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = CrowdSoundTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
