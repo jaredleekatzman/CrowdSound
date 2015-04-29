@@ -42,6 +42,9 @@ class User {
     
     // upvotes a current song
     func upvoteSong(crowdUID: String, songUID: String) {
+        if crowdUID.isEmpty || songUID.isEmpty {
+            return
+        }
         if var songs = upvotedSongs[crowdUID] {
             songs.append(songUID)
             upvotedSongs[crowdUID] = songs

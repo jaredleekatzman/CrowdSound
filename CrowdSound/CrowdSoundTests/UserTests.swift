@@ -27,6 +27,12 @@ class UserTests: XCTestCase {
         assert(user.upvotedSongs.isEmpty, "upvoted songs should be empty") 
     }
     
+    func testUserIsSingleton() {
+        let user = User.currentUser
+        let user_two = User.currentUser
+        assert(user.uid == user_two.uid, "User.currentUser should be singleton")
+    }
+    
     func testCanAddSong() {
         var user = User()
         let crowdUID = "CrowdUID"
@@ -58,14 +64,22 @@ class UserTests: XCTestCase {
 
     }
     
-    func testTrueCanUpvoteSong() {
+    func testCanUpvoteWithEmptyInput() {
+        var user = User()
+        let crowdUID = "CrowdUID"
+        let songUID = "SongUID"
+        assert(!user.canUpvote("", songUID: songUID), "cannot take empty crowd input")
+        assert(!user.canUpvote(crowdUID, songUID: ""), "cannot take empty song input")
+    }
+    
+    func testCanUpvoteSong() {
         var user = User()
         let crowdUID = "CrowdUID"
         let songUID = "SongUID"
         assert(user.canUpvote(crowdUID, songUID: songUID), "user should be able to upvote song if crowd and song not present")
     }
     
-    func testTrueCanUpvoteSongWithCrowd() {
+    func testCanUpvoteSongWithCrowd() {
         var user = User()
         let crowdUID = "CrowdUID"
         let dummySongUID = "dummySongUID"
@@ -75,27 +89,22 @@ class UserTests: XCTestCase {
         assert(user.canUpvote(crowdUID, songUID: songUID), "user should be able to upvote song if song not present, but crowd is")
     }
     
-    
-    func testFalseCanUpvoteSong() {
+    func testUpvoteSongTwice() {
         var user = User()
         let crowdUID = "CrowdUID"
         let songUID = "SongUID"
         user.upvoteSong(crowdUID, songUID: songUID)
         assert(!user.canUpvote(crowdUID, songUID: songUID), "user should not be able to upvote song in crowd if already upvoted")
     }
+    
+    func testUpvoteSongEmptyInput() {
+        var user = User()
+        let crowdUID = "CrowdUID"
+        let songUID = "SongUID"
+        user.upvoteSong("", songUID: songUID)
+        assert(user.upvotedSongs.count == 0, "cannot upvote song with empty crowd uid")
+        user.upvoteSong(crowdUID, songUID: "")
+        assert(user.upvotedSongs.count == 0, "cannot upvote song with empty song uid ")
 
-    // TEST SINGLETON 
-    
-    // TEST SONG IN ARRAY
-    
-    // TEST ADDING SONGS 
-    
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
     }
-
 }

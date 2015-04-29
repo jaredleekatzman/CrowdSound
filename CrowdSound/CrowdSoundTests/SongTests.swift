@@ -28,6 +28,8 @@ class SongTests: XCTestCase {
         XCTAssert(song.artist.isEmpty, "song artist should be empty")
         XCTAssert(song.upvotes == 0, "song upvotes should = 0")
         XCTAssert(song.spotifyURI == NSURL(string: "nil"), "song url inits to nil")
+        XCTAssert(song.spotifyAlbumArtURL == NSURL(string: "nil"), "song Album Art is nil")
+        XCTAssert(song.artist.isEmpty, "default song artist is empty")
     }
     
     // Test Initializer with Values
@@ -37,6 +39,8 @@ class SongTests: XCTestCase {
         XCTAssert(song.artist == "defaultArtist", "song artist should defaultArtist")
         XCTAssert(song.upvotes == 1, "song upvotes should = 1")
         XCTAssert(song.spotifyURI == NSURL(string: "spotify:track:4iEOVEULZRvmzYSZY2ViKN"), "song url init worked")
+        XCTAssert(song.spotifyAlbumArtURL == NSURL(string: "nil"), "song Album Art is nil")
+        XCTAssert(song.artist.isEmpty, "default song artist is empty")
     }
     
     // Song Should increase number of upvotes
@@ -63,12 +67,4 @@ class SongTests: XCTestCase {
         song.downvote()
         XCTAssert(song.upvotes == numUpvotes - 1, "should have decreased by one")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
