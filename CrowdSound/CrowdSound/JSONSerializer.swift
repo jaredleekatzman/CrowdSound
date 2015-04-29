@@ -25,11 +25,31 @@ class JSONSerializer {
         return nil
     }
     
-    class func serializeNewSongToPending(crowdID: String, songID: String, songURI: NSURL) -> [String: AnyObject]? {
+//    class func serializeNewSongToPending(crowdID: String, songID: String, songURI: NSURL, albumArtURI: NSURL, artist: String) -> [String: AnyObject]? {
+//        let dict = [
+//            "crowd_uid": NSString(string: crowdID),
+//            "song_uid": NSString(string: songID),
+//            "song_artist" : NSString(string: artist),
+//            "song_uri": NSString(string: songURI.absoluteString!),
+//            "song_albumArtURI": NSString(string: albumArtURI.absoluteString!)
+//        ]
+//        
+//        if NSJSONSerialization.isValidJSONObject(dict) {
+//            println("can serialize newSong To Pendign!")
+//            return dict
+//        }
+//        println("canNOT serialize new Song To Pending!")
+//        return nil
+//    }
+    
+    class func serializeNewSongToPending(crowdID: String, song: Song) -> [String: AnyObject]? {
         let dict = [
             "crowd_uid": NSString(string: crowdID),
-            "song_uid": NSString(string: songID),
-            "song_uri": NSString(string: songURI.absoluteString!)
+            "song_uid": NSString(string: song.uid),
+            "song_name": NSString(string: song.name), 
+            "song_artist" : NSString(string: song.artist),
+            "song_uri": NSString(string: song.spotifyURI.absoluteString!),
+            "song_albumArtURI": NSString(string: song.spotifyAlbumArtURL.absoluteString!)
         ]
         
         if NSJSONSerialization.isValidJSONObject(dict) {
