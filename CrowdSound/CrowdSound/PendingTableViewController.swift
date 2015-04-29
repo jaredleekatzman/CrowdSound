@@ -34,6 +34,12 @@ class PendingTableViewController: UITableViewController {
     }
     
     func addHandlers() {
+        
+        //chat messages because why not:
+        self.socket.on("chat message") {[weak self] data, ack in
+            print("I got a message!!")
+            return
+        }
         // Using a shorthand parameter name for closures
         self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
         
@@ -87,7 +93,7 @@ class PendingTableViewController: UITableViewController {
         
         //send vote over socket
         print("upvote")
-        self.socket.emit("upVote", 2)
+        self.socket.emit("chat message", "this is a chat from the phone")
         self.socket.emit("fromClient")
     }
     
