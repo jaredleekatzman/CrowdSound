@@ -19,10 +19,10 @@ class Song {
     
     init() {
         self.name = ""
-        self.artist = ""
+        self.artist = "default artist"
         self.upvotes = 0
-        self.spotifyURI = NSURL(string: "nil")!
-        self.spotifyAlbumArtURL = NSURL(string: "nil")!
+        self.spotifyURI = NSURL(string: "spotify:track:2YKcA5ZkWQfVHd7bMIv4iw")!
+        self.spotifyAlbumArtURL = NSURL(string: "spotify:track:2YKcA5ZkWQfVHd7bMIv4iw")!
         self.uid = NSUUID().UUIDString
     }
 
