@@ -20,6 +20,8 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var reverseButton: UIButton!
     @IBOutlet var albumView: UIImageView!
     @IBOutlet var backgroundImage: UIImageView!
+    @IBOutlet var progressView: UIProgressView!
+    
 
     // Crowd Data
     var crowd : Crowd?
@@ -29,6 +31,7 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     // class variables
     var player : SPTAudioStreamingController? // for spotify streaming
 
+    
     // check to see if currently playing last song
     var isLastSong = false
     
@@ -50,6 +53,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         // Initializes and logs-in to the SPTAudioStreamingController
         self.handleNewSession()
+        
+        // Handle Progress Bars
+        
     }
     
 
@@ -111,6 +117,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
             if self.crowd?.playlist.count() > 0 {
                 var options = SPTPlayOptions() // default track index = 0, start from beginning 
                 self.player?.playURIs(self.crowd?.playlist.getURIs(), withOptions: options, callback: nil)
+                
+                // Start Progress Bar
+                self.progressView.setProgress(0, animated: true)
             }
         })
         
@@ -148,6 +157,23 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
                 self.isLastSong = false
             })
         }
+        
+        // Update Progress Bar
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+            while (self.player?.currentPlaybackPosition.distanceTo(self.player!.currentTrackDuration) != 0) {
+                
+                let num = Float(self.player?.currentPlaybackPosition ?? 0)
+                let denom = Float(self.player?.currentTrackDuration ?? 1)
+                let frac = num / denom
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.progressView.setProgress(frac, animated: true)
+                    return
+                })
+               
+            }
+            
+        })
     }
     
     // handle song transition
