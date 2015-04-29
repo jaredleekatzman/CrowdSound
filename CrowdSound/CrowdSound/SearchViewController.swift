@@ -145,7 +145,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         // send song to database
         if let dict = JSONSerializer.serializeNewSongToPending(crowd!.uid, song: newSong) {
             //if let dict = JSONSerializer.serializeUpvote(crowdUID, songID: songUID) {
-            println("adding song to pending!")
+            println("adding song to pending! which is \(dict)")
 //            self.socket.emit("newPending", dict)
             Socket.currentSocket.socketIO.emit("newPending", dict)
         }

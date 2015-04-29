@@ -126,6 +126,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         crowds.append(crowd6)
         
         crowds.append(defaultCrowd)
+        User.currentUser.crowds = crowds
     }
     
 
@@ -145,7 +146,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         if (self.crowdSearchController.active) {
             return self.searchArray.count
         }
-        return crowds.count
+        return User.currentUser.crowds.count
     }
 
     
@@ -157,7 +158,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         if (self.crowdSearchController.active) {
             cell.textLabel?.text = self.searchArray[indexPath.row].name
         } else { // ... or all crowds if not.
-            var currentCrowd = crowds[indexPath.row]
+            var currentCrowd = User.currentUser.crowds[indexPath.row]
             cell.textLabel?.text = currentCrowd.name
         }
         cell.textLabel?.textColor = UIColor.whiteColor()
@@ -169,7 +170,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
     //  maintain array of crowd objects analogous to search results.
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         self.searchArray.removeAll(keepCapacity: false)
-        var crowdNames = crowds as NSArray
+        var crowdNames = User.currentUser.crowds as NSArray
         if searchController.searchBar.text == "" {
             self.searchArray = crowdNames as [Crowd]
         } else {
@@ -232,7 +233,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
                 self.crowdSearchController.active = false
                 self.crowdSearchController.searchBar.text = ""
             } else {
-                selectedCrowd = crowds[indexPath.row]
+                selectedCrowd = User.currentUser.crowds[indexPath.row]
             }
             // reset table default.
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)

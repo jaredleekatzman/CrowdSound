@@ -53,4 +53,9 @@ class User {
             upvotedSongs[crowdUID] = [songUID]
         }
     }
+    
+    // add a crowd to the crowds 
+    func addCrowdToCrowds(crowd:Crowd) {
+        crowds.append(crowd)
+    }
 }

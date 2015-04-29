@@ -377,12 +377,10 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         // Scroll the Table View to the position of the current playing song
         let ind = Int(self.player?.currentTrackIndex ?? 0)
         let path = NSIndexPath(forItem: ind, inSection: 0)
-        self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
-//        self.tableView.selectRowAtIndexPath(NSIndexPath(forItem: Int(index), ), animated: false, scrollPosition: UITableViewScrollPosition.Bottom)
-        
-//        var cell = self.tableView.cellForRowAtIndexPath(path)
-//        cell?.textLabel?.textColor = UIColor.redColor()
-//        cell?.textLabel?.textColor = UIColor(red: 254, green: 230, blue: 88, alpha: 1)
+        if ind > 0 {
+            self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+
         self.tableView.reloadData()
     }
     

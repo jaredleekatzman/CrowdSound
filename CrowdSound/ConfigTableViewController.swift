@@ -248,6 +248,7 @@ class ConfigTableViewController: UITableViewController, SPTAuthViewDelegate {
         if segue.identifier? == "finalizeCrowd" {
             var secondScene = segue.destinationViewController as CrowdTabViewController
             var crowd = createCrowd()
+            User.currentUser.addCrowdToCrowds(crowd)
             secondScene.myCrowd = crowd
             
             if let dict = JSONSerializer.serializeNewCrowd(crowd) {
