@@ -14,7 +14,6 @@ class PlayerCell: UITableViewCell {
     
     @IBOutlet var songLabel: UILabel!
     @IBOutlet var artistLabel: UILabel!
-    
     @IBOutlet var playButton: UIButton!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var backButton: UIButton!
