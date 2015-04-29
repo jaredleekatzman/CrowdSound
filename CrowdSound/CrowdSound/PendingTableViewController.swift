@@ -76,10 +76,11 @@ class PendingTableViewController: UITableViewController {
             let crowdUID = crowd?.uid ?? ""
             if User.currentUser.canUpvote(crowdUID, songUID: songUID) {
                 // User can Upvote!
-                crowd?.pending.upvoteSong(songIndex)
                 button.setImage(UIImage(named: "fullHeart"), forState: UIControlState.Normal)
                 button.enabled = false
+                crowd?.upvotePendingSong(songIndex)
                 self.tableView.reloadData()
+                
                 
                 //send vote over socket
                 print("upvote")
@@ -88,8 +89,8 @@ class PendingTableViewController: UITableViewController {
             }
             // User has already upvoted
             else {
-                crowd?.pending.downvoteSong(songIndex)
                 button.setImage(UIImage(named: "emptyHeart"), forState: UIControlState.Normal)
+                crowd?.downvotePendingSong(songIndex)
                 self.tableView.reloadData()
                 
                 //send vote over socket
