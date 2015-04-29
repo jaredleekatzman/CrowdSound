@@ -172,7 +172,19 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 newSong.spotifyURI  = partialTrack.playableUri
                 newSong.upvotes     = 1
                 resultsArray.append(newSong)
-
+                
+                SPTTrack.trackWithURI(newSong.spotifyURI, session: nil, callback: { (error:NSError!, obj: AnyObject!) -> Void in
+                    if (error != nil) {
+                        println("error getting track: \(error)")
+                    }
+                    let track = obj as SPTTrack
+                    if let artist = track.artists[0].name {
+                        newSong.artist = artist
+                    }
+                    if let imageURL = track.album.largestCover.imageURL {
+                        newSong.spotifyAlbumArtURL = imageURL
+                    }
+                })
             }
             
             // update search array, which updates songTable.

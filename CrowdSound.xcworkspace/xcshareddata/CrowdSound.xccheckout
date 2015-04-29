@@ -22,7 +22,7 @@
 		<key>193D5BFB68FF9B3DD9575BD0B61ADD6E79E7CE62</key>
 		<string>..</string>
 		<key>D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64</key>
-		<string>..Vendor/Quick/</string>
+		<string>..Vendor/Quick</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://git.yale.edu/CrowdSound/CrowdSound-iOS.git</string>
