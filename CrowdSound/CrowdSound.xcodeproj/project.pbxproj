@@ -39,7 +39,6 @@
 		C31CE1771AD8749800A3B0B8 /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */; };
 		C35067E11AD8B2940087B3AC /* tokenswap.rb in Resources */ = {isa = PBXBuildFile; fileRef = C35067E01AD8B2940087B3AC /* tokenswap.rb */; };
 		C3617F1D1AF08446005CBEA0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */; };
-		C3617FF01AF09862005CBEA0 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3617FEF1AF09861005CBEA0 /* Quick.framework */; };
 		C366E0511AEF430900A285CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366E0501AEF430900A285CA /* User.swift */; };
 		C391D77F1AD90D5400B1EC65 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */; };
 		C39B51981AE2ECA7008946E1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */; };
@@ -113,7 +112,6 @@
 		C31CE1761AD8749800A3B0B8 /* ConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigTableViewController.swift; path = ../ConfigTableViewController.swift; sourceTree = "<group>"; };
 		C35067E01AD8B2940087B3AC /* tokenswap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tokenswap.rb; sourceTree = "<group>"; };
 		C3617F1C1AF08446005CBEA0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		C3617FEF1AF09861005CBEA0 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CrowdSound-ewjmoetyyzzsljbjaicximyrvpvi/Build/Products/Debug/Quick.framework"; sourceTree = "<group>"; };
 		C366E0501AEF430900A285CA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C391D77E1AD90D5400B1EC65 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3617FF01AF09862005CBEA0 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +186,6 @@
 		C31CB1431AAA48B700D229DC = {
 			isa = PBXGroup;
 			children = (
-				C3617FEF1AF09861005CBEA0 /* Quick.framework */,
 				8D8930971AEF017100A66F2D /* Security.framework */,
 				8D8930951AEF016B00A66F2D /* Foundation.framework */,
 				8D8930931AEF015B00A66F2D /* CFNetwork.framework */,
