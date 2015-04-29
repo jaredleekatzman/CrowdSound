@@ -54,6 +54,8 @@
 		ED4957B01AF0E2F200E7C244 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCBFA6B1AD4A59D00C5CF96 /* Spotify.framework */; };
 		ED4957B11AF0E30A00E7C244 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B51971AE2ECA7008946E1 /* SettingsTableViewController.swift */; };
 		ED4957B41AF0E92F00E7C244 /* PendingTableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4957B31AF0E92F00E7C244 /* PendingTableViewControllerSpec.swift */; };
+		ED4957C21AF0ED4400E7C244 /* PendingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1791AAA513B00D229DC /* PendingTableViewController.swift */; };
+		ED4957C31AF0ED5900E7C244 /* PendingSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2377B1AC9FD67001B007C /* PendingSongCell.swift */; };
 		ED9CFDA41AE1A009005C1DF7 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9CFDA31AE1A009005C1DF7 /* PlaylistTableViewController.swift */; };
 		EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8CC2F1ACE205500D7B4A3 /* CrowdTests.swift */; };
 		EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31CB1711AAA4FAC00D229DC /* Crowd.swift */; };
@@ -544,11 +546,13 @@
 				EDBAB7A11ACC57E000E7164C /* PlaylistTests.swift in Sources */,
 				ED4957B11AF0E30A00E7C244 /* SettingsTableViewController.swift in Sources */,
 				EDB8CC311ACE20A300D7B4A3 /* Crowd.swift in Sources */,
+				ED4957C31AF0ED5900E7C244 /* PendingSongCell.swift in Sources */,
 				EDBAB7A31ACC585100E7164C /* SongTests.swift in Sources */,
 				C313CC3C1AF002570073BB27 /* UserTests.swift in Sources */,
 				C3F0B7F91AED42F80016381D /* ConfigPageTests.swift in Sources */,
 				C313CC3D1AF002E70073BB27 /* User.swift in Sources */,
 				EDB8CC301ACE205500D7B4A3 /* CrowdTests.swift in Sources */,
+				ED4957C21AF0ED4400E7C244 /* PendingTableViewController.swift in Sources */,
 				EDBC07581AF0DD0900E7BBFA /* CrowdsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

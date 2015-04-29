@@ -11,7 +11,7 @@ import UIKit
 class PendingTableViewController: UITableViewController {
     
     // define socket.io in class
-    let socket = SocketIOClient(socketURL: "54.152.114.46/")
+//    let socket = SocketIOClient(socketURL: "54.152.114.46/")
     
     // Crowd Data
     var crowd : Crowd?
@@ -30,23 +30,23 @@ class PendingTableViewController: UITableViewController {
         
         // WebSockets
         self.addHandlers()
-        self.socket.connect()
+//        self.socket.connect()
     }
     
     func addHandlers() {
         
         //chat messages because why not:
-        self.socket.on("chat message") {[weak self] data, ack in
-            print("I got a message!!")
-            return
-        }
-        // Using a shorthand parameter name for closures
-        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
-        
-        self.socket.on("voted") {[weak self] data, ack in
-            print("voted!")
-            return
-        }
+//        self.socket.on("chat message") {[weak self] data, ack in
+//            print("I got a message!!")
+//            return
+//        }
+//        // Using a shorthand parameter name for closures
+//        self.socket.onAny {println("Got event: \($0.event), with items: \($0.items)")}
+//        
+//        self.socket.on("voted") {[weak self] data, ack in
+//            print("voted!")
+//            return
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,8 +82,8 @@ class PendingTableViewController: UITableViewController {
                 
                 //send vote over socket
                 print("upvote")
-                self.socket.emit("chat message", "this is a chat from the phone")
-                self.socket.emit("fromClient")
+//                self.socket.emit("chat message", "this is a chat from the phone")
+//                self.socket.emit("fromClient")
             }
             // User has already upvoted
             else {
@@ -93,8 +93,8 @@ class PendingTableViewController: UITableViewController {
                 
                 //send vote over socket
                 print("downvote")
-                self.socket.emit("downVote", 1)
-                self.socket.emit("fromClient")
+//                self.socket.emit("downVote", 1)
+//                self.socket.emit("fromClient")
             }
         }
     }
@@ -146,8 +146,8 @@ class PendingTableViewController: UITableViewController {
 
                 //send vote over socket
                 print("upvote")
-                self.socket.emit("chat message", "this is a chat from the phone")
-                self.socket.emit("fromClient")
+//                self.socket.emit("chat message", "this is a chat from the phone")
+//                self.socket.emit("fromClient")
             }
         }
     }
@@ -159,8 +159,8 @@ class PendingTableViewController: UITableViewController {
         
         //send vote over socket
         print("downvote")
-        self.socket.emit("downVote", 2)
-        self.socket.emit("fromClient")
+//        self.socket.emit("downVote", 2)
+//        self.socket.emit("fromClient")
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
