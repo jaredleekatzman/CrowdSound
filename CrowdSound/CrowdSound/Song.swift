@@ -26,13 +26,13 @@ class Song {
         self.uid = NSUUID().UUIDString
     }
 
-    init(name : String, artist : String, uri: NSURL) {
+    init(name : String, artist : String, uri: NSURL, albumArt : NSURL = NSURL()) {
         self.name = name
         self.artist = artist
         self.spotifyURI = uri
         self.upvotes = 1
         self.uid = name + artist + NSUUID().UUIDString
-        self.spotifyAlbumArtURL = NSURL(string: "nil")!
+        self.spotifyAlbumArtURL = albumArt
     }
     
     // For testing - create default song

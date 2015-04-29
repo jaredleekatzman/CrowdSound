@@ -21,8 +21,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         didSet  {self.songTable.reloadData()}
     }
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,8 +98,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if (self.songSearchController.active)
         {
             cell.textLabel?.text = self.searchArray[indexPath.row].name
-            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.detailTextLabel?.text = self.searchArray[indexPath.row].artist
         }
+        cell.layoutSubviews()
         return cell
     }
     
@@ -111,10 +110,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         // create new song object to add to pending.
-        var newSong         = Song()
-        newSong.name        = searchArray[indexPath.row].name
-        newSong.spotifyURI  = searchArray[indexPath.row].spotifyURI
-        newSong.upvotes     = 1
+        let song            = searchArray[indexPath.row]
+        var newSong         = Song(name: song.name, artist: song.artist, uri: song.spotifyURI, albumArt: song.spotifyAlbumArtURL)
         
         // add song.
         self.crowd?.pending.addSong(newSong)
@@ -171,24 +168,30 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 newSong.name        = partialTrack.name
                 newSong.spotifyURI  = partialTrack.playableUri
                 newSong.upvotes     = 1
-                resultsArray.append(newSong)
+                
                 
                 SPTTrack.trackWithURI(newSong.spotifyURI, session: nil, callback: { (error:NSError!, obj: AnyObject!) -> Void in
                     if (error != nil) {
                         println("error getting track: \(error)")
+                        self.searchArray.append(newSong)
                     }
                     let track = obj as SPTTrack
                     if let artist = track.artists[0].name {
                         newSong.artist = artist
+                        println(newSong.artist)
                     }
                     if let imageURL = track.album.largestCover.imageURL {
                         newSong.spotifyAlbumArtURL = imageURL
                     }
+                    
+                    self.searchArray.append(newSong)
                 })
+                
+                
             }
             
             // update search array, which updates songTable.
-            self.searchArray = resultsArray
+//            self.searchArray = resultsArray
         })
     }
 
