@@ -10,7 +10,7 @@ import Foundation
 
 
 
-class Crowd {
+class Crowd : NSObject {
     var name : String       // crowd name
     var playlist : Playlist 
     var pending : Playlist  // pending songs
@@ -21,7 +21,7 @@ class Crowd {
     var isPrivate: Bool     // if need password
     var password: String    // what the password is
     
-    init() {
+    override init() {
         name = ""
         playlist = Playlist()
         pending = Playlist()

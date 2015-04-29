@@ -14,8 +14,9 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
     
     var crowds = [Crowd]()
     var correctPassword = false
+    var selectedCrowd : Crowd? = nil
 
-    var searchArray:[String] = [String](){
+    var searchArray:[Crowd] = [Crowd](){
         didSet  {self.tableView.reloadData()}
     }
     
@@ -44,6 +45,11 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         })()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.tableView.reloadData()
+    }
+    
 
     
     // for testing: create dummy crowds
@@ -61,7 +67,7 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         var eliCrowd = Crowd.defaultCrowd()
         eliCrowd.host = "Eli"
         eliCrowd.name = "Eli's on a boat!"
-        eliCrowd.password = "ELI - ELI - ELI"
+        eliCrowd.password = "eli"
         eliCrowd.isPrivate = true
         crowds.append(eliCrowd)
         
@@ -106,7 +112,6 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         crowds.append(crowd6)
         
         crowds.append(defaultCrowd)
-        crowds.append(eliCrowd)
     }
     
 
@@ -118,12 +123,11 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
     // MARK: - TABLE VIEW DATA SOURCE
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Return the number of rows in the section.
+        // Return the number of search results or the total number of crowds.
         if (self.crowdSearchController.active) {
             return self.searchArray.count
         }
@@ -132,12 +136,13 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("crowdCell", forIndexPath: indexPath) as UITableViewCell
 
-        // Configure the cell...
+        // cell takes search results if searching...
         if (self.crowdSearchController.active) {
-            cell.textLabel?.text = self.searchArray[indexPath.row]
-        } else {
+            cell.textLabel?.text = self.searchArray[indexPath.row].name
+        } else { // ... or all crowds if not.
             var currentCrowd = crowds[indexPath.row]
             cell.textLabel?.text = currentCrowd.name
         }
@@ -145,25 +150,21 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         return cell
     }
     
-    
+    // update tableView with results as typing.
+    //  maintain array of crowd objects analogous to search results.
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         self.searchArray.removeAll(keepCapacity: false)
-        var crowdNames = crowds.map{a in a.name} as NSArray
+        var crowdNames = crowds as NSArray
         if searchController.searchBar.text == "" {
-            self.searchArray = crowdNames as [String]
+            self.searchArray = crowdNames as [Crowd]
         } else {
-            let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text)
+            let searchPredicate = NSPredicate(format: "self.name CONTAINS[c] %@", searchController.searchBar.text)
             var array = crowdNames.filteredArrayUsingPredicate(searchPredicate!)
-            self.searchArray = array as [String]
+            self.searchArray = array as [Crowd]
         }
 
         
     }
-    
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//    }
-
     
     // MARK: - NAVIGATION
 
@@ -173,30 +174,24 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         // if user clicked crowd, pass on crowd data to next view
         if segue.identifier? == "showCrowd" {
             var secondScene = segue.destinationViewController as CrowdTabViewController
-            
             // Pass the selected object to the new view controller.
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-                self.crowdSearchController.active = false
-                let selectedCrowd = crowds[indexPath.row]
+            if selectedCrowd != nil {
                 secondScene.myCrowd = selectedCrowd
-                //self.crowdSearchController.active = false
             }
         }
     }
-    
-    // MARK: - PASSWORD FUNCTIONS
     
     // determines if segue should show
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
 
         if identifier == "showCrowd" {
+            
             if correctPassword { // if correct password, do segue
                 return true
             }
-            
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let selectedCrowd = crowds[indexPath.row]
-                if !selectedCrowd.isPrivate {   // if not private, always return true
+            crowdSelectedByUser()
+            if selectedCrowd != nil {
+                if !selectedCrowd!.isPrivate {   // if not private, always return true
                     return true
                 } else {                        // otherwise wait for correct response
                     showPasswordInputView()
@@ -204,8 +199,34 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
                 }
             }
         }
+        
+
         return true
     }
+    
+    // sets the global crowdSelected to the crowd object picked by the user.
+    func crowdSelectedByUser() {
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow() {
+            
+            // find proper crowd.
+            if (self.crowdSearchController.active && self.crowdSearchController.searchBar.text != "") {
+                selectedCrowd = searchArray[indexPath.row]
+                
+                // reset search defaults.
+                self.crowdSearchController.active = false
+                self.crowdSearchController.searchBar.text = ""
+            } else {
+                selectedCrowd = crowds[indexPath.row]
+            }
+            // reset table default.
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        } else {
+            selectedCrowd = nil
+        }
+    }
+    
+    // MARK: - PASSWORD FUNCTIONS
     
     // show the password alert view
     func showPasswordInputView() {
@@ -223,57 +244,44 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
     func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         switch buttonIndex {
         case 0: // user hit cancel
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            }
             break
         case 1:
             checkPassword(View) // Done clicked
             break
         default:                // Cancel clicked
-            println("default")
             break
         }
-    }
-    
-    // make the textfield in the alertView the foxus
-    // TODO: this doesn't work. see if simulator issue.
-    func didPresentAlertView(alertView: UIAlertView) {
-        alertView.textFieldAtIndex(0)?.becomeFirstResponder()
     }
     
     // checks user input with crowd password, else shows alert
     func checkPassword(view: UIAlertView!) {
         let userInput = view.textFieldAtIndex(0)?.text
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
-            let selectedCrowd = crowds[indexPath.row]
-            if selectedCrowd.password == userInput {
+        if let crowdToCheck = selectedCrowd {
+            if crowdToCheck.password == userInput {
                 correctPassword = true
                 performSegueWithIdentifier("showCrowd", sender: self)
             } else {
+                selectedCrowd = nil
                 showPasswordIncorrectAlert()
             }
         }
+
         correctPassword = false
     }
     
     // shows alert message when user inputs incorrect password
     func showPasswordIncorrectAlert() {
         
-        // display alert about incorrect password
         var alert = UIAlertController(title: "Incorrect Password",
             message: "The password you entered was incorrect", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style:UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-        
-        // deselect the selected row
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }
     }
     
 
     override func viewWillDisappear(animated: Bool) {
-        correctPassword = false // remove password memory
+        // remove password and crowd memory
+        correctPassword = false
+        selectedCrowd = nil
     }
 }
