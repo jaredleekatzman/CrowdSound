@@ -24,6 +24,8 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let testSocket = Socket.currentSocket.socketIO
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sessionUpdateNotification:", name:
             "sessionUpdated", object: nil)
