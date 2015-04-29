@@ -10,12 +10,28 @@ import Foundation
 
 private let _currentUser = User()
 
+protocol updateCrowdsList{
+    // function call?
+    func updateCrowds()
+}
+
 class User {
+    
+    var userDelegate:updateCrowdsList? = nil
+
     
     var name : String = ""
     var upvotedSongs = [String: [String]]()
     var uid = NSUUID().UUIDString
-    var crowds : [Crowd] = []
+    var crowds : [Crowd] = [] {
+        didSet{
+            // update player when playlist changed.
+            if let delegate = self.userDelegate {
+                println("====================== INSIDE THE IF=======================")
+                delegate.updateCrowds()
+            }
+        }
+    }
     
     // create a singleton of the current user
     class var currentUser: User {

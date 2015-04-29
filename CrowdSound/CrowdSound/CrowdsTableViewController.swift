@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating, UIAlertViewDelegate {
+class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating, UIAlertViewDelegate, updateCrowdsList {
 
     @IBOutlet var configButton: UIBarButtonItem!
     
@@ -30,7 +30,9 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sessionUpdateNotification:", name:
             "sessionUpdated", object: nil)
 
-        createDummyCrowds()
+//        createDummyCrowds()
+        User.currentUser.userDelegate = self
+
         
         // Configure countrySearchController
         self.crowdSearchController = ({
@@ -299,5 +301,9 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
         // remove password and crowd memory
         correctPassword = false
         selectedCrowd = nil
+    }
+    
+    func updateCrowds() {
+        self.tableView.reloadData()
     }
 }

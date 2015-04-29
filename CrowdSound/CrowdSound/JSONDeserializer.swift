@@ -60,7 +60,7 @@ class JSONDeserializer {
             if (song.artist.isEmpty || song.name.isEmpty) {
                 continue
             }
-            println("song deserialized, name = \(song.name), artist = \(song.artist), spot URI = \(song.spotifyURI)")
+            println("song deserialized, name = \(song.name), upvotes = \(song.upvotes), spot URI = \(song.spotifyURI)")
 
             songs.append(song)
         }
@@ -90,4 +90,5 @@ class JSONDeserializer {
             User.currentUser.crowds = crowds
         }
     }
+    
 }
