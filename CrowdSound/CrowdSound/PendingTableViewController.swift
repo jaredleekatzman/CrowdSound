@@ -11,7 +11,7 @@ import UIKit
 class PendingTableViewController: UITableViewController {
     
     // define socket.io in class
-    let socket = SocketIOClient(socketURL: "54.152.114.46/")
+    let socket = SocketIOClient(socketURL: "localhost:8080")
     
     // Crowd Data
     var crowd : Crowd?
