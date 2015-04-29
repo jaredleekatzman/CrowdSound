@@ -29,7 +29,7 @@ class Song {
     init(name : String, artist : String, uri: NSURL) {
         self.name = name
         self.artist = artist
-        self.spotifyURI = uri
+        self.spotifyURI = NSURL(string: uri)
         self.upvotes = 1
         self.uid = name + artist + NSUUID().UUIDString
         self.spotifyAlbumArtURL = NSURL(string: "nil")!
