@@ -39,7 +39,13 @@ class CrowdsTableViewController: UITableViewController, UISearchResultsUpdating,
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.sizeToFit()
+            controller.searchBar.barStyle  = UIBarStyle.Black
+            controller.searchBar.tintColor = self.view.tintColor
+            
+            
             self.tableView.tableHeaderView = controller.searchBar
+            self.definesPresentationContext = true
+            
             
             return controller
         })()
