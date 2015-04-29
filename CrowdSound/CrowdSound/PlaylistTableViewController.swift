@@ -271,7 +271,6 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         cell.textLabel?.text = song.name
         
         if (indexPath.row == Int(self.player!.currentTrackIndex)) {
-//            cell.textLabel?.textColor = UIColor(red: 254.0, green: 230.0, blue: 88.0, alpha: 1.0)
             cell.textLabel?.textColor = UIColor.yellowColor()
             
         } else {
