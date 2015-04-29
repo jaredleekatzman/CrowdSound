@@ -106,19 +106,22 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.player = tbvc.player
         
+        // User not Logged in
+        if auth.session == nil || !auth.session.isValid() {
+            var alert = UIAlertView()
+            alert.becomeFirstResponder()
+            alert.title = "Please login to Spotify to play music"
+            alert.addButtonWithTitle("Login")
+            alert.addButtonWithTitle("Cancel")
+            alert.alertViewStyle = UIAlertViewStyle.Default
+            alert.delegate = self
+            alert.show()
+        }
+        
         // Log-in with the player
         self.player?.loginWithSession(auth.session, callback: { (error : NSError?) -> () in
             if (error != nil) {
                 NSLog("*** Enabaling playback got error: \(error)")
-                
-                var alert = UIAlertView()
-                alert.becomeFirstResponder()
-                alert.title = "Please login to Spotify to play music"
-                alert.addButtonWithTitle("Login")
-                alert.addButtonWithTitle("Cancel")
-                alert.alertViewStyle = UIAlertViewStyle.Default
-                alert.delegate = self
-                alert.show()
                 
                 return
             }
@@ -138,10 +141,10 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - AlertViewDelegate methods
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         switch buttonIndex {
-        case 1:
-            break
         case 0:
             openLoginPage()
+            break
+        case 1:
             break
         default:
             break
@@ -424,9 +427,9 @@ class PlaylistTableViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         // Scroll the Table View to the position of the current playing song
-        let ind = Int(self.player?.currentTrackIndex ?? 0)
-        let path = NSIndexPath(forItem: ind, inSection: 0)
-        self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+//        let ind = Int(self.player?.currentTrackIndex ?? 0)
+//        let path = NSIndexPath(forItem: ind, inSection: 0)
+//        self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
 //        self.tableView.selectRowAtIndexPath(NSIndexPath(forItem: Int(index), ), animated: false, scrollPosition: UITableViewScrollPosition.Bottom)
         
 //        var cell = self.tableView.cellForRowAtIndexPath(path)
