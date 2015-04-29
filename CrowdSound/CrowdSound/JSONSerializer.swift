@@ -73,11 +73,4 @@ class JSONSerializer {
         println("CANNOT serialize new crowd!")
         return nil
     }
-    
-//    private func canSerialize(dict: [String: AnyObject]?) -> Bool {
-//        if NSJSONSerialization.isValidJSONObject(dict) {
-//            return true
-//        }
-//        return false
-//    }
 }
